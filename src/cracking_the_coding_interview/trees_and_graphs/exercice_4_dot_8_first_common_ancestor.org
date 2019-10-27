@@ -1,0 +1,76 @@
+#+TITLE:Exercice 4.8: First common ancestor
+#+PROPERTY: header-args :tangle exercice_4_dot_8_first_common_ancestor.clj
+
+#+BEGIN_QUOTE
+First Common Ancestor: Design an algorithm and write code to find the
+first common ancestor of two nodes in a binary tree. Avoid storing
+additional nodes in a data structure. NOTE: This is not necessarily a
+binary search tree.
+#+END_QUOTE
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-8-first-common-ancestor
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.string :as str]))
+#+END_SRC
+
+What if I would tell you it's possible to give a linear-time response
+to this question? See [[https://en.wikipedia.org/wiki/Lowest_common_ancestor][here]] for further description. However, in the
+context of a job interview and with only simple datastructure to use,
+I will focus on the obvious solution in $O(h)$ with $h$ being the
+height of the tree.
+
+First, I'll obviously need to access a node's parent. However, because
+I like to represent tree in the simple form of a map, I need to define
+~tree-ancestors~ which returns in constant time the ancestor of any
+node in the graph.
+
+#+BEGIN_SRC clojure
+(def tree-ancestors #(apply merge (for [[k vs] % v vs] {v k})))
+
+(deftest tree-ancestors-test
+  (let [t {:a #{:b}, :c #{:d :e}}
+        ancestor (tree-ancestors t)]
+    (is (= :a (ancestor :b)))
+    (is (= :c (ancestor :d))) 
+    (is (= :c (ancestor :e)))
+    (is (nil? (ancestor :a)))))
+#+END_SRC
+
+It consider this data to be part of the input so doesn't count in time
+complexity stricto sensu.
+
+#+BEGIN_SRC clojure
+(defn first-common-ancestor-fn
+  [t]
+  (let [ancestor (tree-ancestors t)]
+    (fn first-common-ancestor [left right common-ancestor?]
+      (cond (= left right) left
+            (common-ancestor? right) right
+            (common-ancestor? left) left
+            (not (and left right)) nil
+            :default #(first-common-ancestor (ancestor left)
+                                             (ancestor right)
+                                             (conj common-ancestor? left right))))))
+
+(defn response
+  [t left right]
+  (trampoline (first-common-ancestor-fn t) left right #{}))
+
+(deftest first-common-ancestor-test
+  (let [t {:a #{:b :c}
+           :b #{:d :e}
+           :c #{:f :g}
+           :d #{:h :i}
+           :e #{:j :k}
+           :f #{:l :m}
+           :z #{:y}}]
+    (is (= :a (response t :a :a)))
+    (is (= :c (response t :g :m)))
+    (is (= :a (response t :k :m)))
+    (is (nil? (response t :k :z)))))
+#+END_SRC
+
+The loop body will be evaluated at most $O(h)$, $h$ being the height
+of the tree. The additional space complexity is made of
+~common-ancestor?~ which also grows like $O(h)$.

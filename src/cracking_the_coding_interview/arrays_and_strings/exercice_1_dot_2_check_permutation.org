@@ -1,0 +1,48 @@
+#+TITLE:Exercice 1.2: Check Permutation
+#+PROPERTY: header-args :tangle exercice_1_dot_2_check_permutation.clj
+
+#+BEGIN_QUOTE
+Check Permutation: given two strings, write a method to decide if one
+is a permutation of the other.
+#+END_QUOTE
+
+Let the two strings be caled ~left~ and ~right~. Run through ~left~
+and get the count of each character. Then run through ~right~ and
+decrement each character. By the pigeonhole principle applied to two
+strings of equal length, when the run through ~right~ find ~nil~ or
+negative count then the strings aren't a permutation of each other.
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-2-check-permutation
+  (:require [clojure.test :refer [deftest is]]))
+
+(defn inc-count
+  [[i & s] seen?]
+  (or (and i #(inc-count s (assoc! seen? i (inc (get seen? i 0))))) seen?))
+
+(defn dec-count
+  [[i & s] seen?]
+  (let [c (get seen? i)]
+    (or (nil? i) (and (not (#{0 nil} c)) #(dec-count s (assoc! seen? i (dec c)))))))
+
+(defn check-permutation
+  [left right]
+  (->> (transient {})
+       (trampoline inc-count left)
+       (trampoline dec-count right)
+       (and (= (count left) (count right)))))
+
+(def response check-permutation)
+
+(deftest response-test
+  (is (response "" ""))
+  (is (not (response "a" "")))
+  (is (not (response "" "a")))
+  (is (not (response "aesd" "assd")))
+  (is (response "yolo" "yolo")))
+#+END_SRC
+
+The time complexity is $O(n), n = left.length + right.length$ and the
+size of only datastructure used here is at most $O(n), n =
+left.length$ too. Clojure standard function ~trampoline~ avoids stack
+consumption. It's a work around JVM lack of tail call elimination.

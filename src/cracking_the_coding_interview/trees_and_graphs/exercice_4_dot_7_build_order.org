@@ -1,0 +1,114 @@
+#+TITLE:Exercice 4.7: Build order
+#+PROPERTY: header-args :tangle exercice_4_dot_7_build_order.clj
+
+#+BEGIN_QUOTE
+Build Order: You are given a list of projects and a list of
+dependencies (which is a list of pairs of projects, where the second
+project is dependent on the first project). All of a project's
+dependencies must be built before the project is. Find a build order
+that will allow the projects to be built. If there is no valid build
+order, return an error.
+#+END_QUOTE
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-7-build-order
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.string :as str]))
+#+END_SRC
+
+It's great to see a statement which doesn't even try to hide the
+algorithm it refers to. The matter here is to implement a [[https://en.wikipedia.org/wiki/Topological_sorting][topological
+sort]] on a graph. Added difficulty: you can't rely on the input so
+perhaps the directed graph contains loops. Nota: it doesn't matter if
+the graph isn't connected, it just give more equivalent orderings.
+
+I choose to use Kahn's algorithm which is easy to remember and rather
+intuitive: at each step the tasks which haven't any incoming tasks can
+be started. In more technical terms at each step the node which
+haven't any incoming neighbours are put in the result accumulation,
+then removed as incoming neighours in the graph map.
+
+!! add time complexity !!
+
+#+BEGIN_SRC clojure
+(defn topological-ordering "Kahn's algorithm" [g]
+  (loop [g g, res []]
+    (if-let [nodes (->> g (filter (comp empty? second)) (map first) seq)]
+      (recur (reduce-kv #(assoc %1 %2 (apply disj %3 nodes)) {} (apply dissoc g nodes))
+             (into res nodes))
+      res)))
+
+(deftest topological-ordering-test
+  (is (= [] (topological-ordering {})))
+  (is (= [:d :c :b :a] (topological-ordering {:a #{:b}
+                                              :b #{:c}
+                                              :c #{:d}
+                                              :d #{}})))
+  (is (= [:e :f :a :b :d :c] (topological-ordering {:a #{:f}
+                                                    :b #{:f}
+                                                    :c #{:d}
+                                                    :d #{:a :b}
+                                                    :e #{}
+                                                    :f #{}}))))
+#+END_SRC
+
+Here is a way to tune this algorithm to match conditions of the
+problem statement, that's to say check the input is licit and raise an
+error when it's not:
+
+#+BEGIN_SRC clojure
+(defn normalized-input?
+  [g]
+  (->> (vals g)
+       (reduce into)
+       (every? (set (keys g)))
+       (and (every? set? (vals g)))))
+
+(deftest normalized-input-test
+  (is (normalized-input? {}))
+  (is (normalized-input? {:a #{}}))
+  (is (normalized-input? {:a #{:a}}))
+  (is (false? (normalized-input? {:a #{:a :b}})))
+  (is (normalized-input? {:a #{:a :b} :b #{}})))
+
+(defn build-order [g]
+  (assert (normalized-input? g) "Not normalized input: all nodes
+  should be keys.")
+  (loop [g g, res []]
+    (let [nodes (->> g (filter (comp empty? second)) (map first) seq)]
+      (if nodes 
+        (recur (reduce-kv #(assoc %1 %2 (apply disj %3 nodes)) {} (apply dissoc g nodes))
+               (into res nodes))
+        (do (assert (empty? g) "Impossible ordering: a cycle exists.")
+            res)))))
+
+(deftest build-order-test
+  (is (= [] (build-order {})))
+  (is (= [:d :c :b :a] (build-order {:a #{:b}
+                                     :b #{:c}
+                                     :c #{:d}
+                                     :d #{}})))
+  (is (= :exception
+         (try
+           (build-order {:a #{:f}
+                         :b #{:f}
+                         :c #{:d}
+                         :d #{:a :b}
+                         :e #{}
+                         :f #{:d}})
+           (catch AssertionError e
+             :exception))))
+  (is (= [:e :f :a :b :d :c] (build-order {:a #{:f}
+                                           :b #{:f}
+                                           :c #{:d}
+                                           :d #{:a :b}
+                                           :e #{}
+                                           :f #{}}))))
+#+END_SRC
+
+Actually the response is ~build-order~ even if I believe the original
+implementation is cleaner.
+
+#+BEGIN_SRC clojure
+(def response build-order)
+#+END_SRC

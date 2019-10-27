@@ -1,0 +1,97 @@
+#+TITLE:Exercice 4.4: Check balanced
+#+PROPERTY: header-args :tangle exercice_4_dot_4_check_balanced.clj
+
+#+BEGIN_QUOTE
+Check Balanced: Implement a function to check if a binary tree is
+balanced. For the purposes of this question, a balanced tree is
+defined to be a tree such that the heights of the two subtrees of any
+node never differ by more than one.
+#+END_QUOTE
+
+Well, first I should have thought by myself of a recursive definition
+of a tree balance, which is the natural extension of the
+straighforward definition.
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-4-check-balanced
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.string :as str]))
+#+END_SRC
+
+The algorithm here takes advantage of the recursive definition of the
+balance of a tree and adopts a depth-first approach to find the
+smallest, leftmost non balanced tree.
+
+Clojure is a nice language with very few data type. Hence all numbers
+are logically equivalent to =true= and =false= is…  =false=. Thanks to
+this you only need =and= to express the recursion instead of verbose
+nested tests. This macro =and= returns the first value logically
+equivalent to =false=, or the last value equivalent to =true=.
+
+By using macro =and= you can prune some computation but all nodes af
+the tree are actually visited: this code will visit the right branch
+even if the left is already known to be unbalanced. The following
+version solve this problem.
+
+#+BEGIN_SRC clojure
+(defn balanced-height
+  "Return height, or false if unbalanced"
+  [t node]
+  (let [[left right] (get t node)
+        left-height (if left
+                      (balanced-height t left)
+                      0)
+        right-height (cond (false? left-height) false
+                           right (balanced-height t right)
+                           :default 0)]
+    (and right-height
+         (< (Math/abs (- left-height right-height)) 2)
+         (if node (inc (max left-height right-height)) 0))))
+
+(def check-balance
+  (comp boolean balanced-height))
+
+(deftest balance-test
+  (let [t {:root nil}]
+    (is (= 0 (balanced-height t (:root t))))
+    (is (check-balance t (:root t))))
+  (let [t {:root 0
+           0 '(nil nil)}]
+    (is (= 1 (balanced-height t (:root t))))
+    (is (check-balance t (:root t))))
+  (let [t {:root 0
+           0 '(nil 1)
+           1 '(nil nil)}]
+    (is (= 2 (balanced-height t (:root t))))
+    (is (check-balance t (:root t))))
+  (let [t {:root 1
+           1 '(0 2)
+           0 '(nil nil)
+           2 '(nil nil)}]
+    (is (= 2 (balanced-height t (:root t))))
+    (is (check-balance t (:root t))))
+  (let [t {:root 1
+           1 '(0 2)
+           0 '(nil nil)
+           2 '(nil 3)
+           3 '(nil nil)}]
+    (is (= 3 (balanced-height t (:root t))))
+    (is (check-balance t (:root t))))
+  (let [t {:root 1
+           1 '(0 2)
+           0 '(nil nil)
+           2 '(nil 3)
+           3 '(nil 4)
+           4 '(nil nil)}]
+    (is (false? (balanced-height t (:root t))))
+    (is (not (check-balance t (:root t))))))
+#+END_SRC
+
+This algorithm is left-biased. The worst case then appear to have the
+smallest, rightmost subtree which is unbalanced and you will need
+$O(n)$ time to figure this out, $n$ being the number of nodes.
+
+As long as a node has some leaves we will reccur on them but we only
+process one side at a time. That way the additionnal space needed is
+like $O(h)$ with $h$ the height of the tree. This also means we might
+overflow the stack if the height is too high.

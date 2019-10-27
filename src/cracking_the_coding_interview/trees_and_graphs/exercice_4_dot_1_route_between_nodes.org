@@ -1,0 +1,293 @@
+#+TITLE:Exercice 4.1: Route between nodes
+#+PROPERTY: header-args :tangle exercice_4_dot_1_route_between_nodes.clj
+
+#+BEGIN_QUOTE
+Route Between Nodes: Given a directed graph, design an algorithm to
+find out whether there is a route between two nodes.
+#+END_QUOTE
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-1-route-between-nodes
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.string :as str]))
+#+END_SRC
+
+It looks like a tree traversal from the first point which returns
+=true= if the second point is stumbled upon. The first shot is easy
+with the intuitive use of unpure data structure: crawl over the graph,
+remember the nodes already seen so the algorithm can't get stuck in
+loops or weird stuff.
+
+** Using transient data structure
+
+#+BEGIN_SRC clojure
+(defn route-between-nodes
+  ([graph from to]
+   (route-between-nodes graph from to (transient #{})))
+  ([graph from to seen]
+   (cond (contains? seen from) false
+         (contains? (get graph from) to) true
+         (conj! seen from) (->> from
+                                (get graph)
+                                (some #(route-between-nodes graph % to seen))
+                                boolean))))
+
+(deftest route-between-nodes-test
+  (is (not (route-between-nodes {:a #{:b}} :a :c)))
+  (is (route-between-nodes {:a #{:b}} :a :b))
+  (is (not (route-between-nodes {:a #{:b}} :b :a)))
+  (is (not (route-between-nodes {:a #{:b}} :a :a)))
+  (is (route-between-nodes {:a #{:a :b}} :a :a))
+  (is (route-between-nodes {:a #{:a :b}
+                            :b #{:a :c}
+                            :c #{:d :e}
+                            :e #{:f}
+                            :f #{:a :b :c :d :e :f :g}
+                            :g #{}}
+                           :a
+                           :g))
+  (is (route-between-nodes {:a #{:b}
+                            :b #{:a :c}
+                            :c #{:b}}
+                           :a :b))
+  (is (route-between-nodes {:a #{:b}
+                            :b #{:a :c}
+                            :c #{:b}}
+                           :a :c))
+  (is (not (route-between-nodes {:a #{:b}
+                                 :b #{:a :c}
+                                 :c #{:b}}
+                                :a :d))))
+#+END_SRC
+
+This is a depth-first algorithm.
+
+In the worst case the destination node will be not found so all
+reachable nodes has to be crawled over exactly once. Each edge is
+followed exactly once but any already visited node immediately returns
+false. That means the time complexity to be $O(|V| + |E|)$. At least
+it's kind of linear, but dependent of the intuitive /density/ of the
+graph.
+
+The input is stored in an adjacency map wherein each vertex matches a
+key and each edge from a vertex is a item in the value set -- the item
+being the destination vertex. The space complexity of the input is
+$O(|V| + |E|)$.
+
+The additional space complexity of the transient datastructure =seen=
+in $O(|V|)$ in the worst case because edges of already seen node
+aren't visited. Stack frames of recursive calls in the =some= form
+doesn't use additional space complexity because they are executed
+sequentially and each evaluation reuses the space of the previous one.
+
+** Using pure data structures
+
+How can I keep up with pure datastructures?
+
+#+BEGIN_SRC clojure
+(defn route-between-nodes-2
+  [graph from to]
+  (loop [from from
+         reachable (get graph from)
+         seen? #{}]
+    (cond (contains? reachable to) true
+          (seen? from) false
+          :default (when-let [new-from (some->> reachable
+                                                (remove seen?)
+                                                (remove #{from})
+                                                seq
+                                                rand-nth)]
+                     (recur new-from
+                            (into reachable (get graph new-from))
+                            (conj seen? from))))))
+
+(deftest route-between-nodes-2-test
+  (is (not (route-between-nodes-2 {:a #{:b}} :a :c)))
+  (is (route-between-nodes-2 {:a #{:b}} :a :b))
+  (is (not (route-between-nodes-2 {:a #{:b}} :b :a)))
+  (is (not (route-between-nodes-2 {:a #{:b}} :a :a)))
+  (is (route-between-nodes-2 {:a #{:a :b}} :a :a))
+  (is (route-between-nodes-2 {:a #{:a :b}
+                              :b #{:a :c}
+                              :c #{:d :e}
+                              :e #{:f}
+                              :f #{:a :b :c :d :e :f :g}
+                              :g #{}}
+                             :a
+                             :g))
+  (is (route-between-nodes-2 {:a #{:b}
+                              :b #{:a :c}
+                              :c #{:b}}
+                             :a :b))
+  (is (route-between-nodes-2 {:a #{:b}
+                              :b #{:a :c}
+                              :c #{:b}}
+                             :a :c))
+  (is (not (route-between-nodes-2 {:a #{:b}
+                                   :b #{:a :c}
+                                   :c #{:b}}
+                                  :a :d))))
+#+END_SRC
+
+The idea is to make the recursion steps explicit at each step. This is
+stored in =reachable=. This is neither a depth-first nor a
+breadth-first algorithm because a set doesn't preserve ordering.
+
+In the worst case each node must be visited only once, this counts for
+$O(|V|)$. You don't recur and visit each edge like previously: on each
+node you prune edges to nodes you have already visited. Overall you
+have to execute this proportionally to $O(|E|)|$. As a result the
+worst case algorithmic complexity still is $O(|V| + |E|)$.
+
+The input structure doesn't change. The additional space needed is at
+most $O(|V|)$ for data structures =reachable= and =seen?= because a
+node can't be in both at the same time.
+
+** Optimizing for the best case with optimism
+
+We previously performed worst-case analysis. Let's be optimistic for
+now: when asked to find a path, the algorithm might assume such path
+exists and use bidirectional search.
+
+In my humble opinion breadth-first search can naively be assimilated
+to a circle that grows more and more aound the starting point (it's an
+approximation). In visual, geometric terms, let's say the distance
+from the starting point to the destination point is $d$. Growing a
+circle takes $\pi d^2$ tests to find the points because all points in
+every direction have to be tested. Let's now imagine we grow two
+circles from the two points. The combined circle areas is $\frac{\pi
+d^2}{2}$, half that previously.
+
+Under the assumption that the analogy still holds for graphs, let's
+have fun and implement this algorithm.
+
+Technical detail: now the adjacency map is no longer enough because
+search from the destination point must be run in the opposite
+direction. Code here is intended to primarily legible and use as few
+library as possible. Hence let's say the usual input map is now
+accompanied with a 'reverse' map, computed with
+=reverse-adjacency-map=.
+
+#+BEGIN_SRC clojure
+(defn reverse-adjacency-map
+  [m]
+  (reduce (fn [acc [k vs]]
+            (reduce #(update %1 %2 (fnil conj #{}) k)
+                    acc
+                    vs))
+          (empty m)
+          m))
+
+(deftest reverse-adjacency-map-test
+  (= (reverse-adjacency-map {:a #{1 2}
+                             :b #{2 3}})
+     {1 #{:a}
+      2 #{:a :b}
+      3 #{:b}})
+  (let [adjacency-map {:a #{1 2}
+                       :b #{2 3}}]
+    (= (->> adjacency-map
+            reverse-adjacency-map
+            reverse-adjacency-map)
+       adjacency-map)))
+#+END_SRC
+
+The worst-case time complexity of this ancillary function is $O(k
+\times v)$ with $k$ the number of keys and $v$ the maximum number of
+value items per key. Expressed in graph terms it becomes: $O\left(|V|
+\frac{|E|}{|V|}\right) \sim O(|E|)$. The raw expression with $k$ and
+$v$ doesn't look great but actually $O(|E|)$ quite makes sense: it
+takes each edge and reverse its direction.
+
+#+BEGIN_SRC clojure
+(defn route-between-nodes-3
+  [graph from to]
+  (let [adjacency-> graph
+        adjacency<- (reverse-adjacency-map graph)
+        node-> from
+        node<- to]
+    (loop [border-> (get adjacency-> node-> #{})
+           reachable-> border->
+           border<- (get adjacency<- node<- #{})
+           reachable<- border<-
+           seen? #{}]
+      (cond (some reachable-> border<-) true
+            (empty? border<-) false
+            (some reachable<- border->) true
+            (empty? border->) false
+            :default (let [new-border-> (some->> border->
+                                                 (mapcat graph)
+                                                 (remove seen?)
+                                                 (remove border->)
+                                                 set)
+                           new-border<- (some->> border<-
+                                                 (mapcat graph)
+                                                 (remove seen?)
+                                                 (remove border<-)
+                                                 set)]
+                       (recur new-border->
+                              (into reachable-> new-border->)
+                              new-border<-
+                              (into reachable<- new-border<-)
+                              (reduce into [seen? new-border-> new-border<-])))))))
+
+(deftest route-between-nodes-3-test
+  (is (not (route-between-nodes-3 {:a #{:b}} :a :c)))
+  (is (route-between-nodes-3 {:a #{:b}} :a :b))
+  (is (not (route-between-nodes-3 {:a #{:b}} :b :a)))
+  (is (not (route-between-nodes-3 {:a #{:b}} :a :a)))
+  (is (route-between-nodes-3 {:a #{:a :b}} :a :a))
+  (is (route-between-nodes-3 {:a #{:a :b}
+                              :b #{:a :c}
+                              :c #{:d :e}
+                              :e #{:f}
+                              :f #{:a :b :c :d :e :f :g}
+                              :g #{}}
+                             :a
+                             :g))
+  (is (route-between-nodes-3 {:a #{:b}
+                              :b #{:a :c}
+                              :c #{:b}}
+                             :a :b))
+  (is (route-between-nodes-3 {:a #{:b}
+                              :b #{:a :c}
+                              :c #{:b}}
+                             :a :c))
+  (is (not (route-between-nodes-3 {:a #{:b}
+                                   :b #{:a :c}
+                                   :c #{:b}}
+                                  :a :d))))
+#+END_SRC
+
+This breadth-first algorithm maintains two borders made of nodes that
+can be reached from the starting node, and nodes than can reach the
+destination node. There is a route between the node when there is an
+intersection between the borders, or when a border contains the other
+node.
+
+The termination criterion is: is any border empty? It might seem odd
+but if a border gets empty without meeting with the other node, it
+means the two nodes belongs to two different graph components.
+
+In the worst case the borders will share one single vertex $v_t$: this
+situation can be approximated as saying borders are tangent one to
+another. The time complexity can be described as
+$O\left(d(\mathit{from}, \mathit{v_t})^2 + d(\mathit{v_t},
+\mathit{to})^2\right)$ which could be kind of similar to
+$O(\frac{1}{2} \left(|V| + |E|\right))$ -- /caveat emptor/ actual
+Landau notation doesn't count coefficents). This algorithm
+theoretically needs less steps than the previous ones, but its steps
+are roughly twice heavier, which actually give $O(|V| + |E|)$. Some
+further exploration would be needed to characterize the type of graphs
+which might take advantage of this 'circle' assumption.
+
+** Which approach to take?
+
+Which algorithm shall I choose in a coding interview setting? Well,
+the first one popped up first in my mind and it has a lesser cognitive
+load because it's more straightforward. Also, it's shorter and faster
+to write.
+
+#+BEGIN_SRC clojure
+(def response route-between-nodes-2)
+#+END_SRC

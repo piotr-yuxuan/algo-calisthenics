@@ -1,0 +1,46 @@
+#+TITLE:Exercice 1.5: One away
+#+PROPERTY: header-args :tangle exercice_1_dot_5_one_away.clj
+
+#+BEGIN_QUOTE
+One Away: There are three types of edits that can be performed on
+strings: insert a character, remove a character, or replace a
+character. Given two strings, write a function to check if they are
+one edit (or zero edits) away.
+#+END_QUOTE
+
+As usual when dealing with strings, that's to say linear data
+structures, we can achieve $O(n)$ time complexity. As we have to run
+through the string from the beginning to the end in the worst case
+(strings are of equal length $n$) we can't do better than linear time.
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-5-one-away
+  (:require [clojure.test :refer [deftest is]]))
+
+(defn one-away
+  ([a b]
+   (cond (< (inc (count b)) (count a)) #(one-away b a)
+         (< (inc (count a)) (count b)) false
+         :default #(one-away a b false)))
+  ([[a1 & a] [b1 & b] edit-seen?]
+   (cond (= nil a1 b1) true
+         (= a1 b1) #(one-away a b edit-seen?)
+         edit-seen? false
+         (= (first a) b1) #(one-away (rest a) b true)
+         :default #(one-away a b true))))
+
+(def response #(trampoline one-away %1 %2))
+
+(deftest response-test
+  (is (response "pale" "ple"))
+  (is (response "pales" "pale"))
+  (is (response "pale" "bale"))
+  (is (not (response "pale" "bales")))
+  (is (not (response "pale" "bae"))))
+#+END_SRC
+
+The time complexity is linear and so is the additional space
+complexity in the worst case.
+
+Clojure standard function ~trampoline~ avoids stack consumption. It's
+a work around JVM lack of tail call elimination.

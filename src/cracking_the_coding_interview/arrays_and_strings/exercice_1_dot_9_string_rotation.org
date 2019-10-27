@@ -1,0 +1,51 @@
+#+TITLE:Exercice 1.9: String rotation
+#+PROPERTY: header-args :tangle exercice_1_dot_9_string_rotation.clj
+
+#+BEGIN_QUOTE
+String Rotation: Assumey ou have a method isSubstring which checks if
+one word is a substring of another. Given two strings, sl and s2,
+write code to check if s2 is a rotation of sl using only one call to
+isSubstring (e.g.,"waterbottle" is a rotation of"erbottlewat").
+#+END_QUOTE
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-9-string-rotation
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.string :as str]))
+#+END_SRC
+
+Well, sounds quite easy. I will rephrase the main problem as:
+
+#+BEGIN_QUOTE
+Given two strings =a= and =b=, is =a= a rotation of =b=?
+#+END_QUOTE
+
+First, let's define once-to-be-called function =isSubstring= which
+can't be called more than once in a evaluation context.
+
+#+BEGIN_SRC clojure
+(defonce call-me-once
+  (atom 0))
+
+(defn is-sub-string
+  [s sub]
+  (swap! call-me-once inc)
+  (assert (= 1 @call-me-once))
+  (str/includes? s sub))
+#+END_SRC
+
+The trick then is to consider that two rotations joined, like =b + b=
+will contain =a= somewhere. The rest is straightforward.
+
+#+BEGIN_SRC clojure
+(defn string-rotation
+  [s1 s2]
+  (reset! call-me-once 0)
+  (and (= (count s1) (count s2))
+       (is-sub-string (str s2 s2) s1)))
+
+(deftest string-rotation-test
+  (is (not (string-rotation "waterbottle" "erbottlewa")))
+  (is (not (string-rotation "waterbottl" "erbottlewat")))
+  (is (string-rotation "waterbottle" "erbottlewat")))
+#+END_SRC

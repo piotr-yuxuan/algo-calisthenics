@@ -1,0 +1,274 @@
+#+TITLE:Exercice 1.7: Rotate matrix
+#+PROPERTY: header-args :tangle exercice_1_dot_7_rotate_matrix.clj
+
+#+BEGIN_QUOTE
+Rotate Matrix: Given an image represented by an NxN matrix, where each
+pixel in the image is 4 bytes, write a method to rotate the image by
+90 degrees. Can you do this in place?
+#+END_QUOTE
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-7-rotate-matrix
+  (:require [clojure.test :refer [deftest is testing]]))
+#+END_SRC
+
+Unfortunately, at first sight I guess I couldn't do in better time
+than $O(n^2)$ because we need to go through each site at least
+one.
+
+Here are some simple tests I can think about before starting to
+code. Vars defined in the following snippet will defined later in this
+document but will appear in the correct order in the code.
+
+#+NAME: test_cases
+#+BEGIN_SRC clojure :tangle no
+(deftest rotate-matrix-test
+  (testing "four rotations equate identity"
+    (let [rotate-ident #(nth (iterate rotate-matrix %) 4)]
+      (doseq [side (range 5)]
+        (let [matrix (random-matrix side)]
+          (is (= matrix (rotate-ident matrix)))))))
+  (testing "side 1"
+    (is (= (rotate-matrix [[1]]) [[1]])))
+  (testing "side 2"
+    (is (= (rotate-matrix [[1 2]
+                           [4 3]])
+           [[2 3]
+            [1 4]])))
+  (testing "side 3"
+    (is (= (rotate-matrix [[1 10 2]
+                           [40 5 20]
+                           [4 30 3]])
+           [[2 20 3]
+            [10 5 30]
+            [1 40 4]]))))
+#+END_SRC
+
+First, let's do it in an simple, idiomatic Clojure way.
+
+#+BEGIN_SRC clojure :noweb strip-export
+(defn rotate-coordinates
+  [side [x y]]
+  (vector (- (dec side) y)
+          x))
+
+<<rotate_coordinates_tests>>
+
+(defn rotate-matrix
+  [matrix]
+  (let [side (count matrix)]
+    (reduce (fn [rotated-matrix coordinates]
+              (assoc-in rotated-matrix
+                        (rotate-coordinates side coordinates)
+                        (get-in matrix coordinates)))
+            matrix
+            (for [x (range side) y (range side)] [x y]))))
+
+<<test_case_helpers>>
+
+<<test_cases>>
+
+#+END_SRC
+
+Core function ~rotate-matrix~ is rather straight forward, I don't
+believe it needs much explanation. As seen above ~rotate-coordinates~
+is an ancillary function which says where some coordinates will lay
+once the matric have been rotated. Here are tests on it.
+
+#+NAME: rotate_coordinates_tests
+#+BEGIN_SRC clojure :tangle no
+(deftest rotate-coordinate-test
+  (testing "side of 1"
+    (is (= (rotate-coordinates 1 [0 0]) [0 0])))
+  (testing "side of 2"
+    (is (= (rotate-coordinates 2 [0 0]) [1 0]))
+    (is (= (rotate-coordinates 2 [0 1]) [0 0]))
+    (is (= (rotate-coordinates 2 [1 0]) [1 1])))
+  (testing "side of 3"
+    (is (= (rotate-coordinates 3 [0 0]) [2 0]))
+    (is (= (rotate-coordinates 3 [0 1]) [1 0]))
+    (is (= (rotate-coordinates 3 [0 2]) [0 0]))
+    (is (= (rotate-coordinates 3 [1 0]) [2 1]))
+    (is (= (rotate-coordinates 3 [2 0]) [2 2]))
+    (is (= (rotate-coordinates 3 [1 1]) [1 1]))))
+#+END_SRC
+
+However ~rotate-matrix~ uses immutable datastructures so edition is
+not in place. I will now use transient, mutable datastructures to
+answer the second part of the exercice. I will use /one old weird
+~bit-xor~ trick/ to achieve $O(1)$ additional space complexity.
+
+#+NAME: test_case_helpers
+#+BEGIN_SRC clojure :tangle no
+(defn- random-matrix
+  [side]
+  (vec (repeatedly side (fn [] (vec (repeatedly side #(rand-int 42)))))))
+#+END_SRC
+
+Then can I do it in place?  Mutating things in place means not to
+build a output gradually from the input but changing the input and
+turning it into the output. The short answer is /no/ with Clojure
+immutable datastructure. It is actually possible with mutable
+datastructures but the code gets tedious and longer such that I feel
+it's more error-prone.
+
+Here are the higher-lever tests we will try to pass.
+
+#+NAME: rotate_matrix_test_bang
+#+BEGIN_SRC clojure :tangle no
+(deftest rotate-matrix!-test
+  (testing "four rotations equate identity"
+    (doseq [side (range 5)]
+      (let [matrix! (random-matrix! side)
+            matrix-copy (matrix!->persistent-copy matrix!)]
+        (dotimes [_ 4] (rotate-matrix! matrix!))
+        (is (= matrix-copy (matrix!->persistent-copy matrix!))))))
+  (testing "side 1"
+    (let [matrix! (transient [(transient [1])])]
+      (rotate-matrix! matrix!)
+      (is (= (matrix!->persistent-copy matrix!) [[1]]))))
+  (testing "side 2"
+    (let [matrix! (transient [(transient [1 2])
+                              (transient [4 3])])]
+      (rotate-matrix! matrix!)
+      (is (= (matrix!->persistent-copy matrix!)
+             [[2 3]
+              [1 4]]))))
+  (testing "side 3"
+    (let [matrix! (transient [(transient [1 10 2])
+                              (transient [40 5 20])
+                              (transient [4 30 3])])]
+      (rotate-matrix! matrix!)
+      (is (= (matrix!->persistent-copy matrix!)
+             [[2 20 3]
+              [10 5 30]
+              [1 40 4]]))))
+  (testing "mutable version behaves as previous immutable one"
+    (doseq [side (range 5)]
+      (dotimes [_ 3]
+        (let [matrix! (random-matrix! side)
+              matrix-copy (matrix!->persistent-copy matrix!)]
+          (rotate-matrix! matrix!)
+          (is (= (rotate-matrix matrix-copy)
+                 (matrix!->persistent-copy matrix!))))))))
+#+END_SRC
+
+We'll use a function which swaps to items of the matrix with no
+additional variable. It's called the [[https://en.wikipedia.org/wiki/XOR_swap_algorithm][XOR swap algorithm]]. Below is the
+code and ancillary functions for test.
+
+#+BEGIN_SRC clojure
+(defn matrix-in-place-swap!
+  "https://en.wikipedia.org/wiki/XOR_swap_algorithm"
+  [matrix! [x1 y1] [x2 y2]]
+  (assoc! (get matrix! x1) y1 (bit-xor (get-in matrix! [x1 y1]) (get-in matrix! [x2 y2])))
+  (assoc! (get matrix! x2) y2 (bit-xor (get-in matrix! [x2 y2]) (get-in matrix! [x1 y1])))
+  (assoc! (get matrix! x1) y1 (bit-xor (get-in matrix! [x1 y1]) (get-in matrix! [x2 y2]))))
+
+(defn- empty-matrix
+  [side]
+  (vec (repeatedly side (fn [] (vec (repeatedly side (fn [] 0)))))))
+
+(defn- matrix!->persistent-copy
+  [matrix!]
+  (let [side (count matrix!)]
+    (reduce #(assoc-in %1 %2 (get-in matrix! %2))
+            (empty-matrix side)
+            (for [x (range side) y (range side)] [x y]))))
+
+(defn- empty-matrix!
+  [side]
+  (transient (vec (repeatedly side (fn [] (transient (vec (repeatedly side (fn [] 0)))))))))
+
+(defn- shuffle-no-fix-point
+  [coll]
+  (-> (count coll)
+      dec
+      rand-int
+      inc
+      (drop (cycle coll))))
+
+(deftest matrix-in-place-swap!-test
+  (doseq [side (range 2 5)]
+    (let [coordinates (for [x (range side) y (range side)] [x y])]
+      (doseq [[[x y :as coordinates] new-coordinates] (zipmap coordinates (shuffle-no-fix-point coordinates))]
+        (let [matrix! (empty-matrix! side)]
+          (assoc! matrix! x (assoc! (get matrix! x) y 1))
+          (matrix-in-place-swap! matrix! coordinates new-coordinates)
+          (let [actual (matrix!->persistent-copy matrix!)]
+            (is (= actual (assoc-in (empty-matrix side) new-coordinates 1)))))))))
+#+END_SRC
+
+Finally the mutation counterpart of ~rotate-matrix~ is not very
+different from the first one in its core structure:
+
+#+BEGIN_SRC clojure :noweb strip-export
+<<all_ring_rotations>>
+
+(defn rotate-matrix!
+  [matrix!]
+  (let [side (count matrix!)]
+    (doseq [rotation (all-ring-rotations side)
+            i (range (dec (count rotation)))]
+      (matrix-in-place-swap! matrix! (get rotation i) (get rotation (inc i))))))
+#+END_SRC
+
+The most important different is that you can no longer access the
+input to know what's the original value of a matrix site. So you can't
+use simple permutations, you have you devise rings of permutations.
+
+#+NAME: all_ring_rotations
+#+BEGIN_SRC clojure :tangle no
+(defn- possible-indices
+  "Compute rotation indices given the `side` of the matrix and the
+  `offset` of the ring. The latter parameter, when `0`, points the all
+  the outer sites of the matrix. The highest index value refers to the
+  innermost ring of the matrix."
+  [side offset]
+  (-> side
+      dec
+      (- (* 2 offset))
+      range))
+
+(defn- ring-rotations
+  "For a given ring of the matrix, list all the rotation cycles. The
+  rotations first contains the cycle for the left-hand top corners,
+  then their 'right-side neighbour', and so on until all rotation
+  indices are exhausted."
+  [side ring]
+  (map (fn [index]
+         (if (= ring (/ (dec side) 2))
+           (vector [ring ring])
+           (vector [ring (+ ring index)]
+                   [(+ ring index) (- (dec side) ring)]
+                   [(- (dec side) ring) (- (dec side) ring index)]
+                   [(- (dec side) ring index) ring])))
+       (possible-indices side ring)))
+
+(defn- all-ring-rotations
+  "`side` is the side of the matrix. This functions returns all the
+  cycle of rotation for all the matrix sites. Each site appear once
+  and only once in the rotation cycles."
+  [side]
+  (mapcat (fn [ring]
+            (ring-rotations side ring))
+          (range (/ side 2))))
+#+END_SRC
+
+Tests are added at the end.
+
+#+BEGIN_SRC clojure :noweb strip-export
+(defn- random-matrix!
+  [side]
+  (transient (vec (repeatedly side (fn [] (transient (vec (repeatedly side #(rand-int 42)))))))))
+
+<<rotate_matrix_test_bang>>
+#+END_SRC
+
+The in-place code is much more arcane and difficult to grasp than the
+immutable, more idiomatic one. Therefore I will prefer to offer
+~rotate-matrix~ as the solution.
+
+#+BEGIN_SRC clojure
+(def response rotate-matrix)
+#+END_SRC

@@ -1,0 +1,113 @@
+#+TITLE:Exercice 1.6: String compression
+#+PROPERTY: header-args :tangle exercice_1_dot_6_string_compression.clj
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-6-string-compression
+  (:require [clojure.test :refer [deftest is]]))
+#+END_SRC
+
+#+BEGIN_QUOTE
+String Compression: Implement a method to perform basic string
+compression using the counts of repeated characters. For example, the
+string aabcccccaaa would become a2blc5a3. If the "compressed" string
+would not become smaller than the original string, your method should
+return the original string. You can assume the string has only
+uppercase and lowercase letters (a - z).
+#+END_QUOTE
+
+Here are the test cases I can think about when reading the statement.
+
+#+NAME: test_cases
+#+BEGIN_SRC clojure :tangle no
+(deftest response-test
+  (is (= "a8" (response "aaaaaaaa")))
+  (is (= "aac" (response "aac")))
+  (is (= "a3c1" (response "aaac")))
+  (is (= "acc" (response "acc")))
+  (is (= "a1c3" (response "accc")))
+  (is (= "a2c2" (response "aacc")))
+  (is (= "aabbc" (response "aabbc")))
+  (is (= "a2b1c5a3" (response "aabcccccaaa"))))
+#+END_SRC
+
+As usual, dealing with strings, that's to say linear data structures,
+suggests we could achieve no better than $O(n)$ time complexity as we
+have to run through the string from the beginning to the end in the
+worst case. Considering the input is a string, I will use a
+~StringBuilder~ to do in-place edition so additional space complexity
+will be $O(n)$. Woudl the input be a ~StringBuilder~, no additional
+space would be taken.
+
+Here is the core function. An ancillary function to mutate to a
+~StringBuilder~ instance is later defined.
+
+#+BEGIN_SRC clojure :noweb strip-export
+<<insert-count!>>
+
+(defn string-compression-fn
+  [input-length ^StringBuilder string-builder]
+  (fn string-compression
+    [{:keys [expected-pointer current-count actual-pointer] :as args}]
+    (cond ;; Termination tests
+          (<= input-length actual-pointer) nil
+
+          (= (.length string-builder) actual-pointer)
+          (str (doto string-builder (insert-count! actual-pointer current-count)))
+
+          ;; Tests to find similar letters or move forward
+          (= expected-pointer actual-pointer)
+          #(string-compression (update args :actual-pointer inc))
+
+          (= (.charAt string-builder expected-pointer) (.charAt string-builder actual-pointer))
+          (do (.deleteCharAt string-builder actual-pointer)
+              #(string-compression (update args :current-count inc)))
+
+          ;; End of a streak
+          :default
+          (do (insert-count! string-builder actual-pointer current-count)
+              (let [new-expected-pointer (inc actual-pointer)]
+                #(string-compression {:expected-pointer new-expected-pointer
+                                      :actual-pointer (inc new-expected-pointer)
+                                      :current-count 1}))))))
+#+END_SRC
+
+The closure ~string-compression~ only takes arguments meaningful to
+the recursion. Once can argue it's unpure but I find it better not to
+return the mutable argument ~string-builder~ again and again so it's
+explicit this is an unpure object.
+
+Also, ~string-compression~ returns nil if the compressed string would
+be longer than the actual string.
+
+#+NAME: insert-count!
+#+BEGIN_SRC clojure :tangle no
+(defn insert-count!
+  [^StringBuilder string-builder ^Integer actual-pointer current-count]
+  (.insert string-builder actual-pointer (str current-count)))
+#+END_SRC
+
+Finally, the response returns the compressed string or the original
+string, thus implementing the statement.
+
+#+BEGIN_SRC clojure :noweb strip-export
+(defn response
+  [^String input]
+  (-> (string-compression-fn (.length input) (StringBuilder. input))
+      (trampoline {:expected-pointer 0 :actual-pointer 0 :current-count 1})
+      (or input)))
+
+<<test_cases>>
+#+END_SRC
+
+Well, I'm surprised this code is a bit a hassle to read so I needed to
+format it in a spacious way to help the reader. I could actually ship
+such code in production.
+
+The time complexity is linear. The additional space complexity is
+twice the input size in the worst case because String Builder doubles
+its size each time it gets full and =string-compression= actually uses
+twice as much space. However it's still linear.
+
+=trampoline= is a Clojure trick to come around JVM lack of TCE so
+=string-compression= can call itself a large number of time without
+any risk of stack overflow.

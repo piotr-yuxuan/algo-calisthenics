@@ -1,0 +1,117 @@
+#+TITLE:Exercice 4.5: Validate BST
+#+PROPERTY: header-args :tangle exercice_4_dot_5_validate_bst.clj
+
+#+BEGIN_QUOTE
+Validate BST: Implement a function to check if a binary tree is a
+binary search tree.
+#+END_QUOTE
+
+Let us recall that the binary search tree property for each node:
+$max(left) < root < min(right)$.
+
+Here are some tests I would like to make green.
+
+#+NAME: test_cases
+#+BEGIN_SRC clojure :tangle no
+(deftest validate-bst-test
+  (let [t {:root 6
+           6 '(3 9)}]
+    (is (true? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(5 3)}]
+    (is (false? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(9 3)}]
+    (is (false? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(3 9)
+           9 '(5 10)}]
+    (is (false? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(3 9)
+           9 '(7 10)}]
+    (is (true? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(3 9)
+           3 '(2 4)
+           9 '(5 10)}]
+    (is (false? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(3 9)
+           3 '(2 8)
+           9 '(7 10)}]
+    (is (false? (validate-bst t (get t :root)))))
+  (let [t {:root 6
+           6 '(3 9)
+           3 '(2 4)
+           9 '(7 10)}]
+    (is (true? (validate-bst t (get t :root))))))
+#+END_SRC
+
+I will use a dynamic programming approach to break up a given tree and
+return the min and max bounds of its left and right subtrees. $n$
+being the number of nodes I expect this approach to have a $O(n)$ time
+complexity, since I must visit each node exactly once. The additional
+needed space of this approach might be $O(h)$ with. $h$ being the
+height of the tree.
+
+#+BEGIN_SRC clojure
+(ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-5-validate-bst
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.string :as str]))
+#+END_SRC
+
+The dorsal spine of this implementation is function ~bst-bounds~ which
+takes a tree ~t~ and a ~node~. On the first call ~node~ will be the
+root of the tree. Each time it's called this function returns a
+doublet of the minimum bound and maximum bound for the valid binary
+search tree whose root is ~node~, or ~nil~ if the binary tree isn't a
+valid binary search tree. As each steap needs to know the bound of
+left and right subtrees, the stack increase like $O(h)$.
+
+#+BEGIN_SRC clojure :noweb strip-export
+<<ancillary_functions>>
+
+(defn- bst-bounds
+  [t node]
+  (let [[left right] (get t node)
+        nodes (->> [left node right] (remove nil?))]
+    (cond (= [nil nil] [left right])
+          [node node]
+
+          (and (leaves-pred t node) (subtrees-pred t node left right))
+          (vector (apply min nodes) (apply max nodes)))))
+
+(def validate-bst (comp boolean bst-bounds))
+
+<<test_cases>>
+#+END_SRC
+
+Two ancillary functions aim at making code easier to grasp. Each of
+them enforces of different part of the definition of a binary search
+tree:
+
+- ~leaves-pred~ verifies that the leaves of the current node are well
+  ordered such that $left < node < right$.
+- ~subtrees-pred~ is a bit more subtle and checks the bounds and left
+  and right subtrees.
+
+#+NAME: ancillary_functions
+#+BEGIN_SRC clojure :tangle no
+(declare bst-bounds)
+
+(defn- leaves-pred
+  [t node]
+  (let [[left right] (get t node)]
+    (->> [left node right]
+         (remove nil?)
+         (apply <))))
+
+(defn- subtrees-pred
+  [t node left right]
+  (let [[right-min _] (bst-bounds t right)
+        [_ left-max] (bst-bounds t left)]
+    (and  (some? left-max)
+          (some? right-min)
+          (< left-max node right-min))))
+#+END_SRC
