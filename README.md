@@ -1,4 +1,4 @@
-# Algorithms and datastructure
+# Algorithms and datastructures
 
 I intend to use this repository as a practice playground
 ([kata](https://en.wikipedia.org/wiki/Kata_(programming))) as well as a
