@@ -1,0 +1,7 @@
+<S> = colour <whitespace some-bags whitespace 'contain' whitespace> ((quantity (<whitespace some-bags ', '> quantity)*) | <'no other'>) <whitespace some-bags '.'>
+quantity = number <whitespace> colour
+colour = word <whitespace> word
+<word> = #'[a-z]+'
+some-bags = 'bag' 's'?
+<whitespace> = #'\s+'
+<number> = #'[0-9]+'

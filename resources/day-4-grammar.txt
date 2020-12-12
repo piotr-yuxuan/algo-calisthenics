@@ -1,0 +1,4 @@
+<S> = (key <':'> value) (<whitespace> key <':'> value)*
+key = #'[a-z0-9]*'
+value = #'[a-z0-9#]*'
+<whitespace> = #'\s+' | '\n'

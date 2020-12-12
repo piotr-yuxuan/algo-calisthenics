@@ -1,0 +1,3 @@
+<S> = row-directions column-directions
+row-directions = #'[FLBR]{7}'
+column-directions = #'[FLBR]{3}'

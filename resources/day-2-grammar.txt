@@ -1,0 +1,6 @@
+<S> = lowest <'-'> highest <whitespace> letter <':'> <whitespace> password;
+lowest = #'[0-9]+'
+highest = #'[0-9]+'
+letter = #'[a-z]'
+password = #'[a-z]+'
+<whitespace> = #'\s+'
