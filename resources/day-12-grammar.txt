@@ -1,0 +1,3 @@
+<S> = action value
+action = ( 'N' | 'S' | 'E' | 'W' | 'F' | 'L' | 'R')
+value = #'\d+'
