@@ -1,0 +1,5 @@
+<S> = timestamp newline coaches
+timestamp = #'\d+'
+coaches = coach (<','> coach )+ newline
+<coach> = #'\d+' | 'x'
+<newline> = <'\n'>

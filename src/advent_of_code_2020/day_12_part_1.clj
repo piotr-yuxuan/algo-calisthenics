@@ -1,4 +1,4 @@
-(ns advent-of-code-2020.day-12
+(ns advent-of-code-2020.day-12-part-1
   (:require [clojure.test :refer [is with-test]]
             [clojure.java.io :as io]
             [instaparse.core :as insta]
@@ -14,7 +14,7 @@
    [:action [:enum :N :S :E :W :F :L :R]]
    [:value int?]])
 
-(def move
+(def move-boat
   {:N #(update %1 :y + %2)
    :S #(update %1 :y - %2)
    :E #(update %1 :x + %2)
@@ -41,10 +41,10 @@
 
 (defn next-state
   [{:keys [orientation] :as state} {:keys [action value]}]
-  (cond (= action :F) ((move orientation) state value)
+  (cond (= action :F) ((move-boat orientation) state value)
         (= action :L) (turn state value)
         (= action :R) (turn state (- value))
-        :else ((move action) state value)))
+        :else ((move-boat action) state value)))
 
 (defn input
   [filename]
@@ -57,12 +57,12 @@
                   #(insta/parse parser %)))))
 
 (with-test
-  (defn answer-part-1
+  (defn answer
     [input]
     (let [{:keys [x y]} (reduce next-state
                                 {:orientation :E, :x 0, :y 0}
                                 input)]
       (+ (Math/abs (long x))
          (Math/abs (long y)))))
-  (is (= 25 (answer-part-1 (input "day-12-example.txt"))))
-  (is (= 420 (answer-part-1 (input "day-12.txt")))))
+  (is (= 25 (answer (input "day-12-example.txt"))))
+  (is (= 420 (answer (input "day-12.txt")))))
