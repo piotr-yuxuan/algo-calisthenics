@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-7-build-order
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (defn topological-ordering "Kahn's algorithm" [g]
   (loop [g g, res []]

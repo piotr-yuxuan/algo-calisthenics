@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-10-check-subtree
-  (:require [clojure.test :refer [deftest is testing]]
-            [clojure.string :as str])
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is testing]])
   (:import (clojure.lang PersistentQueue)))
 
 (defn tree-traversal

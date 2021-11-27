@@ -1,8 +1,8 @@
 (ns advent-of-code-2020.day-4
-  (:require [clojure.test :refer [is with-test]]
-            [clojure.java.io :as io]
-            [instaparse.core :as insta]
-            [clojure.string :as str]))
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]
+            [clojure.test :refer [is with-test]]
+            [instaparse.core :as insta]))
 
 (def mandatory-keys
   [:byr :iyr :eyr :hgt :hcl :ecl :pid])

@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-9-bst-sequences
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (defn shape [t]
   (let [[left right] (get t (:root t))

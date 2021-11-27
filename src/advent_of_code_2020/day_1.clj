@@ -1,8 +1,8 @@
 (ns advent-of-code-2020.day-1
-  (:require [clojure.test :refer [deftest is testing with-test]]
-            [clojure.java.io :as io]
-            [malli.transform :as transform]
-            [malli.core :as m]))
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [deftest is testing with-test]]
+            [malli.core :as m]
+            [malli.transform :as transform]))
 
 (def Entry
   int?)

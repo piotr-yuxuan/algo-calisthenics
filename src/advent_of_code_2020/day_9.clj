@@ -1,6 +1,6 @@
 (ns advent-of-code-2020.day-9
-  (:require [clojure.test :refer [is with-test]]
-            [clojure.java.io :as io]))
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [is with-test]]))
 
 (with-test
   (defn any-2-combinations

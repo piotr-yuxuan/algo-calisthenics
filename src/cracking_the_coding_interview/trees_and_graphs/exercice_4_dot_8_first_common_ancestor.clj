@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-8-first-common-ancestor
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (def tree-ancestors #(apply merge (for [[k vs] % v vs] {v k})))
 

@@ -1,7 +1,7 @@
 (ns advent-of-code-2020.day-6
-  (:require [clojure.test :refer [is with-test]]
-            [clojure.java.io :as io]
-            [clojure.set :as set]))
+  (:require [clojure.java.io :as io]
+            [clojure.set :as set]
+            [clojure.test :refer [is with-test]]))
 
 (with-test
   (defn group-lines-paragraph

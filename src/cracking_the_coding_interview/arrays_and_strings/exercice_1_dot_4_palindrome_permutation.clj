@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-4-palindrome-permutation
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (defn palindrome-permutation
   [[i & s] odd-seen?]

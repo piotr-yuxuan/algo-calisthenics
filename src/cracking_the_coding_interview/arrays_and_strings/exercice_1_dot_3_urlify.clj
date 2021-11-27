@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-3-urlify
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (defn urlify
   [s l]

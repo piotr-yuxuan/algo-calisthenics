@@ -1,7 +1,7 @@
 (ns advent-of-code-2020.day-8
-  (:require [clojure.test :refer [is with-test]]
-            [clojure.java.io :as io]
-            [clojure.string :as str]))
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]
+            [clojure.test :refer [is with-test]]))
 
 (defn instructions
   [file]

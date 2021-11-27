@@ -1,9 +1,9 @@
 (ns advent-of-code-2020.day-2
-  (:require [clojure.test :refer [is with-test]]
-            [clojure.java.io :as io]
-            [malli.transform :as transform]
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [is with-test]]
+            [instaparse.core :as insta]
             [malli.core :as m]
-            [instaparse.core :as insta]))
+            [malli.transform :as transform]))
 
 (def Entry
   [:map

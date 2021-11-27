@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.arrays-and-strings.exercice-1-dot-9-string-rotation
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (defonce call-me-once
   (atom 0))

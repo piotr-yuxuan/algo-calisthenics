@@ -1,6 +1,6 @@
 (ns cracking-the-coding-interview.trees-and-graphs.exercice-4-dot-4-check-balanced
-  (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.test :refer [deftest is]]))
 
 (defn balanced-height
   "Return height, or false if unbalanced"

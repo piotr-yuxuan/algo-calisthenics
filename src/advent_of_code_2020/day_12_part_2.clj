@@ -1,9 +1,9 @@
 (ns advent-of-code-2020.day-12-part-2
-  (:require [clojure.test :refer [is with-test]]
-            [clojure.java.io :as io]
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [is with-test]]
             [instaparse.core :as insta]
-            [malli.transform :as transform]
-            [malli.core :as m]))
+            [malli.core :as m]
+            [malli.transform :as transform]))
 
 (def parser
   (insta/parser
