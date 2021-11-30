@@ -22,7 +22,7 @@
 (defn- bst-bounds
   [t node]
   (let [[left right] (get t node)
-        nodes (->> [left node right] (remove nil?))]
+        nodes (remove nil? [left node right])]
     (cond (= [nil nil] [left right])
           [node node]
 

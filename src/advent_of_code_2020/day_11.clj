@@ -4,10 +4,7 @@
 
 (defn adjacent-positions
   [vvs [i j]]
-  (->> (for [x (filter (set (range (count vvs))) (range (dec i) (+ (inc i) 1)))
-             y (filter (set (range (count (get vvs i)))) (range (dec j) (+ (inc j) 1)))]
-         [x y])
-       (remove #{[i j]})))
+  (remove #{[i j]} (for [x (filter (set (range (count vvs))) (range (dec i) (inc (inc i)))) y (filter (set (range (count (get vvs i)))) (range (dec j) (inc (inc j))))] [x y])))
 
 (defn positions-by-type
   [vvs positions]
@@ -25,7 +22,7 @@
 (defn next-position-type
   [adjacent-position-types current-type]
   (cond (and (= current-type \L)
-             (= 0 (get adjacent-position-types \# 0)))
+             (zero? (get adjacent-position-types \# 0)))
         \#
 
         (and (= current-type \#)
@@ -118,7 +115,7 @@
 (defn relaxed-next-position-type
   [adjacent-position-types current-type]
   (cond (and (= current-type \L)
-             (= 0 (get adjacent-position-types \# 0)))
+             (zero? (get adjacent-position-types \# 0)))
         \#
 
         (and (= current-type \#)

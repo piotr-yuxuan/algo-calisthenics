@@ -74,8 +74,7 @@
         [r m] xrm
         [s n] xsn]
     (assert (zero? (mod (- s r) (greatest-common-divisor m n))) "Impossible to satisfy")
-    (->> (range)
-         (map #(+ (least-common-multiple m n))))
+    (map (fn* [] (+ (least-common-multiple m n))) (range))
     (some #(fn [])))
   )
 

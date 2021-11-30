@@ -21,7 +21,7 @@
 
 (deftest balance-test
   (let [t {:root nil}]
-    (is (= 0 (balanced-height t (:root t))))
+    (is (zero? (balanced-height t (:root t))))
     (is (check-balance t (:root t))))
   (let [t {:root 0
            0 '(nil nil)}]

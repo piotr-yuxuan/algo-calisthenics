@@ -15,13 +15,7 @@
         device-built-in (+ 3 (apply max input))
         available-joltages (set (conj (set input)
                                       charging-outlet))]
-    (assoc (->> available-joltages
-                (reduce (fn [g node]
-                          (assoc g
-                            node (set (filter available-joltages
-                                              (range (+ node 1)
-                                                     (+ node 4))))))
-                        {}))
+    (assoc (reduce (fn [g node] (assoc g node (set (filter available-joltages (range (inc node) (+ node 4)))))) {} available-joltages)
       device-built-in #{})))
 
 (defn topological-ordering

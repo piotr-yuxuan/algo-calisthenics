@@ -11,7 +11,7 @@
           (.deleteCharAt i)
           (.insert i "%20")))
       (if (= i l)
-        (.toString builder)
+        (str builder)
         (recur (inc i))))))
 
 (def response urlify)

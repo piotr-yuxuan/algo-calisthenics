@@ -22,13 +22,7 @@
 (with-test
   (defn answer-part-1
     [input]
-    (->> (partition 26 1 input)
-         (some (fn [window]
-                 (let [[items [result]] (split-at 25 window)]
-                   (when-not (->> (any-2-combinations items)
-                                  (map #(apply + %))
-                                  (some #(when (= result %) %)))
-                     result))))))
+    (some (fn [window] (let [[items [result]] (split-at 25 window)] (when-not (->> (any-2-combinations items) (map (fn* [p1__891700#] (apply + p1__891700#))) (some (fn* [p1__891702#] (when (= result p1__891702#) p1__891702#)))) result))) (partition 26 1 input)))
   (is (= 22477624 (answer-part-1 input))))
 
 (def invalid-number 22477624)

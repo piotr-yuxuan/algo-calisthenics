@@ -36,20 +36,13 @@
 (with-test
   (defn answer-part-1
     [instructions]
-    (->> (run-program instructions)
-         (some (fn [{:keys [accumulator previous-positions position]}]
-                 (cond (previous-positions position) accumulator)))))
+    (some (fn [{:keys [accumulator previous-positions position]}] (cond (previous-positions position) accumulator)) (run-program instructions)))
   (is (= 5 (answer-part-1 (instructions "day-8-example.txt"))))
   (is (= 1586 (answer-part-1 (instructions "day-8.txt")))))
 
 (defn terminate-program
   [instructions states]
-  (->> states
-       (some (fn [{:keys [accumulator previous-positions position]}]
-               (cond (previous-positions position) {:reason :infinite-loop
-                                                    :accumulator accumulator}
-                     (= position (count instructions)) {:reason :last-instruction
-                                                        :accumulator accumulator})))))
+  (some (fn [{:keys [accumulator previous-positions position]}] (cond (previous-positions position) {:reason :infinite-loop, :accumulator accumulator} (= position (count instructions)) {:reason :last-instruction, :accumulator accumulator})) states))
 
 (with-test
   (defn answer-part-2
