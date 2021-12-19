@@ -7,7 +7,7 @@
   :dependencies [[camel-snake-kebab "0.4.2"]
                  [clj-time "0.15.2"]
                  [instaparse "1.4.10"]
-                 [metosin/malli "0.7.4"]
+                 [metosin/malli "0.7.5"]
                  [org.clojure/data.csv "1.0.0"]
                  [org.clojure/clojure "1.10.3"]]
   :target-path "target/%s"
