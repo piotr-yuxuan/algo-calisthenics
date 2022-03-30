@@ -4,6 +4,7 @@
   :license {:name "GNU GPL v3+"
             :url "http://www.gnu.org/licenses/gpl-3.0.en.html"
             :addendum "GPL_ADDITION.md"}
+  :github/private? false
   :dependencies [[camel-snake-kebab "0.4.2"]
                  [clj-time "0.15.2"]
                  [instaparse "1.4.10"]
