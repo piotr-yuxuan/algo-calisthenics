@@ -10,6 +10,6 @@
                  [instaparse "1.4.10"]
                  [metosin/malli "0.8.4"]
                  [org.clojure/data.csv "1.0.1"]
-                 [org.clojure/clojure "1.11.1-rc1"]]
+                 [org.clojure/clojure "1.11.1"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
