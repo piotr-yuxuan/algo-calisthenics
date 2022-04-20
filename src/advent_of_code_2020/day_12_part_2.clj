@@ -30,6 +30,8 @@
     :E (update state :waypoint/x + value)
     :W (update state :waypoint/x - value)))
 
+(declare rotate-waypoint)
+
 (defn next-state
   [state {:keys [action value]}]
   (cond (= action :F) (move-boat state value)
