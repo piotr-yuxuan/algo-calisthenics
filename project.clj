@@ -13,7 +13,7 @@
   :main advent-of-code-2020.main
   :dependencies [[camel-snake-kebab "0.4.2"]
                  [clj-time "0.15.2"]
-                 [instaparse "1.4.11"]
+                 [instaparse "1.4.12"]
                  [metosin/malli "0.8.4"]
                  [org.clojure/data.csv "1.0.1"]
                  [org.clojure/clojure "1.11.1"]]
