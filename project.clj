@@ -11,7 +11,7 @@
                               [:url "https://github.com/piotr-yuxuan"]]]
   :github/private? false
   :main advent-of-code-2020.main
-  :dependencies [[camel-snake-kebab "0.4.2"]
+  :dependencies [[camel-snake-kebab "0.4.3"]
                  [clj-time "0.15.2"]
                  [instaparse "1.4.12"]
                  [metosin/malli "0.8.4"]
