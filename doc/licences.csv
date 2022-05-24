@@ -1,7 +1,7 @@
 Library name,Version,License name
 "borkdude/dynaload","0.2.2","Eclipse Public License 1.0"
 "borkdude/edamame","0.0.19","Eclipse Public License 1.0"
-"camel-snake-kebab","0.4.2","Eclipse Public License"
+"camel-snake-kebab","0.4.3","Eclipse Public License 1.0"
 "clj-time","0.15.2","MIT License"
 "fipp","0.6.25","Eclipse Public License"
 "instaparse","1.4.12","Eclipse Public License"
