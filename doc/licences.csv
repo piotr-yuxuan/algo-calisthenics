@@ -8,7 +8,7 @@ Library name,Version,License name
 "joda-time","2.10","Apache 2"
 "metosin/malli","0.11.0","Eclipse Public License 2.0"
 "mvxcvi/arrangement","2.1.0","Public Domain"
-"org.clojure/clojure","1.12.0-alpha1","Eclipse Public License 1.0"
+"org.clojure/clojure","1.12.0-alpha2","Eclipse Public License 1.0"
 "org.clojure/core.rrb-vector","0.1.2","Eclipse Public License 1.0"
 "org.clojure/core.specs.alpha","0.2.62","Eclipse Public License 1.0"
 "org.clojure/data.csv","1.0.1","Eclipse Public License 1.0"
