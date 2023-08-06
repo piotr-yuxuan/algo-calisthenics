@@ -198,11 +198,12 @@ realistic setting and for more robust test:
     - _Tests_:
       [unittest](https://docs.python.org/3/library/unittest.html),
       [mockito](https://github.com/mockito/mockito),
-	  generative or property-based testing,
-	  standard testing library and practices;
+      generative or property-based testing,
+      standard testing library and practices;
 
-    - _Memory leak_:
-      [objgraph](https://mg.pov.lt/objgraph/);
+    - _Memory_:
+      [objgraph](https://mg.pov.lt/objgraph/),
+      [jamm](https://github.com/jbellis/jamm);
 
     - _Static analysis_:
       [SonarQube](https://www.sonarqube.org/);
