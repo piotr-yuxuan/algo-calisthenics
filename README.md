@@ -193,6 +193,10 @@ realistic setting and for more robust test:
       [`top`](https://man7.org/linux/man-pages/man1/top.1.html),
       [`vmstat`](https://linux.die.net/man/8/vmstat);
 
+    - _Memory_:
+      [objgraph](https://mg.pov.lt/objgraph/),
+      [jamm](https://github.com/jbellis/jamm);
+
 - **Behaviour**
 
     - _Tests_:
@@ -200,10 +204,6 @@ realistic setting and for more robust test:
       [mockito](https://github.com/mockito/mockito),
       generative or property-based testing,
       standard testing library and practices;
-
-    - _Memory_:
-      [objgraph](https://mg.pov.lt/objgraph/),
-      [jamm](https://github.com/jbellis/jamm);
 
     - _Static analysis_:
       [SonarQube](https://www.sonarqube.org/);
