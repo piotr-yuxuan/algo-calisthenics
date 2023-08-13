@@ -22,4 +22,13 @@ checkouts
 perf/terraform*
 perf/.terraform*
 perf/.terraform/**
+.clj-kondo/
 
+# Python
+__pycache__/
+local/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
