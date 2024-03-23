@@ -14,7 +14,7 @@
   :dependencies [[camel-snake-kebab "0.4.3"]
                  [clj-time "0.15.2"]
                  [instaparse "1.4.12"]
-                 [metosin/malli "0.14.0"]
+                 [metosin/malli "0.15.0"]
                  [org.clojure/data.csv "1.1.0"]
                  [org.clojure/clojure "1.12.0-alpha9"]]
   :profiles {:github {:github/topics ["kata" "playground" "algorithm" "practice" "code"]
