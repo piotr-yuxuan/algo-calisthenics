@@ -4,7 +4,7 @@ Library name,Version,License name
 "camel-snake-kebab","0.4.3","Eclipse Public License 1.0"
 "clj-time","0.15.2","MIT License"
 "fipp","0.6.26","Eclipse Public License"
-"instaparse","1.4.14","Eclipse Public License"
+"instaparse","1.5.0","Eclipse Public License"
 "joda-time","2.10","Apache 2"
 "metosin/malli","0.16.1","Eclipse Public License 2.0"
 "mvxcvi/arrangement","2.1.0","Public Domain"
