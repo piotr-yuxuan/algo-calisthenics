@@ -33,3 +33,4 @@ local/
 *.db
 *.sqlite3
 /.hypothesis/
+
