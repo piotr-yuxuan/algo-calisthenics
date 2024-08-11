@@ -1,0 +1,19 @@
+#+TITLE:Xxx title
+#+PROPERTY: header-args :tangle x_x_x.py
+#+STARTUP: latexpreview
+
+#+BEGIN_QUOTE
+Problem statement
+#+END_QUOTE
+
+* Initial considerations
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $O(XXX)$
+- Space complexity (average / best / worst): $\mathrm{O}(XXX)$
+
+#+BEGIN_SRC python
+#+END_SRC
