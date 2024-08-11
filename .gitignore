@@ -32,3 +32,4 @@ local/
 *.pyd
 *.db
 *.sqlite3
+
