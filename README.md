@@ -250,42 +250,11 @@ Code here is written in litterate programming thanks to Emacs and org-mode. It
 means the code written in Clojure is derived from the text files explining the
 reasoning behind it. I hope it makes it easier to read.
 
-# Getting started with Python
+# Python
+## Interacting with poetry and pytest
 
-At the root of this repository:
+For example:
 
-``` python
-direnv allow
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-Then go:
-
-- OpenAPI standard documentation: http://127.0.0.1:8000/docs;
-- Redocly verbose documentation: http://127.0.0.1:8000/redoc;
-
-# Python setup
-
-You don't need to do it again. At the root of this repository, I did:
-
-``` python
-export LATEST_PYTHON_VERSION="$(pyenv install --list | grep -E "^[[:space:]]*[0-9]+\.[0-9]+\.[0-9]+[[:space:]]*$" | tail -n 1)"
-
-pyenv install "${LATEST_PYTHON_VERSION}"
-pyenv global system
-pyenv local "${LATEST_PYTHON_VERSION}"
-
-python --version
-#=> Python 3.11.4
-
-echo 'export ENV=local' >> .envrc
-direnv allow
-
-python -m venv ${ENV}
-
-echo 'source "${ENV}/bin/activate"' >> .envrc
-direnv allow
-
-pip freeze > requirements.txt
+``` zsh
+poetry run ptw -- -- --benchmark-skip --memray
 ```
