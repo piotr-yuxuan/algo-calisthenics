@@ -62,3 +62,15 @@ def test_solution_not_optimal(s):
         == problem.solution_not_optimal(list_duplicate_items)
         == problem.solution(list_duplicate_items)
     )
+
+
+def test_benchmark_solution_10(benchmark):
+    benchmark(problem.solution, list(range(10)))
+
+
+def test_benchmark_solution_100(benchmark):
+    benchmark(problem.solution, list(range(100)))
+
+
+def test_benchmark_solution_1000(benchmark):
+    benchmark(problem.solution, list(range(100)))
