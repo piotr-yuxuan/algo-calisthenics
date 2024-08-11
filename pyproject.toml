@@ -12,7 +12,7 @@ pydantic = "^2.8.2"
 pytest-watch = "^4.2.0"
 hypothesis = "^6.110.2"
 faker = "^26.3.0"
-pytest-benchmark = "^4.0.0"
+pytest-benchmark = {extras = ["histogram"], version = "^4.0.0"}
 pytest-memray = "^1.7.0"
 argcomplete = "^3.5.0"
 

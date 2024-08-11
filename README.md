@@ -253,8 +253,19 @@ reasoning behind it. I hope it makes it easier to read.
 # Python
 ## Interacting with poetry and pytest
 
-For example:
+For example, to watch tests while developing:
 
 ``` zsh
 poetry run ptw -- -- --benchmark-skip --memray
+```
+
+To get a memory flamegraph:
+``` zsh
+poetry run memray run -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4"
+poetry run python -m memray flamegraph memray-neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate.554244.bin
+```
+
+To run benchmarks and get a graphical summary:
+``` zsh
+poetry run pytest --benchmark-only --benchmark-histogram
 ```
