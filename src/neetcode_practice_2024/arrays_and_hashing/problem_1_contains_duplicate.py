@@ -1,3 +1,6 @@
+import argparse
+import argcomplete
+
 from typing import Callable, List, Optional, Protocol, TypeVar
 
 
@@ -70,3 +73,26 @@ def solution(
         else:
             seen.add(i)
     return True
+
+
+def main(args):
+    return solution(args.integer_array)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Neetcode 2024, arrays and string, problem 1: contains duplicate."
+    )
+    parser.add_argument(
+        "--integer_array",
+        "-i",
+        type=lambda x: list(map(int, x.split(","))),
+        required=True,
+        help="input integer array.",
+    )
+    # https://kislyuk.github.io/argcomplete/#installation
+    argcomplete.autocomplete(parser)
+
+    args = parser.parse_args()
+    print(main(args))
+    exit(0)
