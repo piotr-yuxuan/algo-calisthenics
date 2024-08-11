@@ -49,7 +49,7 @@ def merge_sort(
 def solution_not_optimal(
     l: List[T],
     key: Optional[KeyFunc] = None,
-):
+) -> bool:
     if key is None:
         key: KeyFunc = lambda x: x
 
@@ -62,7 +62,7 @@ def solution_not_optimal(
 
 def solution(
     l: List[T],
-):
+) -> bool:
     seen = set()
     for i in l:
         if i in seen:
