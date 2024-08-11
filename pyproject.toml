@@ -15,6 +15,7 @@ faker = "^26.3.0"
 pytest-benchmark = {extras = ["histogram"], version = "^4.0.0"}
 pytest-memray = "^1.7.0"
 argcomplete = "^3.5.0"
+snakeviz = "^2.2.0"
 
 
 [build-system]

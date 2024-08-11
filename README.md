@@ -256,13 +256,27 @@ reasoning behind it. I hope it makes it easier to read.
 For example, to watch tests while developing:
 
 ``` zsh
-poetry run ptw -- -- --benchmark-skip --memray
+poetry run ptw
+poetry run ptw -- -- --memray
+poetry run ptw -- -- --benchmark-only
+poetry run ptw -- -- --benchmark-skip
 ```
+
+The little dance around `-- --` could probably be avoided but I prefer
+to be very explicit about what runs, so I keep `poetry` as the
+left-most front argument.
 
 To get a memory flamegraph:
 ``` zsh
 poetry run memray run -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4"
 poetry run python -m memray flamegraph memray-neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate.554244.bin
+```
+
+To get a CPU flamegraph (or other graphs):
+
+``` zsh
+poetry run python -m cProfile -o program.prof -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4, 4"
+poetry run snakeviz program.prof
 ```
 
 To run benchmarks and get a graphical summary:
