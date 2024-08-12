@@ -9,14 +9,24 @@ import random
 def test_merge_sort_random_list_of_integers(l):
     original_list = list(l)
     random.shuffle(l)
-    assert sorted(original_list) == problem.merge_sort(l), "list is poorly sorted"
+    assert (
+        sorted(original_list)
+        == problem.merge_sort(l)
+        == problem.merge_sort_bottom_up(l)
+        == problem.merge_sort_dynamic_programming_tabulation(l)
+    ), "list is poorly sorted"
 
 
 @given(st.lists(st.integers(), min_size=10))
 def test_merge_sort_random_list_of_integers_already_sorted(l):
     original_list = list(l)
     random.shuffle(l)
-    assert sorted(original_list) == problem.merge_sort(l), "list is poorly sorted"
+    assert (
+        sorted(original_list)
+        == problem.merge_sort(l)
+        == problem.merge_sort_bottom_up(l)
+        == problem.merge_sort_dynamic_programming_tabulation(l)
+    ), "list is poorly sorted"
 
 
 fake = Faker()
