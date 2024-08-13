@@ -100,7 +100,11 @@ EOF
   fi
 done
 
-pywatch_command = "poetry run ptw -- -- $(realpath $dest_paths[1]) $(realpath $dest_paths[3])"
-echo "Sucess. You may now watch the test for this specific problem with:"
+pywatch_command="poetry run ptw -- -- $(realpath $dest_paths[1]) $(realpath $dest_paths[3])"
+echo ""
+echo "Sucess."
+echo ""
+echo "You may now watch the test for this specific problem with:"
+echo ""
 print -P "%F{green}${pywatch_command}%f"
 
