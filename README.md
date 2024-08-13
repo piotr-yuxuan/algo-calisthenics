@@ -10,6 +10,71 @@ study. I haven't implemented everything listed here.
 
 ![](social-media-preview.jpeg)
 
+# Writing style
+
+Code here isn't shaped in the style I would use for professional coding. Every
+team has some culture and opinions about code style and it's better to stick to
+these common guidelines. Moreover code is written primarily to be read by other
+people, or all of us would code in assembly for maximum performance if we were
+to target only a machine readership. Code I write as part of a team is intended
+to may have been written by anybody else in this team.
+
+Code here is written in litterate programming thanks to Emacs and org-mode. It
+means the code written in Clojure is derived from the text files explining the
+reasoning behind it. I hope it makes it easier to read.
+
+# Python
+## Interacting with poetry and pytest
+
+For example, to watch tests while developing:
+
+``` zsh
+poetry run ptw
+poetry run ptw -- -- --memray
+poetry run ptw -- -- --benchmark-only
+poetry run ptw -- -- --benchmark-skip
+```
+
+The little dance around `-- --` could probably be avoided but I prefer
+to be very explicit about what runs, so I keep `poetry` as the
+left-most front argument.
+
+To get a memory flamegraph:
+``` zsh
+poetry run memray run -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4"
+poetry run python -m memray flamegraph memray-neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate.554244.bin
+```
+
+To get a CPU flamegraph (or other graphs):
+
+``` zsh
+poetry run python -m cProfile -o program.prof -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4, 4"
+poetry run snakeviz program.prof
+```
+
+To run benchmarks and get a graphical summary:
+``` zsh
+poetry run pytest --benchmark-only --benchmark-histogram
+```
+
+# Getting ready for a new problem
+
+``` zsh
+./dev-resources/new-problem.sh \
+  --problem-path neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups
+```
+
+See `--help`.
+
+When the initialisation script completes, a suggested command for
+tests will appear at the end:
+
+``` zsh
+poetry run ptw -- -- \
+  src/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups.py \
+  tests/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups_test.py
+```
+
 # Study list
 
 ## Sorting algorithms
@@ -238,68 +303,3 @@ realistic setting and for more robust test:
   [Grafana](https://grafana.com/);
 
 _(tools listed here may be specific to some languages)_
-
-# Writing style
-
-Code here isn't shaped in the style I would use for professional coding. Every
-team has some culture and opinions about code style and it's better to stick to
-these common guidelines. Moreover code is written primarily to be read by other
-people, or all of us would code in assembly for maximum performance if we were
-to target only a machine readership. Code I write as part of a team is intended
-to may have been written by anybody else in this team.
-
-Code here is written in litterate programming thanks to Emacs and org-mode. It
-means the code written in Clojure is derived from the text files explining the
-reasoning behind it. I hope it makes it easier to read.
-
-# Python
-## Interacting with poetry and pytest
-
-For example, to watch tests while developing:
-
-``` zsh
-poetry run ptw
-poetry run ptw -- -- --memray
-poetry run ptw -- -- --benchmark-only
-poetry run ptw -- -- --benchmark-skip
-```
-
-The little dance around `-- --` could probably be avoided but I prefer
-to be very explicit about what runs, so I keep `poetry` as the
-left-most front argument.
-
-To get a memory flamegraph:
-``` zsh
-poetry run memray run -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4"
-poetry run python -m memray flamegraph memray-neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate.554244.bin
-```
-
-To get a CPU flamegraph (or other graphs):
-
-``` zsh
-poetry run python -m cProfile -o program.prof -m neetcode_practice_2024.arrays_and_hashing.problem_1_contains_duplicate --integer_array "1, 2, 3, 4, 4"
-poetry run snakeviz program.prof
-```
-
-To run benchmarks and get a graphical summary:
-``` zsh
-poetry run pytest --benchmark-only --benchmark-histogram
-```
-
-# Getting ready for a new problem
-
-``` zsh
-./dev-resources/new-problem.sh \
-  --problem-path neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups
-```
-
-See `--help`.
-
-When the initialisation script completes, a suggested command for
-tests will appear at the end:
-
-``` zsh
-poetry run ptw -- -- \
-  src/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups.py \
-  tests/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups_test.py
-```
