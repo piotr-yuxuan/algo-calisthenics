@@ -100,7 +100,9 @@ EOF
   fi
 done
 
-pywatch_command="poetry run ptw -- -- $(realpath $dest_paths[1]) $(realpath $dest_paths[3])"
+pywatch_command="poetry run ptw -- -- \\\\
+  $(realpath --relative-to ${DIR}/.. $dest_paths[1]) \\\\
+  $(realpath --relative-to ${DIR}/.. $dest_paths[3])"
 echo ""
 echo "Sucess."
 echo ""
