@@ -4,7 +4,7 @@ import random
 
 
 @given(st.text(min_size=1))
-def test_solutions_anamgram(s):
+def test_solutions_anagram(s):
     assert (
         True
         == problem.solution(s, s)

@@ -57,3 +57,33 @@ def solution_constant_space_xor_reduce(s1: str, s2: str) -> bool:
             map(ord, s2),
         ),
     )
+
+
+def main(args):
+    return solution(args.string_one, args.string_two)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Neetcode 2024, arrays and string, problem 2: valid anagram."
+    )
+    parser.add_argument(
+        "--string-one",
+        "-1",
+        type=str,
+        required=True,
+        help="The first string.",
+    )
+    parser.add_argument(
+        "--string-two",
+        "-2",
+        type=str,
+        required=True,
+        help="The second string.",
+    )
+    # https://kislyuk.github.io/argcomplete/#installation
+    argcomplete.autocomplete(parser)
+
+    args = parser.parse_args()
+    print(main(args))
+    exit(0)
