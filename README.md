@@ -24,6 +24,25 @@ means the code written in Clojure is derived from the text files explining the
 reasoning behind it. I hope it makes it easier to read.
 
 # Python
+
+## Getting ready for a new problem
+
+``` zsh
+./dev-resources/new-problem.sh \
+  --problem-path neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups
+```
+
+See `--help`.
+
+When the initialisation script completes, a suggested command for
+tests will appear at the end:
+
+``` zsh
+poetry run ptw -- -- \
+  src/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups.py \
+  tests/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups_test.py
+```
+
 ## Interacting with poetry and pytest
 
 For example, to watch tests while developing:
@@ -55,24 +74,6 @@ poetry run snakeviz program.prof
 To run benchmarks and get a graphical summary:
 ``` zsh
 poetry run pytest --benchmark-only --benchmark-histogram
-```
-
-# Getting ready for a new problem
-
-``` zsh
-./dev-resources/new-problem.sh \
-  --problem-path neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups
-```
-
-See `--help`.
-
-When the initialisation script completes, a suggested command for
-tests will appear at the end:
-
-``` zsh
-poetry run ptw -- -- \
-  src/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups.py \
-  tests/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups_test.py
 ```
 
 # Study list
