@@ -1,6 +1,7 @@
 import argparse
 from typing import Counter
 import argcomplete
+import functools
 
 
 def solution(s1: str, s2: str) -> bool:
@@ -42,3 +43,17 @@ def solution_constant_space_xor(s1: str, s2: str) -> bool:
         acc ^= ord(c1)
         acc ^= ord(c2)
     return 0 == acc
+
+
+def solution_constant_space_xor_reduce(s1: str, s2: str) -> bool:
+    if len(s1) != len(s2):
+        return False
+    xor = lambda x, y: x ^ y
+    return 0 == functools.reduce(
+        xor,
+        map(ord, s1),
+        functools.reduce(
+            xor,
+            map(ord, s2),
+        ),
+    )

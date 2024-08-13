@@ -12,6 +12,7 @@ def test_solutions_anamgram(s):
         == problem.solution_constant_space_xor(s, s)
         == problem.solution_with_counters(s, s)
         == problem.solution_with_sorted(s, s)
+        == problem.solution_constant_space_xor_reduce(s, s)
     )
 
     s_prime = list(s)
@@ -26,4 +27,5 @@ def test_solutions_anamgram(s):
         == problem.solution_constant_space_xor(s, t)
         == problem.solution_with_counters(s, t)
         == problem.solution_with_sorted(s, t)
+        == problem.solution_constant_space_xor_reduce(s, t)
     )

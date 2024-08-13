@@ -22,3 +22,19 @@ on =sum= or =Counter=.
 - Time complexity (average / best / worst): $\mathcal{O}(n)$ where $n$
   is the length of the inputs.
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+It reminds me of this trick to swap two variables with no additional
+memory:
+
+#+BEGIN_SRC python
+a = 1
+b = 2
+
+(a, b) == (1, 2)
+
+a = a ^ b
+b = a ^ b
+a = a ^ b
+
+(a, b) == (2, 1)
+#+END_SRC
