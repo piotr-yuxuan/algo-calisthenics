@@ -41,4 +41,4 @@ def solution_constant_space_xor(s1: str, s2: str) -> bool:
     for c1, c2 in zip(s1, s2):
         acc ^= ord(c1)
         acc ^= ord(c2)
-    return acc == 0
+    return 0 == acc
