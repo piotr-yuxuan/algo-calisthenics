@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "neetcode-practice-2024"
-version = "0.1.0"
-description = ""
+version = "0.0.0"
+description = "Practice playground as well as a reminder of some common, simple, yet powerful algorithms "
 authors = ["piotr-yuxuan <piotr-yuxuan@users.noreply.github.com>"]
 readme = "README.md"
 packages = [{include = "neetcode_practice_2024", from = "src"}]
