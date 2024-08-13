@@ -110,7 +110,7 @@ pywatch_command="poetry run ptw -- -- $verbose_flag \\\\
 echo ""
 echo "Success."
 echo ""
-echo "You may now watch the test for this specific problem with:"
+echo "You may now watch the tests for this specific problem with:"
 echo ""
 print -P "%F{green}${pywatch_command}%f"
 
