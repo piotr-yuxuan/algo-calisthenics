@@ -43,7 +43,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -f | --force)
       force_flag=1
-      shift 2
+      shift
       ;;
     --)
       shift
@@ -66,7 +66,7 @@ fi
 src_paths=(
   "${DIR}/problem_template.py"
   "${DIR}/problem_template.org"
-  "${DIR}/problem_template_test.py"
+  "${DIR}/problem_template_test_.py"
 )
 dest_paths=(
   "${DIR}/../src/${problem_path}.py"
@@ -85,7 +85,22 @@ for i in {1..3}; do
   fi
 
   cp "$src" "$dest"
+  temp_file=$(mktemp)
+  mustache_data=$(cat <<EOF
+  {
+    'xxx_filename': '${problem_path##*/}',
+    'xxx_module_path': '${problem_path//\//.}'
+  }
+EOF
+  )
+  poetry run chevron --data <(echo $mustache_data) $dest > $temp_file
+  mv $temp_file $dest
   if [[ -n ${verbose} ]]; then
     echo "Copied $src to $dest"
   fi
 done
+
+pywatch_command = "poetry run ptw -- -- $(realpath $dest_paths[1]) $(realpath $dest_paths[3])"
+echo "Sucess. You may now watch the test for this specific problem with:"
+print -P "%F{green}${pywatch_command}%f"
+
