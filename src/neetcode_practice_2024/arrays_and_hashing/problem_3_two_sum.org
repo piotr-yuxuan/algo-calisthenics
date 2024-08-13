@@ -1,0 +1,28 @@
+#+TITLE: Two sum1
+#+PROPERTY: header-args :tangle problem_3_two_sum.py
+#+STARTUP: latexpreview
+#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
+
+#+BEGIN_QUOTE
+Given an array of integers $\var{nums}$ and an integer
+$\var{target}$, return the indices $\var{i}$ and $\var{j}$ such that
+$\var{nums}[\var{i}] + \var{nums}[\var{j}] == \var{target}$ and
+$\var{i} \neq \var{j}$.
+
+You may assume that every input has exactly one pair of indices
+$\var{i}$ and $\var{j}$ that satisfy the condition.
+
+Return the answer with the smaller index first.
+#+END_QUOTE
+
+* Initial considerations
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
