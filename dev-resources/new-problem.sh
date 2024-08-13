@@ -62,6 +62,10 @@ if [[ -z "$problem_path" ]]; then
   exit 1
 fi
 
+verbose_flag=""
+if [[ $verbose -gt 0 ]]; then
+  verbose_flag="-$(printf '%*s' "$verbose" | tr ' ' 'v')"
+fi
 
 src_paths=(
   "${DIR}/problem_template.py"
@@ -84,7 +88,7 @@ for i in {1..3}; do
     exit 1
   fi
 
-  cp "$src" "$dest"
+  cp $verbose_flag "$src" "$dest"
   temp_file=$(mktemp)
   mustache_data=$(cat <<EOF
   {
@@ -94,17 +98,17 @@ for i in {1..3}; do
 EOF
   )
   poetry run chevron --data <(echo $mustache_data) $dest > $temp_file
-  mv $temp_file $dest
+  mv $verbose_flag $temp_file $dest
   if [[ -n ${verbose} ]]; then
     echo "Copied $src to $dest"
   fi
 done
 
-pywatch_command="poetry run ptw -- -- \\\\
+pywatch_command="poetry run ptw -- -- $verbose_flag \\\\
   $(realpath --relative-to ${DIR}/.. $dest_paths[1]) \\\\
   $(realpath --relative-to ${DIR}/.. $dest_paths[3])"
 echo ""
-echo "Sucess."
+echo "Success."
 echo ""
 echo "You may now watch the test for this specific problem with:"
 echo ""

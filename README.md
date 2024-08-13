@@ -283,3 +283,21 @@ To run benchmarks and get a graphical summary:
 ``` zsh
 poetry run pytest --benchmark-only --benchmark-histogram
 ```
+
+# Getting ready for a new problem
+
+``` zsh
+./dev-resources/new-problem.sh \
+  --problem-path neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups
+```
+
+See `--help`.
+
+When the initialisation script completes, a suggested command for
+tests will appear at the end:
+
+``` zsh
+poetry run ptw -- -- \
+  src/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups.py \
+  tests/neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups_test.py
+```
