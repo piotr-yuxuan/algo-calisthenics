@@ -1,0 +1,24 @@
+#+TITLE:Valid anagram
+#+PROPERTY: header-args :tangle x_x_x.py
+#+STARTUP: latexpreview
+
+#+BEGIN_QUOTE
+Given two strings `s` and `t`, return `true` if the two strings are
+anagrams of each other, otherwise return `false`.
+
+An anagram is a string that contains the exact same characters as
+another string, but the order of the characters can be different.
+#+END_QUOTE
+
+* Chosen solution
+
+As of now the best way I can think of solving this algorithm is to
+iterate over the two strings once to compute an aggregate value, then
+perform a test on this value. I am very sensitive to the =xor=-based
+solution because it makes good use of the characteristics of this
+function, but in an interview I would go for an implementation based
+on =sum= or =Counter=.
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$ where $n$
+  is the length of the inputs.
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
