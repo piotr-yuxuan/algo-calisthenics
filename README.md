@@ -8,6 +8,8 @@ process sequences. While this document might seem exhaustive, I intend
 to use it as a list to which I can come back any time when I need to
 study. I haven't implemented everything listed here.
 
+![](social-media-preview.jpeg)
+
 # Study list
 
 ## Sorting algorithms
