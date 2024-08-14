@@ -13,12 +13,23 @@ another string, but the order of the characters can be different.
 
 * Initial considerations
 
+I chose to rely on multiplication hash. This is based on the
+fundamental theorem of arithmetic that states that every integer
+greater than 1 has a unique prime factorization.
+
+The question is how to convert letters to numbers. Here I take a risk
+I appraise as moderate as the character $a$ has an ASCII code of $97$.
+Twenty-six numbers starting from 97 do not lead to factorisation hash
+collision.
+
 * Chosen solution
 
 As of now the best way I can think of…
 
-- Time complexity (average / best / worst): $\mathcal{O}(n)$
-- Space complexity (average / best / worst): $\mathcal{O}(1)$
+- Time complexity: $\mathcal{O}(n \times m)$, with $\var{n}$ the
+  number of items in the input array and $\var{m}$ the size of the
+  items.
+- Space complexity: $\mathcal{O}(n \times m)$
 
 #+BEGIN_SRC python
 #+END_SRC
