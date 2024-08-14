@@ -78,13 +78,29 @@ dest_paths=(
   "${DIR}/../tests/${problem_path}_test.py"
 )
 
+function print_test {
+  pywatch_command="poetry run ptw -- -- $verbose_flag \\\\
+  $(realpath --relative-to ${DIR}/.. $dest_paths[1]) \\\\
+  $(realpath --relative-to ${DIR}/.. $dest_paths[3])"
+
+  echo "You may watch the tests for this specific problem with:"
+  echo ""
+  print -P "%F{green}${pywatch_command}%f"
+}
+
 for i in {1..3}; do
   src=${src_paths[$i]}
   dest=$(realpath "${dest_paths[$i]}")
 
   if [[ -e $dest && $force_flag -eq 0 ]]; then
-    print -P "%F{red}Error: File $dest already exists.\n%f" >&2
-    print_help
+    print -P "%F{red}File $dest already exists.%f" >&2
+    if [[ -n ${verbose} ]]; then
+      echo ""
+      print_help
+    fi
+    echo ""
+    print_test
+
     exit 1
   fi
 
@@ -104,13 +120,7 @@ EOF
   fi
 done
 
-pywatch_command="poetry run ptw -- -- $verbose_flag \\\\
-  $(realpath --relative-to ${DIR}/.. $dest_paths[1]) \\\\
-  $(realpath --relative-to ${DIR}/.. $dest_paths[3])"
 echo ""
 echo "Success."
 echo ""
-echo "You may now watch the tests for this specific problem with:"
-echo ""
-print -P "%F{green}${pywatch_command}%f"
-
+print_test
