@@ -1,0 +1,46 @@
+#+TITLE:Top highest $\var{k}$ elements in a list
+#+PROPERTY: header-args :tangle problem_5_top_k_elements_in_list.py
+#+STARTUP: latexpreview
+#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
+
+#+BEGIN_QUOTE
+Given an integer array $\var{nums}$ and an integer $\var{k}$, return
+the $\var{k}$ most frequent elements within the array. You may return
+the output in any order.
+#+END_QUOTE
+
+* Initial considerations
+
+Knowning some of the ancillary tooling shiped in the standard library
+of a language is always a massive asset. For example, this problem may
+be solved with a lambda utilising a standard data structure:
+
+#+BEGIN_SRC python
+lambda input, k: Counter(input).most_common(k)
+#+END_SRC
+
+Basically the overarching plot involved counting characters, storing
+these counts, and return the highest elements. The lambda above is a
+straightforward way to do it.
+
+The implementation of =most_cmmon()= can be done by sorting the keys
+and returning the number of keys we want. However, this total sort
+gives a time complexity of $\mathcal{O}(n \times \log n)$. We can do
+better with a partial sort only on an array of lenght $\var{k}$. For
+that we need to use a heap to keep track of smallest element of this
+array, so we need a min heap that maintains the following invariant:
+
+For index $\var{i}$ of array $\var{a}$, $\var{a}[\var{i}] \le
+\var{a}[2\var{i} +1]$ and $\var{a}[\var{i}] \le \var{a}[2\var{i} +2]$.
+
+* Chosen solution
+
+As of now the best way I can think of solving this issue in a
+professional context is along the lambda above. I would also start
+with it in an interview, but then I would dive deeper in the
+datastructure and how to implement them.
+
+- Time complexity (average / best / worst): $\mathcal{O}(n + m \times \log
+  k)$ with $m$ the number of unique elements.
+- Space complexity (average / best / worst): $\mathcal{O}(m + k)$: the
+  frequency map, and the heap.
