@@ -1,0 +1,63 @@
+#+TITLE:String encode and decode
+#+PROPERTY: header-args :tangle problem_6_string_encode_and_decode.py
+#+STARTUP: latexpreview
+#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
+
+#+BEGIN_QUOTE
+Design an algorithm to encode a list of strings to a single string.
+The encoded string is then decoded back to the original list of
+strings.
+
+Please implement =encode= and =decode=.
+
+Constraints:
+- 0 <= strs.length < 100
+- 0 <= strs[i].length < 200
+- strs[i] contains only UTF-8 characters.
+#+END_QUOTE
+
+* Initial considerations
+
+Intuitively one would go for the encoding function ='|'.join(s)= but
+the question of the delimiter character being already present in the
+string arises immediately. How to solve this issues?
+
+Paying close attention to the constraints would let us know that there
+would most likely be a Unicode codepoint that is unused. For
+reference, the Unicode standard defines seventeen planes numbered from
+0 to 16, each containing 65536 characters. =U+PPCCCC= The last plane
+has =10= for =PP=. Other codepoints from =11= to =FF= are not defined.
+The two last planes =0F= and =10= (namely sixteen and seventeen) form
+the private use area, that's to say codepoints that will not be
+assigned to characters by Unicode. If need be we could look our escape
+character in the PUA.
+
+Whilst that would make a creative use of the Unicode standard and a
+close reading of the constraints, it would create an imbalance between
+the input space and the output space. In the worst case where we
+encode and encode again the same string indefinitely we would run out
+of codepoints in the private use area.
+
+Another way would be to use escape characters. In such approach the
+input and output spaces are the same so memory is the only limiting
+factor preventing us from applying the encode function infitely on its
+own output. The main drawback would be to add some complexity in
+escaping multiple times the escape characters as we apply the =encode=
+function.
+
+Yet another approach would be to implement base64 which would be fun
+but not very efficient.
+
+Finally, we can prefix each word with its size and a delimiter. It is
+unambiguous on strings that contain special characters since decoding
+is based on length, and it handles well strings of variable sizes.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
