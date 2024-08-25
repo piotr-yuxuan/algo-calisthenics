@@ -33,14 +33,27 @@ array, so we need a min heap that maintains the following invariant:
 For index $\var{i}$ of array $\var{a}$, $\var{a}[\var{i}] \le
 \var{a}[2\var{i} +1]$ and $\var{a}[\var{i}] \le \var{a}[2\var{i} +2]$.
 
+An another way to see it is to use a bucket sort. Compared to a heap
+that is an implicit data structure, a bucket sort only uses simple
+data structures like dictionaries and arrays. We can use a bucket sort
+because we know the frequency of an array element varies from 1 at
+least to the length of the array.
+
+First we count the frequency ($\mathcal{O}(n)$), then we append each
+item to their frequency bucket ($\mathcal{O}(m)$, with $\var{m}$ the
+number of unique elements such as $\mathcal{O}(m) \le
+\mathcal{O}(n)$ ), and finally we iterate down from the largest
+frequency to the smallest, collecting the items along the way. We stop
+once we have collected $k$ items. Both the space and time complexities
+can be simplifies as $\mathcal{O}(n)$.
+
 * Chosen solution
 
 As of now the best way I can think of solving this issue in a
 professional context is along the lambda above. I would also start
-with it in an interview, but then I would dive deeper in the
-datastructure and how to implement them.
+with it in an interview, but then I would dive deeper by touching on a
+heap and a bucket sort. I would recommend a bucket sort for its
+complexity, and because it is very intuitive.
 
-- Time complexity (average / best / worst): $\mathcal{O}(n + m \times \log
-  k)$ with $m$ the number of unique elements.
-- Space complexity (average / best / worst): $\mathcal{O}(m + k)$: the
-  frequency map, and the heap.
+- Time complexity (average / best / worst): $\mathcal{O}(n)$.
+- Space complexity (average / best / worst): $\mathcal{O}(n)$.

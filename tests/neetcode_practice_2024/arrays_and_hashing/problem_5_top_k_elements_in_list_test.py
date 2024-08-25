@@ -19,6 +19,7 @@ def test_all_implementations_agree(array, k):
         set(problem.solution(input, k))
         == set(problem.solution_std_minheap(input, k))
         == set(problem.solution_stdlib(input, k))
+        == set(problem.solution_bucket_sort(input, k))
     )
 
 
@@ -28,6 +29,7 @@ def test_hard_coded_example():
         set(problem.solution_std_minheap(input, 2))
         == set(problem.solution_stdlib(input, 2))
         == set(problem.solution(input, 2))
+        == set(problem.solution_bucket_sort(input, 2))
     )
 
 

@@ -42,7 +42,7 @@ def heap_insert(heap: List[K], v: K):
     rightmost element at the lowest level. Most likely is breaks the
     heap invariant, then restore it by swapping with its parent as
     necessary. At most we go from lowest level to top tree level,
-    which has a height of $\mathcal{O}(\log n)$, so this is the time
+    which has a height of $\\mathcal{O}(\\log n)$, so this is the time
     complexity.
 
     """
@@ -68,7 +68,7 @@ def heap_extract(heap: List[K]) -> Optional[K]:
     clearly breaks the invariant, then then restore it by swapping the
     parent with its smallest child until it is no longer necessary. At
     most we go from top tree level to lowest level, which has a height
-    of $\mathcal{O}(\log n)$, so this is the time complexity.
+    of $\\mathcal{O}(\\log n)$, so this is the time complexity.
 
     """
     if len(heap) == 0:
@@ -84,9 +84,8 @@ def heap_extract(heap: List[K]) -> Optional[K]:
     # Restore the invariant:
     parent_position = 0
     while True:
-        left_position = 2 * parent_position + 1
-        right_position = 2 * parent_position + 2
         smallest_element_position = parent_position
+        left_position, right_position = 2 * parent_position + 1, 2 * parent_position + 2
 
         # Position of min(min(parent, left_child), right_child).
         if left_position < len(heap) and not (
@@ -129,6 +128,22 @@ def solution(input, k):
         if k < len(heap):
             heap_extract(heap)
     return [tuple[1] for tuple in heap]
+
+
+def solution_bucket_sort(input: List[int], k: int) -> List[int]:
+    frequencies: Dict[int, int] = collections.defaultdict(int)
+    for i in input:
+        frequencies[i] += 1
+    buckets = collections.defaultdict(list)
+    for i, frequency in frequencies.items():
+        buckets[frequency].append(i)
+    result = []
+    for frequency in range(len(input), 0, -1):
+        if frequency in buckets:
+            result.extend(buckets[frequency])
+        if k <= len(result):
+            break
+    return result[:k]
 
 
 def main(args):
