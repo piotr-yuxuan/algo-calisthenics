@@ -1,7 +1,6 @@
 #+TITLE:String encode and decode
 #+PROPERTY: header-args :tangle problem_6_string_encode_and_decode.py
 #+STARTUP: latexpreview
-#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
 
 #+BEGIN_QUOTE
 Design an algorithm to encode a list of strings to a single string.

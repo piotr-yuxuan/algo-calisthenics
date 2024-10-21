@@ -1,11 +1,10 @@
 #+TITLE:Anagram groups
 #+PROPERTY: header-args :tangle problem_4_anagram_groups.py
 #+STARTUP: latexpreview
-#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
 
 #+BEGIN_QUOTE
-Given an array of strings $\var{strs}$, group all anagrams together
-into sublists. You may return the output in any order.
+Given an array of strings $strs$, group all anagrams together into
+sublists. You may return the output in any order.
 
 An anagram is a string that contains the exact same characters as
 another string, but the order of the characters can be different.
@@ -26,9 +25,8 @@ collision.
 
 As of now the best way I can think of…
 
-- Time complexity: $\mathcal{O}(n \times m)$, with $\var{n}$ the
-  number of items in the input array and $\var{m}$ the size of the
-  items.
+- Time complexity: $\mathcal{O}(n \times m)$, with $n$ the number of
+  items in the input array and $m$ the size of the items.
 - Space complexity: $\mathcal{O}(n \times m)$
 
 #+BEGIN_SRC python

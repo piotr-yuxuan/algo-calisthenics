@@ -1,12 +1,11 @@
-#+TITLE:Top highest $\var{k}$ elements in a list
+#+TITLE:Top highest $k$ elements in a list
 #+PROPERTY: header-args :tangle problem_5_top_k_elements_in_list.py
 #+STARTUP: latexpreview
-#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
 
 #+BEGIN_QUOTE
-Given an integer array $\var{nums}$ and an integer $\var{k}$, return
-the $\var{k}$ most frequent elements within the array. You may return
-the output in any order.
+Given an integer array $nums$ and an integer $k$, return the $k$ most
+frequent elements within the array. You may return the output in any
+order.
 #+END_QUOTE
 
 * Initial considerations
@@ -23,15 +22,15 @@ Basically the overarching plot involved counting characters, storing
 these counts, and return the highest elements. The lambda above is a
 straightforward way to do it.
 
-The implementation of =most_cmmon()= can be done by sorting the keys
+The implementation of =most_common()= can be done by sorting the keys
 and returning the number of keys we want. However, this total sort
 gives a time complexity of $\mathcal{O}(n \times \log n)$. We can do
-better with a partial sort only on an array of lenght $\var{k}$. For
+better with a partial sort only on an array of lenght ${k}$. For
 that we need to use a heap to keep track of smallest element of this
 array, so we need a min heap that maintains the following invariant:
 
-For index $\var{i}$ of array $\var{a}$, $\var{a}[\var{i}] \le
-\var{a}[2\var{i} +1]$ and $\var{a}[\var{i}] \le \var{a}[2\var{i} +2]$.
+For index ${i}$ of array ${a}$, ${a}[{i}] \le
+{a}[2{i} +1]$ and ${a}[{i}] \le {a}[2{i} +2]$.
 
 An another way to see it is to use a bucket sort. Compared to a heap
 that is an implicit data structure, a bucket sort only uses simple
@@ -40,7 +39,7 @@ because we know the frequency of an array element varies from 1 at
 least to the length of the array.
 
 First we count the frequency ($\mathcal{O}(n)$), then we append each
-item to their frequency bucket ($\mathcal{O}(m)$, with $\var{m}$ the
+item to their frequency bucket ($\mathcal{O}(m)$, with ${m}$ the
 number of unique elements such as $\mathcal{O}(m) \le
 \mathcal{O}(n)$ ), and finally we iterate down from the largest
 frequency to the smallest, collecting the items along the way. We stop
