@@ -90,6 +90,7 @@ function print_test {
 
 for i in {1..3}; do
   src=${src_paths[$i]}
+  mkdir -p ${dest_paths[$i]%/*} 
   dest=$(realpath "${dest_paths[$i]}")
 
   if [[ -e $dest && $force_flag -eq 0 ]]; then
