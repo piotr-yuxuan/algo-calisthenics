@@ -27,7 +27,12 @@ reasoning behind it. I hope it makes it easier to read.
 
 ## Getting ready for a new problem
 
+Find the next one on: https://neetcode.io/practice?tab=blind75.
+
+From the root of this repository:
+
 ``` zsh
+cd ${REPO_ROOT:=.}
 ./dev-resources/new-problem.sh \
   --problem-path neetcode_practice_2024/arrays_and_hashing/problem_4_anagram_groups
 ```
