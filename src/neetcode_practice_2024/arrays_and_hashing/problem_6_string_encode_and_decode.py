@@ -25,7 +25,7 @@ def decode(s: str) -> List[str]:
     while tag_start < len(s):
         tag_end = s.find(DELIMITER, tag_start)
         word_length = int(s[tag_start:tag_end])
-        ret.append(s[tag_end + 1 : tag_end + 1 + word_length])
+        ret.append(s[slice(tag_end + 1, tag_end + 1 + word_length)])
         tag_start = tag_end + word_length + 1
     return ret
 
