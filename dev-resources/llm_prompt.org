@@ -12,7 +12,7 @@ Today I am considering the following problem statement:
 
 Could you outline solutions in some of the most relevant algorithmic
 design paradigms? Here are some I can think about, but please don't
-feel limited if there are somem better fits.
+feel limited if there are some better fits.
 
 - Backtracking
 - Branch and bound
