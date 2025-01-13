@@ -1,0 +1,56 @@
+#+TITLE:Product of array except self
+#+PROPERTY: header-args :tangle problem_7_product_of_array_except_self.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/67853fe8-da54-800e-8880-3ed7cb2f5d2e
+
+#+BEGIN_QUOTE
+Given an integer array $nums$, return an array $output$ where
+$output[i]$ is the product of all the elements of $nums$ except
+$nums[i]$.
+
+Each product is guaranteed to fit in a 32-bit integer.
+
+Follow-up: Could you solve it in $\mathcal{O}(n)$ time without using
+the division operation?
+#+END_QUOTE
+
+* Initial considerations
+
+(following a pen-and-paper approach)
+
+** Brute-force approach
+
+The most immediate strategy to reach the result is to iterate over the
+array and compute the product of everything excepted the value at $i$
+every time.
+
+** Divide by value at point
+
+Then actually we can store the result of the full array product and
+divide by the value at point.
+
+** Affix strategy
+
+Then actually we can use an affix strategy: prefix / suffix. The
+output value is the left and right multiplied, let's build them in two
+different passes. The time complexity is $\mathcal{O}(n)$ in two
+passes, and the space complexity also is $\mathcal{O}(n)$.
+
+** Greedy algorithm
+
+In the end we can store the current value of the partial product in a
+temporary value, multiply each value at point by it, and store the
+result in an output table intialised at full of $1$. The time
+complexity is $\mathcal{O}(n)$ and the space complexity is
+$\mathcal{O}(1)$, ignoring the size of the output array that is
+$\mathcal{O}(n)$.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
