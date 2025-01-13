@@ -1,7 +1,7 @@
 Hello! As a senior data engineer with nine years of industry
 experience in tech I feel I need to practice my algorithmic skills to
 keep them sharp and stay relevant. I have used Clojure for almost
-eight year before I picked up on Python so I am still discovering the
+eight years before I picked up on Python so I am still discovering the
 type hints and useful modules.
 
 Today I am considering the following problem statement:
