@@ -1,4 +1,4 @@
-#+TITLE:XXX title
+#+TITLE:Longest consecutive sequence
 #+PROPERTY: header-args :tangle problem_8_longest_consecutive_sequence.py
 #+STARTUP: latexpreview
 #+URL: https://chatgpt.com/c/6785619b-14ec-800e-bbb5-113e678099e0
@@ -23,7 +23,7 @@ As a reminder on Landau's notation:
   complexity is at least the given bound in the best-case scenario.
 - $\Theta(n)$ indicates a tight bound. It guarantees the complexity
   grows exactly at the given rate.
-- $o(n)$ indicates an asymptotic upper bound that is not
+- $\mathcal{o}(n)$ indicates an asymptotic upper bound that is not
   tight. It means the growth rate is strictly less than the given
   bound.
 - $\omega(n)$ indicates an asymptotic lower bound that is not tight.
