@@ -34,7 +34,7 @@ def longest_sequence(
     return current_length + known_lengths[current_value]
 
 
-def solution_hashmap(input: List[int]) -> int:
+def solution_hashmap_dynamic_programming_top_down(input: List[int]) -> int:
     values = set(input)
     known_lengths = dict({})
     current_length = 0

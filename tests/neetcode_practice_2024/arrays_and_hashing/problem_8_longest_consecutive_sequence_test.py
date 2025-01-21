@@ -13,7 +13,9 @@ importlib.reload(problem)
 
 @given(st.lists(st.integers()))
 def test_solution(input):
-    assert problem.solution_hashset(input) == problem.solution_hashmap(input)
+    assert problem.solution_hashset(
+        input
+    ) == problem.solution_hashmap_dynamic_programming_top_down(input)
 
 
 def test_solution_hard_coded():
