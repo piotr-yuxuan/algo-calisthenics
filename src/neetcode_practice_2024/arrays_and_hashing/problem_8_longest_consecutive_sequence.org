@@ -1,0 +1,68 @@
+#+TITLE:XXX title
+#+PROPERTY: header-args :tangle problem_8_longest_consecutive_sequence.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/6785619b-14ec-800e-bbb5-113e678099e0
+
+#+BEGIN_QUOTE
+Given an array of integers $nums$, return the length of the longest
+consecutive sequence of elements that can be formed.
+
+A consecutive sequence is a sequence of elements in which each element
+is exactly 1 greater than the previous element. The elements do not
+have to be consecutive in the original array.
+
+You must write an algorithm that runs in $O(n)$ time.
+#+END_QUOTE
+
+As a reminder on Landau's notation:
+
+- $\mathcal{O}(n)$ describes an asymptotic upper bound. It indicates
+  the worst-case scenario, ensuring the complexity won't exceed the
+  given bound.
+- $\Omega(n)$ describes an asymptotic lower bound. It guarantees the
+  complexity is at least the given bound in the best-case scenario.
+- $\Theta(n)$ indicates a tight bound. It guarantees the complexity
+  grows exactly at the given rate.
+- $o(n)$ indicates an asymptotic upper bound that is not
+  tight. It means the growth rate is strictly less than the given
+  bound.
+- $\omega(n)$ indicates an asymptotic lower bound that is not tight.
+  It means the growth rate is strictly greater than the given bound.
+
+* Initial considerations
+
+** With a hashset
+
+The first idea that comes to mind is to store the numbers in a map,
+but then it becomes unclear what to put in the values apart from a
+boolean, which makes this datastructure equivalent to a set. The idea
+is to traverse the array, for each number $n$ look up whether value
+$n+1$ is known, and record the longest chain.
+
+The algorithmic complexity is $\mathcal{O}(n)$ to turn the array into
+a set. Then we interate the array again in linear time
+$\mathcal{O}(n)$, perform a lookup in $\mathcal{O}(1)$ constant time.
+The space complexity is $\mathcal{O}(n)$.
+
+** Memoizing the length of the sequence with a hashmap
+
+However, while writing that, I notice that we may iterate over the
+same values again, even with a set. For example the Python set ${5, 6,
+7, 4, 3, 2, 1}$ when each number is considered in this order would
+first find a longest sequence of length 3 (with 5, 6, 7), and would
+then have to go again through 5, 6, and 7 again from 4 and the other
+numbers.
+
+A possible improvement here is convert the hash set into a map and
+store the length of the longest sequence as a value in front of its
+starting point.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
