@@ -14,26 +14,24 @@ def longest_sequence(
     current_value: int,
     current_length: int,
 ) -> int:
-    if current_value in known_lengths:
-        return current_length + known_lengths[current_value]
-
     next_value = 1 + current_value
-    if next_value in known_lengths:
+    if current_value in known_lengths:
+        pass
+    elif next_value in known_lengths:
         known_lengths[current_value] = 1 + known_lengths[next_value]
-        return longest_sequence(values, known_lengths, current_value, current_length)
     elif next_value in values:
-        longest_sequence(
+        return longest_sequence(
             values,
             known_lengths,
             next_value,
             1 + current_length,
         )
-        return longest_sequence(values, known_lengths, current_value, current_length)
     elif current_value in values:
         known_lengths[current_value] = 1
-        return longest_sequence(values, known_lengths, current_value, current_length)
+    else:
+        return current_length
 
-    return current_length
+    return current_length + known_lengths[current_value]
 
 
 def solution_hashmap(input: List[int]) -> int:
