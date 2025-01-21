@@ -3,15 +3,62 @@
 import argparse
 import argcomplete
 
-from typing import Callable, List, Optional, Protocol, TypeVar
+from typing import Callable, List, Dict, Set, Optional, Protocol, TypeVar
 import collections
 import functools
+
+
+def longest_sequence(
+    values: Set[int],
+    known_lengths: Dict[int, int],
+    current_value: int,
+    current_length: int,
+) -> int:
+    if current_value in known_lengths:
+        return current_length + known_lengths[current_value]
+
+    next_value = 1 + current_value
+    if next_value in known_lengths:
+        known_lengths[current_value] = 1 + known_lengths[next_value]
+        return longest_sequence(values, known_lengths, current_value, current_length)
+    elif next_value in values:
+        longest_sequence(
+            values,
+            known_lengths,
+            next_value,
+            1 + current_length,
+        )
+        return longest_sequence(values, known_lengths, current_value, current_length)
+    elif current_value in values:
+        known_lengths[current_value] = 1
+        return longest_sequence(values, known_lengths, current_value, current_length)
+
+    return current_length
+
+
+def solution_hashmap(input: List[int]) -> int:
+    values = set(input)
+    known_lengths = dict({})
+    current_length = 0
+    longest = 0
+
+    for current_value in values:
+        longest = max(
+            longest,
+            longest_sequence(
+                values,
+                known_lengths,
+                current_value,
+                current_length,
+            ),
+        )
+    return longest
 
 
 def solution_hashset(input: List[int]) -> int:
     known = set(input)
     longest = 0
-    for i in input:
+    for i in known:
         value = i
         length = 1
         while value + 1 in known:
