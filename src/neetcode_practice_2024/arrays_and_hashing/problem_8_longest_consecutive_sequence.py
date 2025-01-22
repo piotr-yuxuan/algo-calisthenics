@@ -60,6 +60,31 @@ def solution_hashset(input: List[int]) -> int:
     return longest
 
 
+def solution_dp_bottom_up(input: List[int]) -> int:
+    if not input:
+        return 0
+
+    # Memoisation cache where the key is an integer from the input,
+    # and the value is the length of the consecutive sequence that
+    # includes that integer.
+    dp = collections.defaultdict(int)
+
+    for current_value in input:
+        if dp[current_value]:
+            continue
+
+        previous_value = current_value - 1
+        next_value = current_value + 1
+        dp[current_value] = dp[previous_value] + 1 + dp[next_value]
+
+        start_of_sequence = current_value - dp[previous_value]
+        end_of_sequence = current_value + dp[next_value]
+        dp[start_of_sequence] = dp[current_value]
+        dp[end_of_sequence] = dp[current_value]
+
+    return max(dp.values())
+
+
 def main(args):
     return solution_hashset(args.input)
 
