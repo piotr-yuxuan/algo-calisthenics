@@ -8,7 +8,20 @@ import collections
 import functools
 
 
-def solution(input) -> bool:
+def solution_stack(input: str) -> bool:
+    n = len(input)
+    if n <= 1:
+        return True
+    stack = []
+    stack.extend(input[: n // 2])
+    for i in range((n + 1) // 2, n):
+        item = stack.pop()
+        if item != input[i]:
+            return False
+    return True
+
+
+def solution_straightforward(input: str) -> bool:
     left, right = 0, len(input) - 1
     while left < right:
         if input[left] != input[right]:
@@ -19,7 +32,7 @@ def solution(input) -> bool:
 
 
 def main(args):
-    return solution(args.input)
+    return solution_straightforward(args.input)
 
 
 if __name__ == "__main__":
