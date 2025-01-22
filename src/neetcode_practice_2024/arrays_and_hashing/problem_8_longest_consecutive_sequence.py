@@ -33,20 +33,18 @@ def longest_sequence(
 
 
 def solution_dp_top_down(input: List[int]) -> int:
+    if not input:
+        return 0
+
     values = set(input)
     known_lengths = dict({})
-    longest = 0
 
-    for current_value in values:
-        longest = max(
-            longest,
-            longest_sequence(
-                values,
-                known_lengths,
-                current_value,
-            ),
-        )
-    return longest
+    return max(
+        [
+            longest_sequence(values, known_lengths, current_value)
+            for current_value in values
+        ],
+    )
 
 
 def solution_hashset(input: List[int]) -> int:
