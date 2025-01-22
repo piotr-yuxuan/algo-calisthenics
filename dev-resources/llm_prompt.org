@@ -14,57 +14,12 @@ Could you outline solutions in some of the most relevant algorithmic
 design paradigms? Here are some I can think about, but please don't
 feel limited if there are some better fits.
 
-- Backtracking
-- Branch and bound
-- Brute-force search
-- Divide and conquer
+- Backtracking;
+- Branch and bound;
+- Brute-force search;
+- Divide and conquer;
 - Dynamic programming (I'm especially interested in both bottom-up and
-  top-down to see the differences and similarities)
-- Greedy algorithm
-- Recursion
-- Prune and search
-
-For each paradigm, I would like to understand:
-
-- How it works.
-- Why it might be a good fit for this problem.
-- Its time and space complexities.
-- Common pitfalls or misconceptions when applying it.
-
-Being able to see the fundamental structures that can be transferred
-across, and applied to, different problems would truly be very welcome
-and appreciated.
-
-Besides algorithmic design paradigms, using some different data
-structures as relevant would be most helpful. Here are some
-suggestions, but don't feel constrained:
-
-- Array
-- Associative array
-- Binary search tree
-- Fenwick tree
-- Graph
-- Hash table
-- Heap
-- Linked list
-- Queue
-- Segment tree
-- Stack
-- String
-- Tree
-- Trie
-
-For each data structure, could you discuss:
-
-- Why it might be a good fit for this problem.
-- Its strengths and weaknesses in this context.
-- Trade-offs compared to alternative data structures.
-
-Finally, I’m especially interested to see:
-
-- The most efficient algorithm for space, time, or both, whatever the
-  paradigm or implementation.
-- Suggestions for how I can modify this problem to practise additional
-  skills or paradigms.
-- Real-world applications where these paradigms or data structures are
-  commonly used.
+  top-down to see the differences and similarities);
+- Greedy algorithm;
+- Recursion;
+- Prune and search.
