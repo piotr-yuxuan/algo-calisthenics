@@ -30,3 +30,10 @@ As of now the best way I can think of is the simple two-pointer loop:
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+I have left behind the alpha-numeric filter. It could be done in a
+linear complexity time with something along the lines of:
+
+#+BEGIN_SRC python
+[c for c in 'aze ?:' if c.isalnum()]
+#+END_SRC
