@@ -1,0 +1,32 @@
+#+TITLE:Valid Palindrome
+#+PROPERTY: header-args :tangle problem_1_valid_palindrom.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/6790fd9e-ce8c-800e-9dfc-740a244d1b00
+
+#+BEGIN_QUOTE
+Given a string $s$, return $true$ if it is a palindrome, otherwise
+return $false$.
+
+A palindrome is a string that reads the same forward and backward. It
+is also case-insensitive and ignores all non-alphanumeric characters.
+#+END_QUOTE
+
+* Initial considerations
+
+My instinct is to use to pointers from the first and last position of
+the string and slide them by one until they join or a difference is
+spotted. Another implementation for the same algorithm is to say the
+result for a string is the comparison of the two characters and the
+logical conjunction (=AND=) with the result of a recursive call to the
+inner string.
+
+Othewise we could try a stack, which is still a different
+implementation variety of the same strategy: comparing the caracters
+at the two ends, and progressing inwards.
+
+* Chosen solution
+
+As of now the best way I can think of is the simple two-pointer loop:
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
