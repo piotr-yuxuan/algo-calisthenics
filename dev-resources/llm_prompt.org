@@ -1,13 +1,13 @@
 Hello! As a senior data engineer with nine years of industry
-experience in tech I feel I need to practice my algorithmic skills to
+experience in tech, I feel I need to practise my algorithmic skills to
 keep them sharp and stay relevant. I have used Clojure for almost
-eight years before I picked up on Python so I am still discovering the
-type hints and useful modules.
+eight years before I picked up on Python, so I am still discovering
+the type hints and useful modules.
 
 Today I am considering the following problem statement:
 
 #+BEGIN_QUOTE
-
+{{ problem_statement }}
 #+END_QUOTE
 
 Could you outline solutions in some of the most relevant algorithmic
@@ -18,17 +18,24 @@ feel limited if there are some better fits.
 - Branch and bound
 - Brute-force search
 - Divide and conquer
-- Dynamic programming (both bottom-up and top-down)
+- Dynamic programming (I'm especially interested in both bottom-up and
+  top-down to see the differences and similarities)
 - Greedy algorithm
 - Recursion
 - Prune and search
 
-I am interested to read how they work, why they might be a good fit,
-and learn on their time and space complexities? Being able to see the
-fundamental structure that can be transferred across, and applied on,
-different problems, would be very welcome.
+For each paradigm, I would like to understand:
 
-Besides algorithmic design paradigm, using some different data
+- How it works.
+- Why it might be a good fit for this problem.
+- Its time and space complexities.
+- Common pitfalls or misconceptions when applying it.
+
+Being able to see the fundamental structures that can be transferred
+across, and applied to, different problems would truly be very welcome
+and appreciated.
+
+Besides algorithmic design paradigms, using some different data
 structures as relevant would be most helpful. Here are some
 suggestions, but don't feel constrained:
 
@@ -47,4 +54,17 @@ suggestions, but don't feel constrained:
 - Tree
 - Trie
 
-Finally I'm especially interested to see the most efficient algorithm for space, time, or both, whatever the paradigm or implementation.
+For each data structure, could you discuss:
+
+- Why it might be a good fit for this problem.
+- Its strengths and weaknesses in this context.
+- Trade-offs compared to alternative data structures.
+
+Finally, I’m especially interested to see:
+
+- The most efficient algorithm for space, time, or both, whatever the
+  paradigm or implementation.
+- Suggestions for how I can modify this problem to practise additional
+  skills or paradigms.
+- Real-world applications where these paradigms or data structures are
+  commonly used.
