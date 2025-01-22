@@ -13,10 +13,13 @@ def solution_stack(input: str) -> bool:
     if n <= 1:
         return True
     stack = []
-    stack.extend(input[: n // 2])
-    for i in range((n + 1) // 2, n):
+
+    midpoint_end = n // 2
+    midpoint_start = (n + 1) // 2
+    stack.extend(input[:midpoint_end])
+    for i in input[midpoint_start:]:
         item = stack.pop()
-        if item != input[i]:
+        if item != i:
             return False
     return True
 
