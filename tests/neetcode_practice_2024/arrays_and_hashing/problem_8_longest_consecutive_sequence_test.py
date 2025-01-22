@@ -15,8 +15,26 @@ importlib.reload(problem)
 def test_solution(input):
     assert (
         problem.solution_hashset(input)
-        == problem.solution_hashmap_dynamic_programming_top_down(input)
-        == problem.solution_hashmap_dynamic_programming_bottom_up(input)
+        == problem.solution_dp_top_down(input)
+        == problem.solution_dp_bottom_up(input)
+    )
+
+
+@given(
+    st.lists(
+        st.integers(
+            min_value=1,
+            max_value=150,
+        ),
+        min_size=100,
+        max_size=200,
+    )
+)
+def test_solution_constrained_random(input):
+    assert (
+        problem.solution_hashset(input)
+        == problem.solution_dp_top_down(input)
+        == problem.solution_dp_bottom_up(input)
     )
 
 

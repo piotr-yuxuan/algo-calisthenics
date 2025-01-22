@@ -13,23 +13,26 @@ def longest_sequence(
     known_lengths: Dict[int, int],
     current_value: int,
 ) -> int:
-    next_value = 1 + current_value
     if current_value in known_lengths:
         return known_lengths[current_value]
-    elif next_value in values:
-        return 1 + longest_sequence(
+
+    if current_value not in values:
+        return 0
+
+    next_value = 1 + current_value
+    if next_value in values:
+        known_lengths[next_value] = longest_sequence(
             values,
             known_lengths,
             next_value,
         )
-    elif current_value in values:
+        return 1 + known_lengths[next_value]
+    else:
         known_lengths[current_value] = 1
         return known_lengths[current_value]
-    else:
-        return 0
 
 
-def solution_hashmap_dynamic_programming_top_down(input: List[int]) -> int:
+def solution_dp_top_down(input: List[int]) -> int:
     values = set(input)
     known_lengths = dict({})
     longest = 0
