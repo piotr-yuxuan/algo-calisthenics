@@ -39,7 +39,7 @@ input[k]$ a lot growing values of $i$. Could we somehow remember which
 tuples $(j, k)$ give the result $-input[i]$ and use it?
 
 So, memoising these tuples $(j, k)$ is the first trick and so far the
-three nested loops gives a complexity of $\mathcal{O](n^3)$. We could
+three nested loops gives a complexity of $\mathcal{O}(n^3)$. We could
 also sort the array (a mere $\mathcal{O}(n \log n)$) and avoid
 unnecessary computations when it becomes apparent that we won't be
 able to get a number low enough or get us to zero without getting
@@ -67,7 +67,7 @@ Sorting the array is a nice little optimisation that save some complexity.
 ** Canonical two-pointer solutions
 
 This reasonning above has led me to two non-naive solutions of time
-complexity of $\mathcal{O](n^2)$. However, while they use two
+complexity of $\mathcal{O}(n^2)$. However, while they use two
 pointers, they are not actually a canonical two-pointer solutions.
 
 In a canonical two-pointer paradigm, we adjuste two pointers (low and
@@ -98,4 +98,4 @@ This approach would follow with a $\mathcal{O}(n^(d-1))$, with $d$ the
 degree of the sum, eg. $d=3$ for a three-sum problem.
 
 To have an impact on the complexity we could use dynamic programming
-here with an array $dp[d][target_sum]$.
+here with an array =dp[d][target_sum]=.
