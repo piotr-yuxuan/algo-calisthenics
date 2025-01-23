@@ -51,3 +51,22 @@ reuse smaller problems, it'd be a bottom-up approach.
 Because we want to record whether the string between $input[i]$ and
 input[j]$, both included, is a palindrom, it's a bit cumbersome to
 iterate the loops with $i$ and $j$ from 0. We use the length for that.
+
+The trick here is to observe how we go from one subproblem to a larger
+subproblem, using an unconventional loop based on increasing length
+instead of the following more standard construct:
+
+#+BEGIN_SRC python
+for i in range(n):
+    for j in range(i, n):
+        length = j - i + 1
+#+END_SRC
+
+As hopefully materialised in a clear way, the recurrence relation
+assigns a constant value to all problem of length 1 and a value that
+only depends on the values of at indices $i$ and $j$ for length 2. The
+recurrence only starts for length larger or equal to $3$, where the
+assigned value is expressed with values assigned to smaller
+subproblems. Because of this, the nested loops construct above on $i$
+and $j$ isn't applicable as it does not assign values to all
+subproblems of length $l-1$ before it tackles problems of length $l$.
