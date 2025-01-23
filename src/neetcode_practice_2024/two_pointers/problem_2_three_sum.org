@@ -27,6 +27,12 @@ for i in range(n-2):
                 ...
 #+END_SRC
 
+As usual I will start by implementing the most naive and least
+efficient algorithm, and use it to gradually compare more efficient
+options.
+
+** Memoisation
+
 We would then seek to insert memoisation at the right place.
 Intuitively we feel that we would compute the same $input[j] +
 input[k]$ a lot growing values of $i$. Could we somehow remember which
@@ -42,15 +48,23 @@ below zero.
 So far the problem now looks like we have a $current_sum$ to make
 equal to zero with growing numbers.
 
+** Two loops instead of three
+
 Perhaps the last trick is to view this problem under the other angle:
 a $current_sum$ to make equal to zero with growing numbers incurs
 looping through the numbers and then trying to find two values with
 two more loops. We could use an associative table or set and keep the
 two loops for a constant lookup time for the third value.
 
-As usual I will start by implementing the most naive and least
-efficient algorithm, and use it to gradually compare more efficient
-options.
+Some issue I hadn't foreseen is the little dance around $min_count$.
+Having a set is no longer enough because we want to pick up any input
+value at most once. When some indices are the target
+sum, we can't reuse a duplicate of these indices, so we want at least
+one more position that we can use.
+
+Sorting the array is a nice little optimisation that save some complexity.
+
+** Canonical two-pointer solutions
 
 This reasonning above has led me to two non-naive solutions of time
 complexity of $\mathcal{O](n^2)$. However, while they use two

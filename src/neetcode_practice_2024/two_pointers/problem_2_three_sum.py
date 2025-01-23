@@ -37,7 +37,15 @@ def solution_two_loops(input: List[int]) -> Set[Tuple[int]]:
                     min_count += 1
                 if len(values[target_sum]) <= min_count:
                     continue
-                triplet = tuple(sorted((input[i], input[j], target_sum)))
+                triplet = tuple(
+                    sorted(
+                        (
+                            input[i],
+                            input[j],
+                            target_sum,
+                        )
+                    )
+                )
                 results.add(triplet)
     return results
 
@@ -65,8 +73,17 @@ def solution_two_loops_sorted(input_unsorted: List[int]) -> Set[Tuple[int]]:
                     min_count += 1
                 if len(values[target_sum]) <= min_count:
                     continue
-                triplet = tuple(sorted((input[i], input[j], target_sum)))
-                results.add(triplet)
+                results.add(
+                    tuple(
+                        sorted(
+                            (
+                                input[i],
+                                input[j],
+                                target_sum,
+                            )
+                        )
+                    )
+                )
     return results
 
 
