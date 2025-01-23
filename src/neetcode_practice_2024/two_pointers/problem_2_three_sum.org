@@ -85,6 +85,3 @@ solution which has constant space complexity and linear time compexity.
 
 - Time complexity: $\mathcal{O}(n)$
 - Space complexity: $\mathcal{O}(1)$
-
-#+BEGIN_SRC python
-#+END_SRC
