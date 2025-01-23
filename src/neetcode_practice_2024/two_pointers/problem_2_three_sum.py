@@ -91,7 +91,7 @@ def solution_two_pointers(input_unsorted: List[int]) -> Set[Tuple[int]]:
     input = sorted(input_unsorted)
     n = len(input)
     target_sum = 0
-    results = set()
+    results = list()
 
     for i in range(n - 2):
         if 0 < i and input[i - 1] == input[i]:
@@ -106,11 +106,22 @@ def solution_two_pointers(input_unsorted: List[int]) -> Set[Tuple[int]]:
             elif target_sum < current_sum:
                 r -= 1
             else:
-                results.add(tuple(sorted((u, v, w))))
+                results.append(tuple(sorted((u, v, w))))
                 l += 1
                 r -= 1
+                # The last clause is to avoid out-of-bound pointer.
+                while input[l - 1] == input[l] and l <= n - 2:
+                    l += 1
 
-    return results
+    # As all other implementations return a set, we must return one
+    # here to let the tests pass on happy cases. However, a set hides
+    # duplicates created by the algorithm. We return an obviously
+    # false but not empty result when the result array contains
+    # duplicates.
+    if len(results) == len(set(results)):
+        return set(results)
+    else:
+        return results
 
 
 def main(args):

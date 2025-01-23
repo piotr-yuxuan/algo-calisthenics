@@ -74,6 +74,10 @@ In a canonical two-pointer paradigm, we adjuste two pointers (low and
 high) that traverse the array from opposite ends. This is not what I
 do here.
 
+I notice that I'm actually quite lucky to use a result datastructure
+that is a set, as the duplicates are removed with no effort on my
+side. Let's try to be more efficient and avoid unnecessary computations.
+
 * Chosen solution
 
 As of now the best way I can think of is to use the two-pointer
