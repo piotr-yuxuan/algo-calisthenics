@@ -85,3 +85,17 @@ solution which has constant space complexity and linear time compexity.
 
 - Time complexity: $\mathcal{O}(n)$
 - Space complexity: $\mathcal{O}(1)$
+
+* Further elaboration
+
+How to solve the k-sum problem? As a simple approach I would suggest
+to start with the two-pointer solution, add =target_sum= as a
+parameter. Now a four-sum problem is equivalent to having a three-sum
+problem for each $input[i]$ with a =target_sum= of $-input[i]$ and a
+five-sum problem is made of $n$ four-sum problems.
+
+This approach would follow with a $\mathcal{O}(n^(d-1))$, with $d$ the
+degree of the sum, eg. $d=3$ for a three-sum problem.
+
+To have an impact on the complexity we could use dynamic programming
+here with an array $dp[d][target_sum]$.
