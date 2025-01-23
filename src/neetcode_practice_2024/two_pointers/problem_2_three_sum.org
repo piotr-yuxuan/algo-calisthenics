@@ -2,6 +2,7 @@
 #+PROPERTY: header-args :tangle problem_2_three_sum.py
 #+STARTUP: latexpreview
 #+URL: https://chatgpt.com/c/6791eb73-3758-800e-afa9-e470c14796a4
+#+URL: http://localhost:8777/c/69221aac-9930-47a4-a723-2d07e7160e68
 
 #+BEGIN_QUOTE
 Given an integer array $nums$, return all the triplets $[nums[i],
@@ -88,7 +89,7 @@ solution which has constant space complexity and linear time compexity.
 
 * Further elaboration
 
-How to solve the k-sum problem? As a simple approach I would suggest
+How to solve the $k$-sum problem? As a simple approach I would suggest
 to start with the two-pointer solution, add =target_sum= as a
 parameter. Now a four-sum problem is equivalent to having a three-sum
 problem for each $input[i]$ with a =target_sum= of $-input[i]$ and a
