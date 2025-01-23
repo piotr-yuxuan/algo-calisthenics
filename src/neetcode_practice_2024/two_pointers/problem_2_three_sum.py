@@ -114,7 +114,7 @@ def solution_two_pointers(input_unsorted: List[int]) -> Set[Tuple[int]]:
 
 
 def main(args):
-    return solution_three_loops(args.input)
+    return solution_two_pointers(args.input)
 
 
 if __name__ == "__main__":

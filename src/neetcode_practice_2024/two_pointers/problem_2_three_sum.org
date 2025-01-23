@@ -76,10 +76,11 @@ do here.
 
 * Chosen solution
 
-As of now the best way I can think of…
+As of now the best way I can think of is to use the two-pointer
+solution which has constant space complexity and linear time compexity.
 
-- Time complexity (average / best / worst): $\mathcal{O}(n)$
-- Space complexity (average / best / worst): $\mathcal{O}(1)$
+- Time complexity: $\mathcal{O}(n)$
+- Space complexity: $\mathcal{O}(1)$
 
 #+BEGIN_SRC python
 #+END_SRC
