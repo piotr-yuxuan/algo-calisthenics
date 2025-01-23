@@ -14,6 +14,7 @@ def test_solution_valid(half):
     input = half + "".join(reversed(half))
     assert problem.solution_straightforward(input) is True
     assert problem.solution_stack(input) is True
+    assert problem.solution_dp_bottom_up(input) is True
 
 
 @given(st.text(min_size=1))
@@ -22,6 +23,7 @@ def test_solution_invalid(half):
     input = half + "".join(reversed(half)) + non_palindromic_character
     assert problem.solution_straightforward(input) is False
     assert problem.solution_stack(input) is False
+    assert problem.solution_dp_bottom_up(input) is False
 
 
 def test_solution_hardcoded():

@@ -8,6 +8,38 @@ import collections
 import functools
 
 
+def solution_longest_palindromic_length(input: str) -> int:
+    n = len(input)
+    if n <= 1:
+        return True
+
+    # dp[i][j] stores whether the palindrom starting from input[i] and
+    # finishing at input[j] (both ends included) is a palindrom.
+    dp = [[False for _ in range(n)] for _ in range(n)]
+    # Values we track along the way:
+    max_length = 0
+
+    for length in range(1, n + 1):
+        for i in range(n + 1 - length):
+            j = i + length - 1
+            if 1 == length:
+                is_palindrome = True
+            elif 2 == length:
+                is_palindrome = True and input[i] == input[j]
+            else:
+                is_palindrome = True and input[i] == input[j] and dp[i + 1][j - 1]
+            dp[i][j] = is_palindrome
+            if is_palindrome:
+                max_length = max(max_length, length)
+
+    return max_length
+
+
+def solution_dp_bottom_up(input: str) -> bool:
+    n = len(input)
+    return n == solution_longest_palindromic_length(input)
+
+
 def solution_stack(input: str) -> bool:
     n = len(input)
     if n <= 1:

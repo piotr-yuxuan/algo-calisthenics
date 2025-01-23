@@ -37,3 +37,17 @@ linear complexity time with something along the lines of:
 #+BEGIN_SRC python
 [c for c in 'aze ?:' if c.isalnum()]
 #+END_SRC
+
+* Further elaboration
+
+An interesting way to broaden this problem is to ask for the longest
+palindromes within this string. All of a sudden it makes obvious that
+while the initial case let different implementation choices appear
+similar (two pointers, recursion on the inner string), actually the
+two-pointer solution is indeed the simplest for a given string, and
+the recursion-based approach looks like dynamic programming: as we
+reuse smaller problems, it'd be a bottom-up approach.
+
+Because we want to record whether the string between $input[i]$ and
+input[j]$, both included, is a palindrom, it's a bit cumbersome to
+iterate the loops with $i$ and $j$ from 0. We use the length for that.
