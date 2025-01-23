@@ -87,6 +87,32 @@ def solution_two_loops_sorted(input_unsorted: List[int]) -> Set[Tuple[int]]:
     return results
 
 
+def solution_two_pointers(input_unsorted: List[int]) -> Set[Tuple[int]]:
+    input = sorted(input_unsorted)
+    n = len(input)
+    target_sum = 0
+    results = set()
+
+    for i in range(n - 2):
+        if 0 < i and input[i - 1] == input[i]:
+            continue
+        u = input[i]
+        l, r = i + 1, n - 1
+        while l < r:
+            v, w = input[l], input[r]
+            current_sum = u + v + w
+            if current_sum < target_sum:
+                l += 1
+            elif target_sum < current_sum:
+                r -= 1
+            else:
+                results.add(tuple(sorted((u, v, w))))
+                l += 1
+                r -= 1
+
+    return results
+
+
 def main(args):
     return solution_three_loops(args.input)
 

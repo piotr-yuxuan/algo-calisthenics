@@ -24,6 +24,7 @@ def test_solution_few_duplicates(input):
         problem.solution_three_loops(input)
         == problem.solution_two_loops(input)
         == problem.solution_two_loops_sorted(input)
+        == problem.solution_two_pointers(input)
     )
 
 
@@ -42,6 +43,7 @@ def test_solution_more_duplicates(input):
         problem.solution_three_loops(input)
         == problem.solution_two_loops(input)
         == problem.solution_two_loops_sorted(input)
+        == problem.solution_two_pointers(input)
     )
 
 
@@ -51,3 +53,4 @@ def test_hard_coded():
     assert expected == problem.solution_three_loops(input)
     assert expected == problem.solution_two_loops(input)
     assert expected == problem.solution_two_loops_sorted(input)
+    assert expected == problem.solution_two_pointers(input)

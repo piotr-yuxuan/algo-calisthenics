@@ -70,6 +70,10 @@ This reasonning above has led me to two non-naive solutions of time
 complexity of $\mathcal{O](n^2)$. However, while they use two
 pointers, they are not actually a canonical two-pointer solutions.
 
+In a canonical two-pointer paradigm, we adjuste two pointers (low and
+high) that traverse the array from opposite ends. This is not what I
+do here.
+
 * Chosen solution
 
 As of now the best way I can think of…
