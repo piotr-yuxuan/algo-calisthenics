@@ -1,0 +1,67 @@
+#+TITLE:Three-element sum
+#+PROPERTY: header-args :tangle problem_2_three_sum.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/6791eb73-3758-800e-afa9-e470c14796a4
+
+#+BEGIN_QUOTE
+Given an integer array $nums$, return all the triplets $[nums[i],
+nums[j], nums[k]]$ where $nums[i] + nums[j] + nums[k] == 0$, and the
+indices $i$, $j$ and $k$ are all distinct.
+
+The output should not contain any duplicate triplets. You may return
+the output and the triplets in any order.
+#+END_QUOTE
+
+* Initial considerations
+
+When reading this problem at first I definitely think the first move
+should be a pen-and-pencil approach, probably leading to a tree.
+
+I think a greedy solution would rely on some loop like:
+
+#+BEGIN_SRC python
+for i in range(n-2):
+    for j in range(i+1, n-1):
+        for k in range(j+1, n):
+            if 0 == input[i] + input[j] + input[k]:
+                ...
+#+END_SRC
+
+We would then seek to insert memoisation at the right place.
+Intuitively we feel that we would compute the same $input[j] +
+input[k]$ a lot growing values of $i$. Could we somehow remember which
+tuples $(j, k)$ give the result $-input[i]$ and use it?
+
+So, memoising these tuples $(j, k)$ is the first trick and so far the
+three nested loops gives a complexity of $\mathcal{O](n^3)$. We could
+also sort the array (a mere $\mathcal{O}(n \log n)$) and avoid
+unnecessary computations when it becomes apparent that we won't be
+able to get a number low enough or get us to zero without getting
+below zero.
+
+So far the problem now looks like we have a $current_sum$ to make
+equal to zero with growing numbers.
+
+Perhaps the last trick is to view this problem under the other angle:
+a $current_sum$ to make equal to zero with growing numbers incurs
+looping through the numbers and then trying to find two values with
+two more loops. We could use an associative table or set and keep the
+two loops for a constant lookup time for the third value.
+
+As usual I will start by implementing the most naive and least
+efficient algorithm, and use it to gradually compare more efficient
+options.
+
+This reasonning above has led me to two non-naive solutions of time
+complexity of $\mathcal{O](n^2)$. However, while they use two
+pointers, they are not actually a canonical two-pointer solutions.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
