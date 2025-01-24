@@ -1,0 +1,31 @@
+#+TITLE:Best time to buy and sell stock
+#+PROPERTY: header-args :tangle buy_sell_stock.py
+#+STARTUP: latexpreview
+#+URL:
+
+#+BEGIN_QUOTE
+You are given an integer array =prices= where =prices[i]= is the price
+of NeetCoin on the =ith= day.
+
+You may choose a single day to buy one NeetCoin and choose a different
+day in the future to sell it.
+
+Return the maximum profit you can achieve. You may choose to not make
+any transactions, in which case the profit would be 0.
+#+END_QUOTE
+
+* Initial considerations
+
+As usual, as we have to pick to different days, a very naive option is
+to run a brute force approach, record the profit for each choice of
+days, and return zero or a higher non-negative profit. It must be
+noted that we can't short a stock that we don't own.
+
+* Chosen solution
+
+As of now the best way I can think of is to have two pointers that act
+as a sliding window where we sweep through the array and track the
+$min_price$ and the $max_profit$.
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
