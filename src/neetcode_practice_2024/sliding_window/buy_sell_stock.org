@@ -29,3 +29,16 @@ $min_price$ and the $max_profit$.
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+* Further elaboration
+
+- Allow multiple transactions (track local minima and maxima);
+- Allow to short a stock;
+- Introduce transaction fees or cooldown periods;
+- Implement with a segment tree for range queries;
+- Solve using divide and conquer to deepen recursion understanding.
+
+I am especially excited about the multiple transactions and reversing
+the arrow of time. Intuitively, combining both would surely allow
+overlapping transactions, one short maximising profit by goign up, and
+another one maximising profit by going down?
