@@ -9,8 +9,7 @@ importlib.reload(problem)
 
 
 @given(st.text(min_size=1))
-def test_solution():
+def test_solution(input):
     assert (
-        True
-        == problem.solution()
+        problem.solution(input) is True
     )
