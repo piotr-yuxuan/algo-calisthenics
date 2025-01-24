@@ -88,13 +88,19 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Neetcode 2024, XXX, problem XXX.")
+    parser = argparse.ArgumentParser(
+        description=", ".join(
+            "Neetcode 2024",
+            "two pointers",
+            "problem 8 container with most water",
+        )
+    )
     parser.add_argument(
         "--input",
         "-i",
-        type=str,
+        type=lambda s: [int(i) for i in s.split(",")],
         required=True,
-        help="XXX",
+        help="The input array as a comma-separated list of integers: `1,2,3`.",
     )
 
     # https://kislyuk.github.io/argcomplete/#installation

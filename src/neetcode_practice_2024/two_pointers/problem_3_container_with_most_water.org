@@ -35,5 +35,15 @@ that requires a bit of care, but all in all when applicable it's great.
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
 
-#+BEGIN_SRC python
-#+END_SRC
+* Further elaboration
+
+We could easily extend this code to the few top containers by using a
+heap. We could also extend this code by thinking about three
+dimensional containers as well as higher dimensions.
+
+Then, once these extensions are worked on, the really interesting part
+is to allow frequent updates. As usual, the higher we go in
+algorithmic intricacy / depth, the more variety we find in solutions
+and data structures. Allowing for updates puts a specific strain on
+the data structures recording the heights but it is very fascinating
+to explore this luxuriant world.
