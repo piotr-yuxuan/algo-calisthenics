@@ -1,10 +1,10 @@
 #+TITLE:XXX title
 #+PROPERTY: header-args :tangle {{ xxx_filename }}.py
 #+STARTUP: latexpreview
-#+LATEX_HEADER:\newcommand\var[1]{\mathop{\textnormal{\slshape #1}}\nolimits}
+#+URL:
 
 #+BEGIN_QUOTE
-Problem statement
+{{ xxx_problem_statement }}
 #+END_QUOTE
 
 * Initial considerations
