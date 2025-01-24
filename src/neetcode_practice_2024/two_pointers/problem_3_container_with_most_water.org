@@ -1,0 +1,36 @@
+#+TITLE:Container with most water
+#+PROPERTY: header-args :tangle problem_3_container_with_most_water.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/6792669f-2f20-800e-8620-8ba2b91cf44f
+
+#+BEGIN_QUOTE
+You are given an integer array =heights= where =heights[i]= represents
+the height of the =ith= bar.
+
+You may choose any two bars to form a container. Return the maximum
+amount of water a container can store.
+#+END_QUOTE
+
+* Initial considerations
+
+As this exercice is taken from a bank about two-pointer strategy, it's
+quite likely we can apply this technique. However, as customary let's
+start with a naive, greedy approach that will be used in tests.
+
+For clarity we consider that bars are separated by one unit, and takes
+virtually no water space.
+
+** Greedy approach
+
+Consider all the possible combination of two bars. Compute the volume
+of water they can contain, and track the largest volume.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
