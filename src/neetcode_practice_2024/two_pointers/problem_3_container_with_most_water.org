@@ -27,7 +27,10 @@ of water they can contain, and track the largest volume.
 
 * Chosen solution
 
-As of now the best way I can think of…
+As of now the best way I can think of is the two-pointer
+implementation. I really like this breed of algorithm that is quite
+powerful for the right problem. There is always the increment part
+that requires a bit of care, but all in all when applicable it's great.
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$

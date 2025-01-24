@@ -30,9 +30,13 @@ def solution_brute_force_comp(input: List[int]) -> int:
     if n < 2:
         return 0
 
+    def volume_between_two_bars(input, left_position, right_position):
+        distance = right_position - left_position
+        return distance * min(input[right_position], input[left_position])
+
     return max(
         [
-            (j - i) * min(input[i], input[j])
+            volume_between_two_bars(input, i, j)
             for i in range(n - 1)
             for j in range(i + 1, n)
         ]
@@ -49,14 +53,23 @@ def solution_two_pointers(input: List[int]) -> int:
     # Keep track of these values:
     max_volume = 0
 
-    while l < r:
+    def volume_between_two_bars(l, r, left_bar, right_bar):
         distance = r - l
+        return distance * min(left_bar, right_bar)
+
+    while l < r:
         left_bar = input[l]
         right_bar = input[r]
 
-        volume = distance * min(left_bar, right_bar)
-        print(volume)
-        max_volume = max(max_volume, volume)
+        max_volume = max(
+            max_volume,
+            volume_between_two_bars(
+                l,
+                r,
+                left_bar,
+                right_bar,
+            ),
+        )
 
         if left_bar <= right_bar:
             l += 1
@@ -67,7 +80,7 @@ def solution_two_pointers(input: List[int]) -> int:
 
 
 def solution(input: List[int]) -> int:
-    pass
+    return solution_two_pointers(input)
 
 
 def main(args):
