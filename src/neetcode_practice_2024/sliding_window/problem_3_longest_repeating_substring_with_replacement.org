@@ -1,4 +1,4 @@
-#+TITLE:XXX title
+#+TITLE:Longest Repeating Character Replacement
 #+PROPERTY: header-args :tangle longest_repeating_substring_with_replacement.py
 #+STARTUP: latexpreview
 #+URL:
