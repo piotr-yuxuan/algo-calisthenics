@@ -50,6 +50,9 @@ complexity for storing the position of the unique characters.
 - Implement using two pointers. It would be a nice exercice that
   wouldn't improve the actual runtime or conceptual complexity. While
   not exotic it would be elegant if implemented properly.
+- Implement using bottom-up and top-down dynamic programming. Same, it
+  would smell a bit too much like coerced practice, but it is what it
+  is: I need to practice :)
 - Optimise for space by exploring more compact data structures.
 - Allow $k$ duplicates: Expand the problem to accommodate $k$
   duplicate characters in substrings.
