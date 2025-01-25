@@ -8,7 +8,8 @@ import collections
 import functools
 
 
-def solution(input): ...
+def solution(input):
+    return True
 
 
 def main(args):
