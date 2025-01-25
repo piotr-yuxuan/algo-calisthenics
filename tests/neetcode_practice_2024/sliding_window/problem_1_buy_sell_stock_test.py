@@ -1,5 +1,5 @@
 from hypothesis import given, strategies as st
-import neetcode_practice_2024.sliding_window.buy_sell_stock as problem
+import neetcode_practice_2024.sliding_window.problem_1_buy_sell_stock as problem
 import random
 import itertools
 import string
