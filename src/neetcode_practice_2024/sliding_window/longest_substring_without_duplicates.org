@@ -1,10 +1,13 @@
-#+TITLE:XXX title
+#+TITLE:Longest Substring Without Repeating Characters
 #+PROPERTY: header-args :tangle longest_substring_without_duplicates.py
 #+STARTUP: latexpreview
 #+URL:
 
 #+BEGIN_QUOTE
+Given a string =s=, find the length of the longest substring without
+duplicate characters.
 
+A substring is a contiguous sequence of characters within a string.
 #+END_QUOTE
 
 * Initial considerations
