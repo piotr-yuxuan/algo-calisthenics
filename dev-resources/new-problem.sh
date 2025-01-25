@@ -122,6 +122,6 @@ EOF
 done
 
 echo ""
-echo "Success."
+print -P "%F{green}Success.%f"
 echo ""
 print_test
