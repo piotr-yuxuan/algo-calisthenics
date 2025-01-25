@@ -16,6 +16,10 @@ As usual I will start with a brute force implementation in
 $\mathcal{O}(n^2)$ that tries all the possible substrings, assess
 whether they match the criterion, and track the longest one.
 
+This brute force implementation basically ensures correctness of
+further implementations, and goes well with the generative testing
+approach.
+
 Then I will use a sliding window to traverse the string only once,
 keeping track of the caracters currently part of the string and their
 latest position. As the traversal progresses, whenever we stumble
