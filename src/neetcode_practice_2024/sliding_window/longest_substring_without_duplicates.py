@@ -7,8 +7,25 @@ from typing import Callable, List, Optional, Protocol, TypeVar
 import collections
 import functools
 
+def solution_brute_force(input: str) -> int:
+    n = len(input)
 
-def solution(input):
+    def is_without_duplicate(s: str):
+        return len(s) == len(set(s))
+
+    # Keep track of these values:
+    max_length = 0
+
+    for left_bound in range(n):
+        for right_bound in range(left_bound + 1, n + 1):
+            substring = input[left_bound:right_bound]
+            if is_without_duplicate(substring):
+                max_length = max(max_length, len(substring))
+
+    return max_length
+
+
+def solution(input: str) -> int:
     return True
 
 

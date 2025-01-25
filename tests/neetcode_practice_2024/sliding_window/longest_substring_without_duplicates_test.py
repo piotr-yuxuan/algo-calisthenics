@@ -5,11 +5,15 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
 @given(st.text(min_size=1))
 def test_solution(input):
-    assert (
-        problem.solution(input) is True
-    )
+    assert problem.solution_intuitive(input) == problem.solution_brute_force(input)
+
+
+def test_solution_hard_coded():
+    assert 3 == problem.solution_brute_force("zxyzxyz")
+    assert 1 == problem.solution_brute_force("xxxx")
