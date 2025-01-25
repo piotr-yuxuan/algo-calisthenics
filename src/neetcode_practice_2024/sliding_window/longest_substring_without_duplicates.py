@@ -4,6 +4,23 @@ import argparse
 import argcomplete
 
 
+def solution_brute_force_unique_chars(input: str) -> int:
+    n = len(input)
+
+    # Keep track of these values:
+    max_length = 0
+
+    for left_bound in range(n):
+        known_positions = set()
+        for right_bound in range(left_bound, n):
+            if input[right_bound] in known_positions:
+                break
+            known_positions.add(input[right_bound])
+        max_length = max(max_length, len(known_positions))
+
+    return max_length
+
+
 def solution_brute_force(input: str) -> int:
     n = len(input)
 
