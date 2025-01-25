@@ -45,6 +45,10 @@ complexity for storing the position of the unique characters.
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(n)$
 
+After reading the editorial, the optimal solution provided by NeetCode
+has the same algorithm but with a great economy of effect that denotes
+a deep understanding and long practice.
+
 * Further elaboration
 
 - Implement using two pointers. It would be a nice exercice that
