@@ -47,10 +47,9 @@ complexity for storing the position of the unique characters.
 
 * Further elaboration
 
-- Provide an implementation with two pointers. It would be a nice
-  exercice that wouldn't improve the actual runtime or conceptual
-  complexity. While not exotic it would be elegant if implemented
-  properly.
+- Implement using two pointers. It would be a nice exercice that
+  wouldn't improve the actual runtime or conceptual complexity. While
+  not exotic it would be elegant if implemented properly.
 - Optimise for space by exploring more compact data structures.
 - Allow $k$ duplicates: Expand the problem to accommodate $k$
   duplicate characters in substrings.
