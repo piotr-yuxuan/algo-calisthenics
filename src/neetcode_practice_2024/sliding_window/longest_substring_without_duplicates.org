@@ -27,6 +27,15 @@ already in the current window we shrink it by moving the left bound to
 the right just enough to exclude that character, and then we continue
 expanding the window by shifting the right bound toward the right.
 
+** On the intuitive solution
+
+I got stuck for an unreasonably long time because of the update of
+=known_positions= was below the =else= condition of the duplicate
+handling. As a lesson learnt, I should always run the algorithm in my
+head in the happy case to make sure that the implementation matches
+what I had in mind. Perhaps jotting down some blueprint comments would
+also help?
+
 * Chosen solution
 
 As of now the best way I can think of…
