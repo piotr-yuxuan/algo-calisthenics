@@ -52,7 +52,7 @@ def solution_intuitive(input: str, debug=False) -> int:
 
 
 def solution(input: str) -> int:
-    return True
+    return solution_intuitive(input)
 
 
 def main(args):
