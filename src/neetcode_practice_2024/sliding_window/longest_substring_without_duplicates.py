@@ -3,9 +3,6 @@
 import argparse
 import argcomplete
 
-from typing import Callable, List, Optional, Protocol, TypeVar
-import collections
-import functools
 
 def solution_brute_force(input: str) -> int:
     n = len(input)
