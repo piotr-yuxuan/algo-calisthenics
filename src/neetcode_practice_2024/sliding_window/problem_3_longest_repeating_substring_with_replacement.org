@@ -1,7 +1,7 @@
 #+TITLE:Longest Repeating Character Replacement
 #+PROPERTY: header-args :tangle longest_repeating_substring_with_replacement.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/6795657d-b6e0-800e-89d6-442f858df070
 
 #+BEGIN_QUOTE
 You are given a string =s= consisting of only uppercase english
