@@ -68,8 +68,23 @@ def solution_intuitive(input: str, debug=False) -> int:
     return max_length
 
 
+def solution_optimal(input: str) -> int:
+    n = len(input)
+    known_positions = {}
+    left_bound = 0
+    max_length = 0
+
+    for right_bound in range(n):
+        head_character = input[right_bound]
+        if head_character in known_positions:
+            left_bound = max(known_positions[head_character] + 1, left_bound)
+        known_positions[head_character] = right_bound
+        max_length = max(max_length, right_bound - left_bound + 1)
+    return max_length
+
+
 def solution(input: str) -> int:
-    return solution_intuitive(input)
+    return solution_optimal(input)
 
 
 def main(args):

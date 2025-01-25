@@ -15,6 +15,7 @@ def test_solution(input):
         problem.solution_intuitive(input)
         == problem.solution_brute_force(input)
         == problem.solution_brute_force_unique_chars(input)
+        == problem.solution_optimal(input)
     )
 
 
