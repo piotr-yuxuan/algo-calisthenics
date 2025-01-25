@@ -45,5 +45,14 @@ complexity for storing the position of the unique characters.
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(n)$
 
-#+BEGIN_SRC python
-#+END_SRC
+* Further elaboration
+
+- Optimise for space by exploring more compact data structures.
+- Allow $k$ duplicates: Expand the problem to accommodate $k$
+  duplicate characters in substrings.
+- Return the top $k$ substring lengths.
+
+Obviously the top $k$ substrings would involve maintaining a heap
+property over a table as the most efficient way. That would be
+actually good to practice an on-the-rock / al-fresco heap
+implementation.
