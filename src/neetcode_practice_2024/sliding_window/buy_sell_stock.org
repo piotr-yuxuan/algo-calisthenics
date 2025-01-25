@@ -25,7 +25,7 @@ noted that we can't short a stock that we don't own.
 
 As of now the best way I can think of is to have two pointers that act
 as a sliding window where we sweep through the array and track the
-$min_price$ and the $max_profit$.
+=min_price= and the =max_profit=.
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
