@@ -6,9 +6,9 @@ SHORT_OPTS="hvp:f"
 LONG_OPTS="help,verbose,problem-path:,force"
 
 PARSED_OPTS=$(getopt \
-	      --options $SHORT_OPTS \
-	      --longoptions $LONG_OPTS \
-	      --name "$0" -- "$@")
+              --options $SHORT_OPTS \
+              --longoptions $LONG_OPTS \
+              --name "$0" -- "$@")
 [[ $? -ne 0 ]] && print -P "%F{red}Error from $(where getopt).%f" >&2 && exit 1
 eval set -- "$PARSED_OPTS"
 
@@ -90,7 +90,7 @@ function print_test {
 
 for i in {1..3}; do
   src=${src_paths[$i]}
-  mkdir -p ${dest_paths[$i]%/*} 
+  mkdir -p ${dest_paths[$i]%/*}
   dest=$(realpath "${dest_paths[$i]}")
 
   if [[ -e $dest && $force_flag -eq 0 ]]; then
