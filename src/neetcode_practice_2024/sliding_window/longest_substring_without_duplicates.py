@@ -25,6 +25,35 @@ def solution_brute_force(input: str) -> int:
     return max_length
 
 
+def solution_intuitive(input: str, debug=False) -> int:
+    n = len(input)
+
+    if n < 2:
+        return n
+
+    # Keep track of these values:
+    max_length = 0
+    known_positions = dict({})
+
+    left_bound, right_bound = 0, 0
+    while right_bound < n:
+        head_character = input[right_bound]
+        if (
+            head_character in known_positions
+            and left_bound <= known_positions[head_character]
+        ):
+            left_bound = known_positions[head_character] + 1
+
+        # This needs to happen regardless of the `left_bound` update.
+        known_positions[head_character] = right_bound
+
+        length = right_bound - left_bound + 1
+        max_length = max(max_length, length)
+        right_bound += 1
+
+    return max_length
+
+
 def solution(input: str) -> int:
     return True
 
