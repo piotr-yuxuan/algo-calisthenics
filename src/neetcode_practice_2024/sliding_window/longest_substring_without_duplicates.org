@@ -12,6 +12,17 @@ A substring is a contiguous sequence of characters within a string.
 
 * Initial considerations
 
+As usual I will start with a brute force implementation in
+$\mathcal{O}(n^2)$ that tries all the possible substrings, assess
+whether they match the criterion, and track the longest one.
+
+Then I will use a sliding window to traverse the string only once,
+keeping track of the caracters currently part of the string and their
+latest position. As the traversal progresses, whenever we stumble
+already in the current window we shrink it by moving the left bound to
+the right just enough to exclude that character, and then we continue
+expanding the window by shifting the right bound toward the right.
+
 * Chosen solution
 
 As of now the best way I can think of…
