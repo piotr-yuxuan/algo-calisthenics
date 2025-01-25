@@ -1,7 +1,7 @@
 #+TITLE:Best time to buy and sell stock
 #+PROPERTY: header-args :tangle buy_sell_stock.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/6793caf0-6198-800e-8676-5fc64b320573
 
 #+BEGIN_QUOTE
 You are given an integer array =prices= where =prices[i]= is the price
