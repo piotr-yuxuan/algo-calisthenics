@@ -1,5 +1,5 @@
 from hypothesis import given, strategies as st
-import neetcode_practice_2024.sliding_window.longest_substring_without_duplicates as problem
+import neetcode_practice_2024.sliding_window.problem_2_longest_substring_without_duplicates as problem
 import random
 import itertools
 import string
