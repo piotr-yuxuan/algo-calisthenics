@@ -1,7 +1,7 @@
 #+TITLE:Longest Substring Without Repeating Characters
 #+PROPERTY: header-args :tangle longest_substring_without_duplicates.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/679539f1-cc40-800e-a7b2-e97cf8b6dac1
 
 #+BEGIN_QUOTE
 Given a string =s=, find the length of the longest substring without
