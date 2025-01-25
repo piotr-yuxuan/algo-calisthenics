@@ -38,10 +38,12 @@ also help?
 
 * Chosen solution
 
-As of now the best way I can think of…
+As of now the best way I can think of is the intuitive approach I had
+with a sliding window and a hash table. We need a linear space
+complexity for storing the position of the unique characters.
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
-- Space complexity (average / best / worst): $\mathcal{O}(1)$
+- Space complexity (average / best / worst): $\mathcal{O}(n)$
 
 #+BEGIN_SRC python
 #+END_SRC
