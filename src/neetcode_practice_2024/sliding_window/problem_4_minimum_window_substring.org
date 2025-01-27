@@ -50,10 +50,26 @@ shrink it on the left.
 - Space complexity (average / best / worst): $\mathcal{O}(m)$, with
   $m$ the size of the alphabet.
 
-* On NeetCode's solutions
+The idea behind =remaining_characters=, and actually the whole idea
+behind this implementation, is to establish a valid window. Once it is
+established we maintain it carefully with the guard condition and the
+=break= before we touch =frequencies= and =left_bound=.
+
+* On NeetCode's solution
 
 I like the simple names like $have$ and $need$ but just with a quick
 glimpse I do not understand the algorithm here, even if I see roughly
 the same structure that I got: an outer loop to increase the right
 bound and an inner loop to shrink the left bound while maintaining the
 validity of the window.
+
+* On ChatGPT's review of my version
+
+I'm already impressed that it got able to write code that is
+syntactically correct, and that it was able to reason on my code.
+However, while I would be keen to fix any bug, generative testing
+tells me that all the current implementations agree all the time, and
+the bug it notices is actually a misunderstanding on his side. I agree
+that the misunderstanding is made more likely by the complexity of
+this code. The intent around the break condition of the inner loop is
+not explicit.
