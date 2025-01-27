@@ -63,6 +63,14 @@ if [[ -z "$problem_path" ]]; then
   exit 1
 fi
 
+if [[ "$problem_path" =~ ^[a-z0-9_/]+/([a-z0-9_]+/problem_[0-9]+)_.*$ ]]; then
+  git_branch=${match[1]}
+else
+  echo "Error: --problem-path is expected to contain a folder and problem_ prefix."
+  print_help
+  exit 1
+fi
+
 verbose_flag=""
 if [[ $verbose -gt 0 ]]; then
   verbose_flag="-$(printf '%*s' "$verbose" | tr ' ' 'v')"
@@ -121,6 +129,10 @@ EOF
     echo "Copied $src to $dest"
   fi
 done
+
+echo ""
+echo "Creating git branch ${git_branch}"
+git switch -c "${git_branch}"
 
 echo ""
 print -P "%F{green}Success.%f"
