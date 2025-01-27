@@ -1,7 +1,7 @@
 #+TITLE:Minimum window substring
 #+PROPERTY: header-args :tangle problem_4_minimum_window_substring.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/6797ca3e-fbe8-800e-9a61-d87afc510f61
 
 #+BEGIN_QUOTE
 Given two strings =s= and =t=, return the shortest substring of =s=
