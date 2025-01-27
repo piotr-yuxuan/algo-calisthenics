@@ -15,6 +15,26 @@ longest substring which contains only one distinct character.
 
 * Initial considerations
 
+As usual we'll start with the brute force approach. However, on this
+specific problem it is likely thinking too much about this approach
+would be detrimental to creativity, so let's start with some thinking
+about how to solve it.
+
+We can reformulate the problem saying the case-insensitive string
+matches the regular expression =[a-z]+=. As the section suggests a
+sliding window approach is possible, in a $\mathcal{O}(n)$ linear time
+complexity.
+
+The general behaviour of sliding windows is to stretch toward the
+right as long as a condition is met until it is broken, and then to
+contract on the left until it is repaired. Here the condition on the
+substring =fragment= within the window is:
+
+#+BEGIN_QUOTE
+The substring =fragment= of length $length = right\_bound -
+left\_bound + 1$ is =k= replacements away from being made of only
+single character repeated $length$ times.
+#+END_QUOTE
 * Chosen solution
 
 As of now the best way I can think of…
