@@ -16,9 +16,11 @@ input_regex = r"^[a-z]*$"
     st.integers(min_value=1, max_value=2),
 )
 def test_solution_constrained_small_k(input, k):
-    assert problem.solution_brute_force(
-        input, k
-    ) == problem.solution_sliding_window_first(input, k)
+    assert (
+        problem.solution_brute_force(input, k)
+        == problem.solution_sliding_window_first(input, k)
+        == problem.solution_sliding_window_second(input, k)
+    )
 
 
 @given(
@@ -26,9 +28,11 @@ def test_solution_constrained_small_k(input, k):
     st.integers(min_value=3, max_value=6),
 )
 def test_solution_constrained_larger_k(input, k):
-    assert problem.solution_brute_force(
-        input, k
-    ) == problem.solution_sliding_window_first(input, k)
+    assert (
+        problem.solution_brute_force(input, k)
+        == problem.solution_sliding_window_first(input, k)
+        == problem.solution_sliding_window_second(input, k)
+    )
 
 
 @given(
@@ -36,9 +40,11 @@ def test_solution_constrained_larger_k(input, k):
     st.integers(min_value=1),
 )
 def test_solution(input, k):
-    assert problem.solution_brute_force(
-        input, k
-    ) == problem.solution_sliding_window_first(input, k)
+    assert (
+        problem.solution_brute_force(input, k)
+        == problem.solution_sliding_window_first(input, k)
+        == problem.solution_sliding_window_second(input, k)
+    )
 
 
 def test_hard_coded():
