@@ -96,6 +96,39 @@ def solution_sliding_window_second(input: str, k: int) -> int:
     return max_length
 
 
+def solution_sliding_window_third(input: str, k: int) -> int:
+    n = len(input)
+    if n <= k + 1:
+        return True
+
+    # Keep track of these values:
+    max_length = 0
+    max_frequency = 0
+
+    def criterion(substring: str, k: int, max_frequency) -> bool:
+        if len(substring) <= k + 1:
+            return True
+        return len(substring) - max_frequency <= k
+
+    left_bound, right_bound = 0, 1
+    frequencies = collections.defaultdict(int)
+    while right_bound < n + 1:
+        head_character = input[right_bound - 1]
+        frequencies[head_character] += 1
+        max_frequency = max(max_frequency, frequencies[head_character])
+        while not criterion(input[left_bound:right_bound], k, max_frequency):
+            if not left_bound < right_bound:
+                break
+            frequencies[input[left_bound]] -= 1
+            left_bound += 1
+
+        length = len(input[left_bound:right_bound])
+        max_length = max(max_length, length)
+        right_bound += 1
+
+    return max_length
+
+
 def solution(input):
     return True
 

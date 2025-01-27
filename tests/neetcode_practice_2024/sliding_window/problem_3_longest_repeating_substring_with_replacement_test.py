@@ -20,6 +20,7 @@ def test_solution_constrained_small_k(input, k):
         problem.solution_brute_force(input, k)
         == problem.solution_sliding_window_first(input, k)
         == problem.solution_sliding_window_second(input, k)
+        == problem.solution_sliding_window_third(input, k)
     )
 
 
@@ -32,6 +33,7 @@ def test_solution_constrained_larger_k(input, k):
         problem.solution_brute_force(input, k)
         == problem.solution_sliding_window_first(input, k)
         == problem.solution_sliding_window_second(input, k)
+        == problem.solution_sliding_window_third(input, k)
     )
 
 
@@ -44,6 +46,7 @@ def test_solution(input, k):
         problem.solution_brute_force(input, k)
         == problem.solution_sliding_window_first(input, k)
         == problem.solution_sliding_window_second(input, k)
+        == problem.solution_sliding_window_third(input, k)
     )
 
 
