@@ -47,7 +47,8 @@ collections.Counter(a) == Counter({'a': 8, 'b': 7, 'c': 1, 'd': 1})
 #+END_SRC
 
 We'd need to change 9 characters into =a=, that's less expensive than
-any other choices.
+any other choices. The distribution of characters is important and we
+can't get away with only the length of string and cardinality of set.
 
 * Chosen solution
 
