@@ -18,6 +18,7 @@ def test_solution_low_constraints(s, t):
         problem.solution(s, t)
         == problem.solution_suboptimal(s, t)
         == problem.solution_from_neet_code(s, t)
+        == problem.my_solution_updated_by_chatgpt(s, t)
     )
 
 
@@ -30,6 +31,7 @@ def test_solution_small_constraints(s, t):
         problem.solution(s, t)
         == problem.solution_suboptimal(s, t)
         == problem.solution_from_neet_code(s, t)
+        == problem.my_solution_updated_by_chatgpt(s, t)
     )
 
 
@@ -42,6 +44,7 @@ def test_solution_larger_s_smaller_t(s, t):
         problem.solution(s, t)
         == problem.solution_suboptimal(s, t)
         == problem.solution_from_neet_code(s, t)
+        == problem.my_solution_updated_by_chatgpt(s, t)
     )
 
 

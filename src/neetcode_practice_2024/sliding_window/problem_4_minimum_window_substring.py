@@ -120,6 +120,38 @@ def solution_from_neet_code(s: str, t: str) -> str:
     return s[l : r + 1] if resLen != float("infinity") else ""
 
 
+def my_solution_updated_by_chatgpt(s, t) -> str:
+    if not s or not t or len(t) > len(s):
+        return ""
+
+    n = len(s)
+    target_frequencies = collections.Counter(t)
+    frequencies = collections.defaultdict(int)
+    min_length = n + 1
+    min_substring = ""
+
+    left_bound = 0
+    for right_bound in range(n):
+        # Expand the window by including the character at right_bound
+        head = s[right_bound]
+        frequencies[head] += 1
+
+        # Shrink the window while it contains all characters of `t`
+        while all(frequencies[c] >= target_frequencies[c] for c in target_frequencies):
+            # Update the minimum substring if the current window is smaller
+            length = right_bound - left_bound + 1
+            if length < min_length:
+                min_length = length
+                min_substring = s[left_bound : right_bound + 1]
+
+            # Shrink the window from the left
+            tail = s[left_bound]
+            frequencies[tail] -= 1
+            left_bound += 1
+
+    return min_substring
+
+
 def main(args):
     return solution_suboptimal(args.s1, args.s2)
 
