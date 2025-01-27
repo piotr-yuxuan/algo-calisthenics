@@ -8,10 +8,37 @@ import importlib
 
 importlib.reload(problem)
 
+input_regex = r"^[a-z]*$"
 
-@given(st.text(min_size=1))
-def test_solution(input):
-    assert problem.solution(input) is True
+
+@given(
+    st.from_regex(r"^[a-z]{30}$", fullmatch=True),
+    st.integers(min_value=1, max_value=2),
+)
+def test_solution_constrained_small_k(input, k):
+    assert problem.solution_brute_force(
+        input, k
+    ) == problem.solution_sliding_window_first(input, k)
+
+
+@given(
+    st.from_regex(r"^[a-z]{30}$", fullmatch=True),
+    st.integers(min_value=3, max_value=6),
+)
+def test_solution_constrained_larger_k(input, k):
+    assert problem.solution_brute_force(
+        input, k
+    ) == problem.solution_sliding_window_first(input, k)
+
+
+@given(
+    st.from_regex(input_regex, fullmatch=True),
+    st.integers(min_value=1),
+)
+def test_solution(input, k):
+    assert problem.solution_brute_force(
+        input, k
+    ) == problem.solution_sliding_window_first(input, k)
 
 
 def test_hard_coded():

@@ -43,6 +43,23 @@ def solution_sliding_window_first(input: str, k: int) -> int:
     # Keep track of these values:
     max_length = 0
 
+    def criterion(substring: str, k: int) -> bool:
+        if len(substring) <= k + 1:
+            return True
+        frequencies = collections.Counter(substring)
+        max_frequency = max(frequencies.values())
+        return len(substring) - max_frequency <= k
+
+    left_bound, right_bound = 0, 0
+    while right_bound <= n:
+        substring = input[left_bound:right_bound]
+        if criterion(substring, k):
+            length = len(substring)
+            max_length = max(max_length, length)
+            right_bound += 1
+        elif left_bound < right_bound:
+            left_bound += 1
+
     return max_length
 
 
