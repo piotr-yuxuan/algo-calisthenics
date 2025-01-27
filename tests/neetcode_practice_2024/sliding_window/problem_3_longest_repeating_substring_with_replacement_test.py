@@ -12,3 +12,8 @@ importlib.reload(problem)
 @given(st.text(min_size=1))
 def test_solution(input):
     assert problem.solution(input) is True
+
+
+def test_hard_coded():
+    assert 4 == problem.solution_brute_force("XYYX", k=2)
+    assert 5 == problem.solution_brute_force("AAABABB", k=1)
