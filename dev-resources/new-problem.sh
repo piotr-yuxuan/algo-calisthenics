@@ -133,6 +133,8 @@ done
 echo ""
 echo "Creating git branch ${git_branch}"
 git switch -c "${git_branch}"
+git add "${dest_paths[@]}"
+git commit -m "Generated files for ${git_branch}"
 
 echo ""
 print -P "%F{green}Success.%f"
