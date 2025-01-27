@@ -17,3 +17,6 @@ def test_solution(input):
 def test_hard_coded():
     assert 4 == problem.solution_brute_force("XYYX", k=2)
     assert 5 == problem.solution_brute_force("AAABABB", k=1)
+    assert 5 == problem.solution_brute_force("AAABABBBCD", k=1)
+    assert 6 == problem.solution_brute_force("AAABABBBCD", k=2)
+    assert 4 == problem.solution_brute_force("ABCDEFGH", k=3)
