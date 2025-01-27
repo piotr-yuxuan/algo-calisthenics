@@ -106,8 +106,6 @@ def solution_sliding_window_third(input: str, k: int) -> int:
     max_frequency = 0
 
     def criterion(substring: str, k: int, max_frequency) -> bool:
-        if len(substring) <= k + 1:
-            return True
         return len(substring) - max_frequency <= k
 
     left_bound, right_bound = 0, 1
@@ -116,6 +114,7 @@ def solution_sliding_window_third(input: str, k: int) -> int:
         head_character = input[right_bound - 1]
         frequencies[head_character] += 1
         max_frequency = max(max_frequency, frequencies[head_character])
+
         while not criterion(input[left_bound:right_bound], k, max_frequency):
             if not left_bound < right_bound:
                 break
