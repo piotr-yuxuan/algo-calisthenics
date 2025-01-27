@@ -8,8 +8,37 @@ import collections
 import functools
 
 
-def solution(input):
-    return True
+def solution(input: str):
+    delimiter_stop_match = {
+        ")": "(",
+        "}": "{",
+        "]": "[",
+    }
+    delimiter_start = set(delimiter_stop_match.values())
+
+    stack = list([])
+    for character in input:
+        if character in delimiter_start:
+            stack.append(character)
+        elif not stack or delimiter_stop_match.get(character, None) != stack.pop():
+            return False
+    return not stack
+
+
+def solution_from_neet_code(s: str) -> bool:
+    stack = []
+    closeToOpen = {")": "(", "]": "[", "}": "{"}
+
+    for c in s:
+        if c in closeToOpen:
+            if stack and stack[-1] == closeToOpen[c]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(c)
+
+    return True if not stack else False
 
 
 def main(args):
