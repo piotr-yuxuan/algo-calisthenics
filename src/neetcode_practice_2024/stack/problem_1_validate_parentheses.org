@@ -1,7 +1,7 @@
 #+TITLE:Valid parentheses
 #+PROPERTY: header-args :tangle problem_1_validate_parentheses.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/6797d718-6368-800e-ada0-d98454bb2d8e
 
 #+BEGIN_QUOTE
 You are given a string =s= consisting of the following characters:
@@ -27,3 +27,12 @@ I acknowledge I didn't pay attention to popping from an empty stack,
 return with a non-empty stack, and I should use the fact that the
 string can only be made of certain characters to further simplify the
 code. Otherwise it's quite straightforward.
+
+* Further elaboration
+
+- Bracket replacements: Replace invalid brackets with valid ones
+  (e.g., minimum edit distance);
+- Nested structures: Extend the problem to include multiple types of
+  nested structures (e.g., tags in XML);
+- Stream validation: Process brackets in a stream (e.g., no access to
+  the full string at once).
