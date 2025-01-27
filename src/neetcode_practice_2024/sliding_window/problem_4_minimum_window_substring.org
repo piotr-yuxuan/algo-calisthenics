@@ -26,6 +26,10 @@ with a complexity of $\mathcal{O}(n^2)$ and for each of them we
 compute frequencies, leading overall to a strong cubic time complexity
 of $\mathcal{O}(n^3)$. What could go wrong?
 
+Instead of getting all the substrings we can slide a window, and
+instead of walking through each substring we can maintain a stateful
+tracker for frequencies.
+
 * Chosen solution
 
 As of now the best way I can think of…
