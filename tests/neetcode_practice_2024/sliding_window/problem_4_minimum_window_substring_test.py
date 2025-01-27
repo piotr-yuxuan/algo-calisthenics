@@ -9,9 +9,28 @@ import importlib
 importlib.reload(problem)
 
 
-@given(st.text(min_size=1))
-def test_solution(input):
-    assert 1 == 1
+@given(
+    st.from_regex(r"^[a-z]+$", fullmatch=True),
+    st.from_regex(r"^[a-z]+$", fullmatch=True),
+)
+def test_solution_low_constraints(s, t):
+    assert problem.solution(s, t) == problem.solution_suboptimal(s, t)
+
+
+@given(
+    st.from_regex(r"^[a-h]{40}$", fullmatch=True),
+    st.from_regex(r"^[a-h]{4}$", fullmatch=True),
+)
+def test_solution_small_constraints(s, t):
+    assert problem.solution(s, t) == problem.solution_suboptimal(s, t)
+
+
+@given(
+    st.from_regex(r"^[a-z]{500}$", fullmatch=True),
+    st.from_regex(r"^[a-h]{1,5}$", fullmatch=True),
+)
+def test_solution_larger_s_smaller_t(s, t):
+    assert problem.solution(s, t) == problem.solution_suboptimal(s, t)
 
 
 def test_solution_hard_coded():

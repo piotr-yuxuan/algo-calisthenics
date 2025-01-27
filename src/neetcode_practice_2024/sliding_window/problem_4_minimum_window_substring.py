@@ -51,6 +51,44 @@ def solution_suboptimal(s, t) -> str:
     return min_substring
 
 
+def solution(s, t) -> str:
+    n = len(s)
+
+    target_frequencies = collections.Counter(t)
+    remaining_characters = set(target_frequencies.keys())
+
+    # Keep track of these values:
+    frequencies = collections.defaultdict(int)
+    min_length = n + 1
+    min_substring = ""
+
+    left_bound, right_bound = 0, 0
+    while right_bound < n:
+        head = s[right_bound]
+        frequencies[head] += 1
+        if (
+            head in remaining_characters
+            and target_frequencies.get(head, 0) <= frequencies[head]
+        ):
+            remaining_characters.remove(head)
+
+        while 0 == len(remaining_characters):
+            length = right_bound - left_bound + 1
+            if length < min_length:
+                min_length = length
+                min_substring = s[left_bound : right_bound + 1]
+
+            tail = s[left_bound]
+            if frequencies[tail] - 1 < target_frequencies[tail]:
+                break
+            frequencies[tail] -= 1
+            left_bound += 1
+
+        right_bound += 1
+
+    return min_substring
+
+
 def main(args):
     return solution_suboptimal(args.s1, args.s2)
 
