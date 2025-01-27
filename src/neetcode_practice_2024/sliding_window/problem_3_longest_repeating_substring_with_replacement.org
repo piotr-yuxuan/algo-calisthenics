@@ -35,6 +35,20 @@ The substring =fragment= of length $length = right\_bound -
 left\_bound + 1$ is =k= replacements away from being made of only
 single character repeated $length$ times.
 #+END_QUOTE
+
+Let's take an example with a simple string:
+
+#+BEGIN_SRC python
+a = "abbbbbbbaaaaaaacd"
+len(a) == 17
+len(set(a)) == 4
+import collections
+collections.Counter(a) == Counter({'a': 8, 'b': 7, 'c': 1, 'd': 1})
+#+END_SRC
+
+We'd need to change 9 characters into =a=, that's less expensive than
+any other choices.
+
 * Chosen solution
 
 As of now the best way I can think of…
