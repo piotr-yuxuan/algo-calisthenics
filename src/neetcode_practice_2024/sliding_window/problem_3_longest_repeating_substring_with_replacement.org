@@ -50,6 +50,11 @@ We'd need to change 9 characters into =a=, that's less expensive than
 any other choices. The distribution of characters is important and we
 can't get away with only the length of string and cardinality of set.
 
+Here I come to notice that a recipe for mistakes in sliding window is
+mismanaging the bound updates. No inner loop and a straight condition
+at the end to handle both left and right bounds based on testing the
+criterion once is usually more elegant.
+
 * Chosen solution
 
 As of now the best way I can think of…
