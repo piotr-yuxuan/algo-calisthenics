@@ -15,6 +15,6 @@ def test_solution(input):
 
 
 def test_solution_hard_coded():
-    assert "YXAZ" == problem.solution(s="OUZODYXAZV", t="XYZ")
-    assert "xyz" == problem.solution(s="xyz", t="xyz")
-    assert "xyz" == problem.solution(s="aaxbbycczaxyzeee", t="xyz")
+    assert "YXAZ" == problem.solution_suboptimal(s="OUZODYXAZV", t="XYZ")
+    assert "xyz" == problem.solution_suboptimal(s="xyz", t="xyz")
+    assert "xyz" == problem.solution_suboptimal(s="aaxbbycczaxyzeee", t="xyz")

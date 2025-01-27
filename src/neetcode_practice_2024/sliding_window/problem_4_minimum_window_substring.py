@@ -52,7 +52,7 @@ def solution_suboptimal(s, t) -> str:
 
 
 def main(args):
-    return solution(args.s1, args.s2)
+    return solution_suboptimal(args.s1, args.s2)
 
 
 if __name__ == "__main__":
