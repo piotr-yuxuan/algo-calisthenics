@@ -19,6 +19,8 @@ def solution_brute_force(input: str, k: int) -> int:
     def criterion(substring: str, k: int) -> bool:
         if len(substring) <= k + 1:
             return True
+        # This is not linear time since we iterate over the substring
+        # every time.
         frequencies = collections.Counter(substring)
         max_frequency = max(frequencies.values())
         return len(substring) - max_frequency <= k
