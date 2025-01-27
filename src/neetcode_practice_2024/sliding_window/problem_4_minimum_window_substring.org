@@ -39,10 +39,13 @@ our first attempt.
 
 * Chosen solution
 
-As of now the best way I can think of…
+So indeed once the whole mechanism was in place it was easy to shift
+=is_valid_substring= into a stateful tracker. However, I had to go
+back to a pen and paper approach to visualise that the whole strategy
+here is first to establish a valid window, and then to maintain it
+valid (but not always minimal) while it expands on the right and
+shrink it on the left.
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
-- Space complexity (average / best / worst): $\mathcal{O}(1)$
-
-#+BEGIN_SRC python
-#+END_SRC
+- Space complexity (average / best / worst): $\mathcal{O}(m)$, with
+  $m$ the size of the alphabet.
