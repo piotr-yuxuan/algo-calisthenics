@@ -5,11 +5,16 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
 @given(st.text(min_size=1))
 def test_solution(input):
-    assert (
-        problem.solution(input) is True
-    )
+    assert 1 == 1
+
+
+def test_solution_hard_coded():
+    assert "YXAZ" == problem.solution(s="OUZODYXAZV", t="XYZ")
+    assert "xyz" == problem.solution(s="xyz", t="xyz")
+    assert "xyz" == problem.solution(s="aaxbbycczaxyzeee", t="xyz")
