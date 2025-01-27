@@ -49,3 +49,11 @@ shrink it on the left.
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(m)$, with
   $m$ the size of the alphabet.
+
+* On NeetCode's solutions
+
+I like the simple names like $have$ and $need$ but just with a quick
+glimpse I do not understand the algorithm here, even if I see roughly
+the same structure that I got: an outer loop to increase the right
+bound and an inner loop to shrink the left bound while maintaining the
+validity of the window.
