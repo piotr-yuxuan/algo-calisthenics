@@ -63,6 +63,23 @@ attention to be paid to when to update the frequency for
 update to a nested loop was stil easier than writing it immediately,
 so I'd recommend for my future self to go this way.
 
+As seen in the second sliding window implementation, we are still
+iterating over all the possible values, so while the complexity is
+linear it is like $\mathcal{O}(m \times n)$ with $m$ being the size of
+the alphabet and n the length of the string made with this character
+of this alphabet.
+
+In the same way we removed the =frequencies= out of the critical path
+and made it part of the iteration state, now let's try to move
+=max_frequency= into the interation state.
+
+The last trick we need is to observe that the criterion for valid
+string only matters for =max_frequency=. When the argument passer to
+=criterion= is actually lower than the true maximum frequency it leads
+to more negative return values, but we are immune to that because it
+only happens when the length of the substring is at most equal, or
+probably lower than, the =max_length= we already recorded.
+
 * Chosen solution
 
 As of now the best way I can think of…
