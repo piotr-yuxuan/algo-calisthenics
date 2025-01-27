@@ -24,6 +24,7 @@ function print_help {
   echo "  -h, --help            Show this help message and exit"
   echo "  -v, --verbose         Enable verbose output"
   echo "  -p, --problem-path    Specify the problem path (mandatory)"
+  echo "                        The last segment is expected to start with problem_xx."
   echo "  -f, --force           Overwrite file if exists"
 }
 
