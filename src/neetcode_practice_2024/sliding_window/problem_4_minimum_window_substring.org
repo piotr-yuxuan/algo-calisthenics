@@ -14,6 +14,18 @@ You may assume that the correct output is always unique.
 
 * Initial considerations
 
+This being still a sliding window problem, I would assume it is
+possible to get to a linear time complexity. However, this problem was
+flagged as difficult, which got me a bit anxious before I read its
+statement.
+
+Intuitively I understand that the criterion is to compute the
+frequencies of =t= and return the substring that matches it. This
+opens the door to a brute force approach where we take all substrings
+with a complexity of $\mathcal{O}(n^2)$ and for each of them we
+compute frequencies, leading overall to a strong cubic time complexity
+of $\mathcal{O}(n^3)$. What could go wrong?
+
 * Chosen solution
 
 As of now the best way I can think of…
