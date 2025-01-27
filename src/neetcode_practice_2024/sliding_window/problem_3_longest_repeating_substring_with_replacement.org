@@ -55,6 +55,14 @@ mismanaging the bound updates. No inner loop and a straight condition
 at the end to handle both left and right bounds based on testing the
 criterion once is usually more elegant.
 
+However, in implementing =solution_sliding_window_second= I noticed
+that it was much easily expressed with an inner loop, directly
+contradicting the previous statement. Constructing it required some
+attention to be paid to when to update the frequency for
+=right_bound=. I think updating the control structure from a standard
+update to a nested loop was stil easier than writing it immediately,
+so I'd recommend for my future self to go this way.
+
 * Chosen solution
 
 As of now the best way I can think of…
