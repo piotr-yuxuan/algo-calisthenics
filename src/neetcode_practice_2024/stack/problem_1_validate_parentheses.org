@@ -1,0 +1,20 @@
+#+TITLE:XXX title
+#+PROPERTY: header-args :tangle problem_1_validate_parentheses.py
+#+STARTUP: latexpreview
+#+URL:
+
+#+BEGIN_QUOTE
+
+#+END_QUOTE
+
+* Initial considerations
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+#+BEGIN_SRC python
+#+END_SRC
