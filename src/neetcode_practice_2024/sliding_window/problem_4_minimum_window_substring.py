@@ -8,10 +8,9 @@ import collections
 import functools
 
 
-def solution(s, t) -> str:
+def solution_suboptimal(s, t) -> str:
     n = len(s)
     target_frequencies = collections.Counter(t)
-    print(f"target_frequencies={target_frequencies}")
 
     # Keep track of these values:
     frequencies = collections.defaultdict(int)
