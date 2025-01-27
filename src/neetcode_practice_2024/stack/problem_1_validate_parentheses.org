@@ -1,0 +1,29 @@
+#+TITLE:Valid parentheses
+#+PROPERTY: header-args :tangle problem_1_validate_parentheses.py
+#+STARTUP: latexpreview
+#+URL:
+
+#+BEGIN_QUOTE
+You are given a string =s= consisting of the following characters:
+=(=, =)=, ={=, =}=, =[=, and =]=.
+
+The input string =s= is valid if and only if:
+
+- Every open bracket is closed by the same type of close bracket.
+- Open brackets are closed in the correct order.
+- Every close bracket has a corresponding open bracket of the same
+  type.
+
+Return =true= if =s= is a valid string, and =false= otherwise.
+#+END_QUOTE
+
+* Initial considerations
+
+Indeed as suggested by the section's name it begs for a stack. I do
+not think it should be too difficult to =add= or =pop= items. However,
+I'm curious to see what a hardened stack problem could look like.
+
+I acknowledge I didn't pay attention to popping from an empty stack,
+return with a non-empty stack, and I should use the fact that the
+string can only be made of certain characters to further simplify the
+code. Otherwise it's quite straightforward.
