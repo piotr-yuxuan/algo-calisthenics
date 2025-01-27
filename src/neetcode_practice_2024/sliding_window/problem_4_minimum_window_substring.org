@@ -1,0 +1,51 @@
+#+TITLE:Minimum window substring
+#+PROPERTY: header-args :tangle problem_4_minimum_window_substring.py
+#+STARTUP: latexpreview
+#+URL:
+
+#+BEGIN_QUOTE
+Given two strings =s= and =t=, return the shortest substring of =s=
+such that every character in =t=, including duplicates, is present in
+the substring. If such a substring does not exist, return an empty
+string "".
+
+You may assume that the correct output is always unique.
+#+END_QUOTE
+
+* Initial considerations
+
+This being still a sliding window problem, I would assume it is
+possible to get to a linear time complexity. However, this problem was
+flagged as difficult, which got me a bit anxious before I read its
+statement.
+
+Intuitively I understand that the criterion is to compute the
+frequencies of =t= and return the substring that matches it. This
+opens the door to a brute force approach where we take all substrings
+with a complexity of $\mathcal{O}(n^2)$ and for each of them we
+compute frequencies, leading overall to a strong cubic time complexity
+of $\mathcal{O}(n^3)$. What could go wrong?
+
+Instead of getting all the substrings we can slide a window, and
+instead of walking through each substring we can maintain a stateful
+tracker for frequencies.
+
+Let's see how this plays out. One issue will be that comparing two
+dictionaries still requires to run through them, so that would add a
+time complexity factor of $\mathcal{O}(m)$, where $m$ is the size of
+the alphabet. We can further simplify that, for example by maintaining
+a state of the completed characters. However, let's first dive only
+our first attempt.
+
+* Chosen solution
+
+So indeed once the whole mechanism was in place it was easy to shift
+=is_valid_substring= into a stateful tracker. However, I had to go
+back to a pen and paper approach to visualise that the whole strategy
+here is first to establish a valid window, and then to maintain it
+valid (but not always minimal) while it expands on the right and
+shrink it on the left.
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(m)$, with
+  $m$ the size of the alphabet.
