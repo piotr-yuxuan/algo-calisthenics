@@ -5,11 +5,17 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
-@given(st.text(min_size=1))
-def test_solution(input):
+@given(st.integers(min_value=1, max_value=20))
+def test_solution(n):
     assert (
-        problem.solution(input) is True
+        problem.solution_first(n)
+        == problem.solution_second(n)
+        == problem.solution_third(n)
+        == problem.solution_bottom_up_first(n)
+        == problem.solution_bottom_up_second(n)
+        == problem.solution(n)
     )

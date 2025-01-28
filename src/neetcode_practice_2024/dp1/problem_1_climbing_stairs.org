@@ -1,13 +1,27 @@
-#+TITLE:XXX title
+#+TITLE:Climbing stairs
 #+PROPERTY: header-args :tangle problem_1_climbing_stairs.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/6797fd2c-9b60-800e-94a3-a48e4a98a100
 
 #+BEGIN_QUOTE
+You are given an integer $n$ representing the number of steps to reach
+the top of a staircase. You can climb with either 1 or 2 steps at a
+time.
 
+Return the number of distinct ways to climb to the top of the
+staircase.
 #+END_QUOTE
 
 * Initial considerations
+
+I gather this is probably the single most canonical dynamic
+programming problem. I hope I'll be able to provide every time the
+bottom-up and top-down variations.
+
+Let's remember that dynamic programming means breaking down a problem
+into smaller subproblem in a recurrence relation.
+
+Here the recurrent relation is: $f(i) = f(i-1) - f(i-2)$ for $i <= n$.
 
 * Chosen solution
 
@@ -16,5 +30,18 @@ As of now the best way I can think of…
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
 
-#+BEGIN_SRC python
-#+END_SRC
+* Further elaboration
+
+ChatGPT suggests really fascinating openings like making it an
+optimisation problem to be solved with optimisation techniques, or to
+view it a graph and find the shortest path with Dijkstra's algorithm.
+There is also the variant to track the actual path taken instead of
+the length, and generalise it for $k$ steps.
+
+I like the idea that we a memoisation, top-down approach allows us to
+just seek the recurrence relation, so in quite a poor complexity, but
+then advantage of referential transparency, that is to say in an
+immutable world an expression equivalent to its result value. It looks
+almost like a cheat to add =@functools.lru_cache(…)= as a decorator
+but it's probably a great thing to do interviews to show that we can
+use standard constructs.
