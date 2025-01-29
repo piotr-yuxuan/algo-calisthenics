@@ -7,6 +7,21 @@ from typing import Callable, List, Optional, Protocol, TypeVar
 import collections
 import functools
 
+def solution_first_attempt(nums: List[int]) -> int:
+    n = len(nums)
+
+    def dfs(i):
+        if n <= i:
+            return 0
+        else:
+            return nums[i] + max(
+                dfs(i + 2),
+                dfs(i + 3),
+            )
+
+    return max(dfs(0), dfs(1))
+
+
 
 def solution(input):
     return True
