@@ -30,6 +30,11 @@ actually we can't since we need to remember whether f(0) or f(1) were
 used. The simplest way is to revert to two different inputs with the
 first element =nums[0]= and without =nums[n-1]=, or without =nums[0]=
 and with =nums[n-1]=.
+
+I'm trying to write the tabulation version which was straightforward
+enough, except that I got a bit tricked by the initial conditions. I
+guess it's a feature of generative testing.
+
 * Chosen solution
 
 As of now the best way I can think of…
