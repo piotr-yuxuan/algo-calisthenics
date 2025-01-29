@@ -1,0 +1,53 @@
+#+TITLE:House Robber II
+#+PROPERTY: header-args :tangle problem_3_house_robber_II.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/679a9b55-7268-800e-82b2-2e6daf60b174
+
+#+BEGIN_QUOTE
+You are given an integer array =nums= where =nums[i]= represents the
+amount of money the $i^{\text{th}}$ house has. The houses are arranged
+in a circle, i.e. the first house and the last house are neighbors.
+
+You are planning to rob money from the houses, but you cannot rob two
+adjacent houses because the security system will automatically alert
+the police if two adjacent houses were both broken into.
+
+Return the maximum amount of money you can rob without alerting the
+police.
+#+END_QUOTE
+
+* Initial considerations
+
+Let's go straight to the point. The recurrence relation is:
+
+\[
+f(i) = \max\left( f(i+1), \text{nums}[i] + f(i+2) \right)
+\]
+
+However, there is a little trick at the end since we loop again and
+$f(n+1) = f(0)$. I thought it would be a case of using modulo but
+actually we can't since we need to remember whether f(0) or f(1) were
+used. The simplest way is to revert to two different inputs with the
+first element =nums[0]= and without =nums[n-1]=, or without =nums[0]=
+and with =nums[n-1]=.
+
+I'm trying to write the tabulation version which was straightforward
+enough, except that I got a bit tricked by the initial conditions. I
+guess it's a feature of generative testing.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+* Further elaboration
+
+- Unlimited Skipping: You may skip up to k houses instead of just 1;
+- Graph Representation: Houses are connected in an arbitrary graph;
+- House Values Change Over Time: Streaming data or updates require a
+  data structure like a segment tree;
+- Weighted Edge Constraints: If robbing house i affects non-adjacent
+  houses;
+- House Groups: Some houses can only be robbed together.
