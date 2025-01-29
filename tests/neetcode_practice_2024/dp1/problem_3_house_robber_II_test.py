@@ -8,10 +8,11 @@ import importlib
 importlib.reload(problem)
 
 
-@given(st.text(min_size=1))
-def test_solution(input):
+@given(st.lists(st.integers(min_value=1), min_size=1))
+def test_solution(nums):
     assert (
-        problem.solution(input) is True
+        problem.solution_from_neet_code(nums)
+        == problem.solution_first_attempt(nums)
     )
 
 
