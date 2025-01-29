@@ -63,7 +63,7 @@ def solution_third_attempt(nums: List[int]) -> int:
     return dfs(0)
 
 
-def solution_fourth_attempt(nums: List[int]) -> int:
+def solution(nums: List[int]) -> int:
     n = len(nums)
 
     prev2, prev1 = 0, 0
@@ -71,10 +71,6 @@ def solution_fourth_attempt(nums: List[int]) -> int:
         prev2, prev1 = prev1, max(nums[i] + prev2, prev1)
 
     return prev1
-
-
-def solution(input):
-    return True
 
 
 def main(args):

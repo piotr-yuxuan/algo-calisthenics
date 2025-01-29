@@ -20,7 +20,7 @@ def test_solution(input):
         problem.solution_first_attempt(input)
         == problem.solution_second_attempt(input)
         == problem.solution_third_attempt(input)
-        == problem.solution_fourth_attempt(input)
+        == problem.solution(input)
     )
 
 
