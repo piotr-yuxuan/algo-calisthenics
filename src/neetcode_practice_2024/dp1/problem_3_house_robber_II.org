@@ -1,4 +1,4 @@
-#+TITLE:XXX title
+#+TITLE:House Robber II
 #+PROPERTY: header-args :tangle problem_3_house_robber_II.py
 #+STARTUP: latexpreview
 #+URL:
