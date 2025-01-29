@@ -65,3 +65,18 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(main(args))
     exit(0)
+
+
+def solution_from_neet_code(nums: List[int]) -> int:
+    """This serves for testing solutions above."""
+
+    def helper(nums):
+        rob1, rob2 = 0, 0
+
+        for num in nums:
+            newRob = max(rob1 + num, rob2)
+            rob1 = rob2
+            rob2 = newRob
+        return rob2
+
+    return max(nums[0], helper(nums[1:]), helper(nums[:-1]))
