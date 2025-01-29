@@ -1,7 +1,7 @@
 #+TITLE:House Robber II
 #+PROPERTY: header-args :tangle problem_3_house_robber_II.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/679a9b55-7268-800e-82b2-2e6daf60b174
 
 #+BEGIN_QUOTE
 You are given an integer array =nums= where =nums[i]= represents the
