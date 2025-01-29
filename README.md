@@ -83,6 +83,8 @@ poetry run pytest --benchmark-only --benchmark-histogram
 
 # Study list
 
+> So much to know and learn, but so little time…
+
 ## Sorting algorithms
 
 - Implement from scratch: Bubble Sort, Merge Sort, Quick Sort, Heap
