@@ -45,6 +45,24 @@ def solution_second_attempt(nums: List[int]) -> int:
     return max(dfs(0), dfs(1))
 
 
+def solution_third_attempt(nums: List[int]) -> int:
+    n = len(nums)
+
+    @functools.lru_cache(maxsize=n)
+    def dfs(i):
+        global counter
+        counter += 1
+        if n <= i:
+            return 0
+        else:
+            return max(
+                dfs(i + 1),
+                nums[i] + dfs(i + 2),
+            )
+
+    return dfs(0)
+
+
 
 def solution(input):
     return True
