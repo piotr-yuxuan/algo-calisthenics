@@ -64,6 +64,34 @@ def solution_second_attempt(nums: List[int]) -> int:
         )
 
 
+def solution_third_attempt(nums: List[int]) -> int:
+    def dfs(memo, nums, i):
+        if i in memo:
+            return memo[i]
+        elif len(nums) <= i:
+            return 0
+        else:
+            memo[i] = max(
+                dfs(memo, nums, i + 1),
+                nums[i] + dfs(memo, nums, i + 2),
+            )
+            return memo[i]
+
+    n = len(nums)
+    if 0 == n:
+        return 0
+    elif 1 == n:
+        return nums[0]
+    elif 2 == n:
+        # Litigious.
+        return max(nums)
+    else:
+        return max(
+            dfs(dict(), nums[1:], 0),
+            dfs(dict(), nums[:-1], 0),
+        )
+
+
 def solution(input):
     return True
 

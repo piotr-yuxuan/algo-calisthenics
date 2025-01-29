@@ -5,6 +5,7 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
@@ -14,6 +15,7 @@ def test_solution(nums):
         problem.solution_from_neet_code(nums)
         == problem.solution_first_attempt(nums)
         == problem.solution_second_attempt(nums)
+        == problem.solution_third_attempt(nums)
     )
 
 
