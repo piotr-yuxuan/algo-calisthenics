@@ -13,3 +13,8 @@ def test_solution(input):
     assert (
         problem.solution(input) is True
     )
+
+
+def test_solution_hard_coded():
+    assert problem.solution_first_attempt([2, 9, 8, 3, 6]) == 15
+    assert problem.solution_first_attempt([3, 4, 3]) == 4
