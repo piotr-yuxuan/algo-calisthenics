@@ -1,0 +1,73 @@
+#+TITLE:XXX title
+#+PROPERTY: header-args :tangle problem_2_house_robber.py
+#+STARTUP: latexpreview
+#+URL:
+
+#+BEGIN_QUOTE
+You are given an integer array =nums= where $nums[i]$ represents the
+amount of money the ith house has. The houses are arranged in a
+straight line, i.e. the $i^{th}$ house is the neighbor of the
+$(i-1)^{th}$ and $(i+1)^{th}$ house.
+
+You are planning to rob money from the houses, but you cannot rob two
+adjacent houses because the security system will automatically alert
+the police if two adjacent houses were both broken into.
+
+Return the maximum amount of money you can rob without alerting the
+police.
+#+END_QUOTE
+
+* Initial considerations
+
+It seems that the thought process for dynamic programming should be to
+find a subproblem and express its recurrence relation. A subproblem
+usually has only one bound defined, and the other bound is quite blur
+because it will be defined recursively by other subproblems.
+
+In this problem, what helped me was to first draw the evolution of a
+brute force algorithm. Then I drew a decision tree with indices of the
+houses. I noticed that the problem repeated itself by a translation of
+3, and that let me think we could focus on a relation between
+$\text{nums}[0]$, $\text{nums}[1]$, $\text{nums}[2]$.
+
+Then I wrote down the initial conditions:
+
+\begin{cases}
+    f(0) = \text{nums}[0] + f(2) \\
+    f(1) = \text{nums}[0] + f(3)
+\end{cases}
+
+\[
+\text{result} = \max\left( f(0), f(1) \right)
+\]
+
+This led me to this correct but not straigthwforward recurrence
+relation:
+
+\[
+f(i) = \text{nums}[i] + \max\left( f(i+2), f(i+3) \right)
+\]
+
+I tried to express $\text{result}$ with $f(i)$ and $f(i+1)$ but
+symbolic manipulation would probably have taken me some precious time.
+A good interviewer would have suggested that I went back to the
+basics. A simpler recurrence relation can actually be:
+
+\[
+f(i) = \max\left( f(i+1), \text{nums}[i] + f(i+2) \right)
+\]
+
+because the problem makes it impossible to choose $\text{nums}[i]$ and
+have $f(i+1)$ that would contain $\text{nums}[i+1]$: it's either
+$\text{nums}[i]$ and $f(i+2)$, either $f(i+1)$, whatever is higher.
+
+I thought $f(i)$ must always have something to do with
+$\text{nums}[i]$ whereas it's not always the case and we can just
+borrow the value on the right. Mind-opening!
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
