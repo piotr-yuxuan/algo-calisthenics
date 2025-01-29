@@ -7,10 +7,33 @@ from typing import Callable, List, Optional, Protocol, TypeVar
 import collections
 import functools
 
+counter = 0
+
+
 def solution_first_attempt(nums: List[int]) -> int:
     n = len(nums)
 
     def dfs(i):
+        if n <= i:
+            return 0
+        else:
+            return nums[i] + max(
+                dfs(i + 2),
+                dfs(i + 3),
+            )
+
+    return max(dfs(0), dfs(1))
+
+
+def solution_second_attempt(nums: List[int]) -> int:
+    n = len(nums)
+    global counter
+    counter = 0
+
+    @functools.lru_cache(maxsize=n)
+    def dfs(i):
+        global counter
+        counter += 1
         if n <= i:
             return 0
         else:

@@ -5,13 +5,20 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
-@given(st.text(min_size=1))
+@given(
+    st.lists(
+        st.integers(min_value=1),
+        min_size=1,
+    )
+)
 def test_solution(input):
     assert (
-        problem.solution(input) is True
+        problem.solution_first_attempt(input)
+        == problem.solution_second_attempt(input)
     )
 
 
