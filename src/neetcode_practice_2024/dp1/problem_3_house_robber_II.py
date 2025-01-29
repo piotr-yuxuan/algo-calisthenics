@@ -119,8 +119,19 @@ def solution_fourth_attempt(nums: List[int]) -> int:
     )
 
 
-def solution(input):
-    return True
+def solution(nums: List[int]) -> int:
+    def dfs(nums):
+        prev2, prev1 = 0, 0
+
+        for num in nums:
+            prev2, prev1 = prev1, max(prev2 + num, prev1)
+        return prev1
+
+    return max(
+        nums[0],
+        dfs(nums[1:]),
+        dfs(nums[:-1]),
+    )
 
 
 def main(args):

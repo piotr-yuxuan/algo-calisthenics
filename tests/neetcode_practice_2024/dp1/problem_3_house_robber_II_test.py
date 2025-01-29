@@ -17,6 +17,7 @@ def test_solution(nums):
         == problem.solution_second_attempt(nums)
         == problem.solution_third_attempt(nums)
         == problem.solution_fourth_attempt(nums)
+        == problem.solution(nums)
     )
 
 
