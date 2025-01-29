@@ -42,3 +42,12 @@ As of now the best way I can think of…
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
 
+* Further elaboration
+
+- Unlimited Skipping: You may skip up to k houses instead of just 1;
+- Graph Representation: Houses are connected in an arbitrary graph;
+- House Values Change Over Time: Streaming data or updates require a
+  data structure like a segment tree;
+- Weighted Edge Constraints: If robbing house i affects non-adjacent
+  houses;
+- House Groups: Some houses can only be robbed together.
