@@ -19,12 +19,38 @@ police.
 
 * Initial considerations
 
+It seems that the thought process for dynamic programming should be to
+find a subproblem and express its recurrence relation. A subproblem
+usually has only one bound defined, and the other bound is quite blur
+because it will be defined recursively by other subproblems.
+
+In this problem, what helped me was to first draw the evolution of a
+brute force algorithm. Then I drew a decision tree with indices of the
+houses. I noticed that the problem repeated itself by a translation of
+3, and that let me think we could focus on a relation between
+$\text{nums}[0]$, $\text{nums}[1]$, $\text{nums}[2]$.
+
+Then I wrote down the initial conditions:
+
+\begin{cases}
+    f(0) = \text{nums}[0] + f(2) \\
+    f(1) = \text{nums}[0] + f(3)
+\end{cases}
+
+\[
+\text{result} = \max\left( f(0), f(1) \right)
+\]
+
+This led me to this correct but not straigthwforward recurrence
+relation:
+
+\[
+f(i) = \text{nums}[i] + \max\left( f(i+2), f(i+3) \right)
+\]
+
 * Chosen solution
 
 As of now the best way I can think of…
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
-
-#+BEGIN_SRC python
-#+END_SRC
