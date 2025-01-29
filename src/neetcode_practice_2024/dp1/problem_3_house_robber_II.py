@@ -11,14 +11,6 @@ import functools
 def solution_first_attempt(nums: List[int]) -> int:
     def tabulation(nums: List[int]):
         n = len(nums)
-        if 0 == n:
-            return 0
-        elif 1 == n:
-            return nums[0]
-        elif 2 == n:
-            max(nums)
-
-        n = len(nums)
         dp = [0 for _ in range(n)]
 
         for i in range(0, n):
@@ -29,10 +21,19 @@ def solution_first_attempt(nums: List[int]) -> int:
 
         return dp[n - 1]
 
-    return max(
-        tabulation(nums[1:]),
-        tabulation(nums[:-1]),
-    )
+    n = len(nums)
+    if 0 == n:
+        return 0
+    elif 1 == n:
+        return nums[0]
+    elif 2 == n:
+        # Litigious.
+        return max(nums)
+    else:
+        return max(
+            tabulation(nums[1:]),
+            tabulation(nums[:-1]),
+        )
 
 
 def solution(input):
