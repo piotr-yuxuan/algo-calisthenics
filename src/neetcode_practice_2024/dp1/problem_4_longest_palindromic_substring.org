@@ -1,4 +1,4 @@
-#+TITLE:XXX title
+#+TITLE:Longest Palindromic Substring
 #+PROPERTY: header-args :tangle problem_4_longest_palindromic_substring.py
 #+STARTUP: latexpreview
 #+URL:
