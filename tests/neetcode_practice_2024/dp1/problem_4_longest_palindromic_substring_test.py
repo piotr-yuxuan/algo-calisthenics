@@ -11,4 +11,4 @@ importlib.reload(problem)
 
 @given(st.text(min_size=1))
 def test_solution(input):
-    assert problem.solution(input) is True
+    assert problem.solution_brute_force(input) == problem.solution_neet_code(input)
