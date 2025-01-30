@@ -15,6 +15,15 @@ length, return any one of them.
 
 * Initial considerations
 
+I was eager to dive into dynamic programming because I thought it was
+only about finding recurrence relations, and exhibiting clever space
+optimisation tricks. However, here I can't really see the linear
+recurrence, what a pity!
+
+As usual now, let's start with the brute force solution, see how
+complex it is, and then we can apply hopefully some dynamic
+programming approach.
+
 * Chosen solution
 
 As of now the best way I can think of…
