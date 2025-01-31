@@ -5,11 +5,10 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
-@given(st.text(min_size=1))
+@given(st.from_regex(r"[0-9]+", fullmatch=True))
 def test_solution(input):
-    assert (
-        problem.solution(input) is True
-    )
+    assert problem.solution_from_neet_code(input) == problem.solution_top_down(input)
