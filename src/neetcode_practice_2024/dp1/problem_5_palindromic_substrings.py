@@ -26,6 +26,28 @@ def solution_two_pointers_even_palindromes_only(input: str) -> int:
     return palindrom_count
 
 
+def solution_two_pointers(input: str) -> int:
+    n = len(input)
+
+    # Track these values:
+    palindrom_count = 0
+
+    def _while_palindrome(l, r):
+        nonlocal palindrom_count
+
+        while 0 <= l and r < n and input[l] == input[r]:
+            palindrom_count += 1
+
+            l -= 1
+            r += 1
+
+    for i in range(n):
+        _while_palindrome(i, i)
+        _while_palindrome(i, i + 1)
+
+    return palindrom_count
+
+
 def solution(input):
     return True
 
