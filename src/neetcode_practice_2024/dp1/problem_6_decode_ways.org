@@ -29,6 +29,22 @@ to decode it. You can assume that the answer fits in a 32-bit integer.
 
 * Initial considerations
 
+So, for a position $i$ in a string $s$, we can return =s[i]= if the
+value within the inclusive range of $[1, 9]$ or =s[i:i+2]== if in the
+inclusive range of $[10, 26]$.
+
+Let's call =is_valid_decode= the predicate that takes a string =s= and
+return whether yes or no it is a valid, decodable value.
+
+Pushing it further, for a position $i$ of string =s= the number of
+different, valid ways to decode =s= is: $\left(1 +
+f(s[i:i+1])\right) + f(s[i:i+2])$, the left term of the addition being
+only counted under the condition that =s[i:i+1]= is a valid string,
+and the right term being counted only if =s[i:i+2]= if valid.
+
+This looks like a recurrent relation. Let's explore each possible
+subproblem.
+
 * Chosen solution
 
 As of now the best way I can think of…
