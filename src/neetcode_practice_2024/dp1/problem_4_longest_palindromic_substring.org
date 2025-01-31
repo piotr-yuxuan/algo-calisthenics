@@ -48,6 +48,8 @@ As of now the best way I can think of…
 
 * Further elaboration
 
+- Understand and use Manacher's algorithm in linear time, the internal
+  mechanics could actually come handy in other problems;
 - Count all palindromic substrings;
 - Find the shortest palindrome that contains the entire string;
 - Find the longest palindromic subsequence (not necessarily
