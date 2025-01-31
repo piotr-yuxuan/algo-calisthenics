@@ -8,6 +8,24 @@ import collections
 import functools
 
 
+def solution_two_pointers_even_palindromes_only(input: str) -> int:
+    n = len(input)
+
+    # Track these values:
+    palindrom_count = 0
+
+    for i in range(n):
+        l, r = i, i
+
+        while 0 <= l and r < n and input[l] == input[r]:
+            palindrom_count += 1
+
+            l -= 1
+            r += 1
+
+    return palindrom_count
+
+
 def solution(input):
     return True
 

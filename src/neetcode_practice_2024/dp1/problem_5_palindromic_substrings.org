@@ -23,6 +23,10 @@ valid palindroms.
 We could also modify the Manacher's algorithm but for this I should
 first understand it. That's definitely an algorithm tthat seems
 interesting to learn!
+
+I left a partial implementation for odd-length palindromes for
+reference to the future reader.
+
 * Chosen solution
 
 As of now the best way I can think of…
