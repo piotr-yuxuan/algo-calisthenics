@@ -45,6 +45,10 @@ and the right term being counted only if =s[i:i+2]= if valid.
 This looks like a recurrent relation. Let's explore each possible
 subproblem.
 
+I got tricked by the definition on =valid_one= that I thought would
+simply be =range(10)= whilst zero is explicitly discarded in the
+problem statement.
+
 * Chosen solution
 
 As of now the best way I can think of…
