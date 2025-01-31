@@ -12,6 +12,10 @@ A palindrome is a string that reads the same forward and backward.
 
 * Initial considerations
 
+Hum, it turns out that a lot of problems in this dynamic programming
+section turn out to be two pointer solutions. Let's see if I can
+reimplement it correctly.
+
 * Chosen solution
 
 As of now the best way I can think of…
