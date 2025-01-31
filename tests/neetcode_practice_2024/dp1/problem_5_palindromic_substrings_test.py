@@ -9,6 +9,6 @@ import importlib
 importlib.reload(problem)
 
 
-def solution_hard_coded():
-    assert 3 == problem.solution_two_pointers("aaa")
-    assert 6 == problem.solution_two_pointers("abc")
+def test_solution_hard_coded():
+    assert 6 == problem.solution_two_pointers("aaa")
+    assert 3 == problem.solution_two_pointers("abc")
