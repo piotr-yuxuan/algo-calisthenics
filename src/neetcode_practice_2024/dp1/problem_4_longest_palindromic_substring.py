@@ -29,7 +29,7 @@ def solution_brute_force(input: str) -> str:
             if _is_palindrome(input[i:j]):
                 length = j - i
                 max_length = max(max_length, length)
-                if length <= max_length:
+                if max_length <= length:
                     some_string_max_length = input[i:j]
 
     return some_string_max_length
