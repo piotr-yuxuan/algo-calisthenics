@@ -1,0 +1,47 @@
+#+TITLE:Longest Palindromic Substring
+#+PROPERTY: header-args :tangle problem_4_longest_palindromic_substring.py
+#+STARTUP: latexpreview
+#+URL:
+
+#+BEGIN_QUOTE
+Given a string =s=, return the longest substring of =s= that is a
+palindrome.
+
+A palindrome is a string that reads the same forward and backward.
+
+If there are multiple palindromic substrings that have the same
+length, return any one of them.
+#+END_QUOTE
+
+* Initial considerations
+
+I was eager to dive into dynamic programming because I thought it was
+only about finding recurrence relations, and exhibiting clever space
+optimisation tricks. However, here I can't really see the linear
+recurrence, what a pity!
+
+As usual now, let's start with the brute force solution, see how
+complex it is, and then we can apply hopefully some dynamic
+programming approach.
+
+Well, thinking twice about this problem it's not really fit for a
+straightforward dynamic programming approach where the core of the
+idea is to reuse smaller subproblems to compute the answer to a larger
+problem.
+
+Let's try a two-pointer approach: basically we start from each
+character of the input string and see whether it is the centre of a
+odd-length palindrom – as an edge case we will also need to account
+for even-length palindroms. If it is a palindrom we expand left and
+right, otherwise we move on.
+
+Both the two-pointer approach and the space-optimised brute force
+solutions have a complexity of $\mathcal{O}(n^2)$, so choosing the
+former makes more sense to me for its constant spatial complexity.
+
+* Chosen solution
+
+As of now the best way I can think of…
+
+- Time complexity (average / best / worst): $\mathcal{O}(n^2)$
+- Space complexity (average / best / worst): $\mathcal{O}(1)$
