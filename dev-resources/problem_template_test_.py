@@ -5,11 +5,10 @@ import itertools
 import string
 
 import importlib
+
 importlib.reload(problem)
 
 
 @given(st.text(min_size=1))
 def test_solution(input):
-    assert (
-        problem.solution(input) is True
-    )
+    assert problem.solution(input) is True
