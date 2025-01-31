@@ -1,7 +1,7 @@
 #+TITLE:Decode ways
 #+PROPERTY: header-args :tangle problem_6_decode_ways.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/679cce3c-aca4-800e-a3ff-0edd34d78647
 
 #+BEGIN_QUOTE
 
