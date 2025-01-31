@@ -61,6 +61,8 @@ As of now the best way I can think of…
 - Use an approach based on linear algebra, it doesn't seem so
   difficult once written down, and it's probably how real-life dynamic
   programming is implemented anyway on large problems I guess.
+  However, here the coefficient not being constant makes it no better
+  than $\mathcal{O}(n)$.
 - Count decodings with a wildcard ('*' for 1-9);
 - Return all valid decodings instead of counting them;
 - Find the lexicographically smallest decoding;
