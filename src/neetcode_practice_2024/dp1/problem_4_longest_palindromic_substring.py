@@ -74,6 +74,37 @@ def solution_brute_force_space_optimised(input: str) -> str:
     return input[max_start:max_stop]
 
 
+def solution_two_pointers(input: str) -> str:
+    n = len(input)
+
+    # Keep track of these values
+    max_length: int = 0
+    max_start: int = 0
+    max_stop: int = 0
+
+    def expand_bounds_while_palindrom(l: int, r: int):
+        nonlocal max_length, max_start, max_stop
+
+        while 0 <= l and r < n and input[l] == input[r]:
+            length = r - l + 1
+            max_length = max(max_length, length)
+            if max_length <= length:
+                max_start = l
+                max_stop = r
+
+            l -= 1
+            r += 1
+
+    for i in range(n):
+        # Case of a palindrom centered on `i`.
+        expand_bounds_while_palindrom(l=i, r=i)
+
+        # Case of a palindrom centered between `i` and `i+1`.
+        expand_bounds_while_palindrom(l=i, r=i + 1)
+
+    return input[max_start : max_start + max_length]
+
+
 def solution(input):
     return True
 

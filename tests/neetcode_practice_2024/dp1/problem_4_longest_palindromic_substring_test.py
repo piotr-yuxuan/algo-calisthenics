@@ -19,6 +19,7 @@ def test_solution(input):
         problem.solution_brute_force(input)
         == problem.solution_neet_code(input)
         == problem.solution_brute_force_space_optimised(input)
+        == problem.solution_two_pointers(input)
     )
 
 
