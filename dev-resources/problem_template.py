@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import numpy as np
+import numpy.linalg as linalg
+
 import argparse
 import argcomplete
 
