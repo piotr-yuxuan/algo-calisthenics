@@ -49,7 +49,7 @@ def solution_two_pointers(input: str) -> int:
 
 
 def solution(input):
-    return True
+    return solution_two_pointers(input)
 
 
 def main(args):
