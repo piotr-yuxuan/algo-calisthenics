@@ -1,4 +1,4 @@
-#+TITLE:XXX title
+#+TITLE:Decode ways
 #+PROPERTY: header-args :tangle problem_6_decode_ways.py
 #+STARTUP: latexpreview
 #+URL:
