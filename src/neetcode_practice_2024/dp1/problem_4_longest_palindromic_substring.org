@@ -24,9 +24,24 @@ As usual now, let's start with the brute force solution, see how
 complex it is, and then we can apply hopefully some dynamic
 programming approach.
 
+Well, thinking twice about this problem it's not really fit for a
+straightforward dynamic programming approach where the core of the
+idea is to reuse smaller subproblems to compute the answer to a larger
+problem.
+
+Let's try a two-pointer approach: basically we start from each
+character of the input string and see whether it is the centre of a
+odd-length palindrom – as an edge case we will also need to account
+for even-length palindroms. If it is a palindrom we expand left and
+right, otherwise we move on.
+
+Both the two-pointer approach and the space-optimised brute force
+solutions have a complexity of $\mathcal{O}(n^2)$, so choosing the
+former makes more sense to me for its constant spatial complexity.
+
 * Chosen solution
 
 As of now the best way I can think of…
 
-- Time complexity (average / best / worst): $\mathcal{O}(n)$
+- Time complexity (average / best / worst): $\mathcal{O}(n^2)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
