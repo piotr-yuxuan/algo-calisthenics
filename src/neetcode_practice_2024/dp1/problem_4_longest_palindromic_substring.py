@@ -33,6 +33,17 @@ def solution_brute_force(input: str) -> str:
                     some_string_max_length = input[i:j]
 
     return some_string_max_length
+
+
+# Inclusive start, exclusive end.
+def _is_palindrome_index(input, start: int, stop: int) -> bool:
+    for i in range((stop - start) // 2):
+        # Somehow I thought I could remove `start` from `start + i`
+        # but it turns out not to be possible.
+        if input[start + i] != input[stop - 1 - i]:
+            return False
+
+    return True
 def solution(input):
     return True
 
