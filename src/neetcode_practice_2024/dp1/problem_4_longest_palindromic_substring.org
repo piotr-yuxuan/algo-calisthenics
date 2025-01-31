@@ -45,3 +45,13 @@ As of now the best way I can think of…
 
 - Time complexity (average / best / worst): $\mathcal{O}(n^2)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
+
+* Further elaboration
+
+- Count all palindromic substrings;
+- Find the shortest palindrome that contains the entire string;
+- Find the longest palindromic subsequence (not necessarily
+  contiguous);
+- Allow at most one character modification;
+- Apply constraints (e.g., find the palindrome in a streaming
+  setting).
