@@ -9,6 +9,11 @@ import importlib
 importlib.reload(problem)
 
 
+@given(st.text(min_size=1))
+def test_solution(input):
+    assert problem.solution(input) == problem.solution_from_neet_code(input)
+
+
 def test_solution_hard_coded():
     assert 6 == problem.solution_two_pointers("aaa")
     assert 3 == problem.solution_two_pointers("abc")
