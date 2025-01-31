@@ -8,6 +8,15 @@ import collections
 import functools
 
 
+def _is_palindrome(s: str) -> bool:
+    n = len(s)
+    for i in range(n // 2):
+        if s[i] != s[n - 1 - i]:
+            return False
+
+    return True
+
+
 def solution_brute_force(input: str) -> str:
     n = len(input)
 
@@ -15,18 +24,10 @@ def solution_brute_force(input: str) -> str:
     max_length: int = 0
     some_string_max_length: str = ""
 
-    def is_palindrome(s: str) -> bool:
-        n = len(s)
-        for i in range(n // 2):
-            if s[i] != s[n - 1 - i]:
-                return False
-
-        return True
-
     for i in range(n):
         for j in range(i + 1, n + 1):
-            if is_palindrome(input[i:j]):
-                length = j - i + 1
+            if _is_palindrome(input[i:j]):
+                length = j - i
                 max_length = max(max_length, length)
                 if length <= max_length:
                     some_string_max_length = input[i:j]
