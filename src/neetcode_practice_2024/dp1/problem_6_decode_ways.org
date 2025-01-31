@@ -54,5 +54,5 @@ problem statement.
 As of now the best way I can think of…
 
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
-- Space complexity (average / best / worst): $\mathcal{O}(1)$
+- Space complexity (average / best / worst): $\mathcal{O}(n)$
 
