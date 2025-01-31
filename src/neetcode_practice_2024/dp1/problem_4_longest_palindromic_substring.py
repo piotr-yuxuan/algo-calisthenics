@@ -44,6 +44,36 @@ def _is_palindrome_index(input, start: int, stop: int) -> bool:
             return False
 
     return True
+
+
+def solution_brute_force_space_optimised(input: str) -> str:
+    n = len(input)
+
+    # Keep track of these values
+    max_length: int = 0
+    max_start: int = 0
+    max_stop: int = 0
+
+    def is_palindrome(start, stop):
+        """Define outside of this scope so it can be tested. If we
+        were to optimise the callstack, then we would not include a
+        pointer to `input` on every call.
+
+        """
+        return _is_palindrome_index(input, start, stop)
+
+    for start in range(n):
+        for stop in range(start + 1, n + 1):
+            if is_palindrome(start, stop):
+                length = stop - start
+                max_length = max(max_length, length)
+                if max_length <= length:
+                    max_start = start
+                    max_stop = stop
+
+    return input[max_start:max_stop]
+
+
 def solution(input):
     return True
 
