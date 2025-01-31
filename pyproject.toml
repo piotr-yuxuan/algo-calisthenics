@@ -10,6 +10,7 @@ packages = [{include = "neetcode_practice_2024", from = "src"}]
 python = "^3.12"
 pydantic = "^2.8.2"
 argcomplete = "^3.5.0"
+numpy = "^2.2.2"
 
 [tool.poetry.group.dev.dependencies]
 chevron = "^0.14.0"
