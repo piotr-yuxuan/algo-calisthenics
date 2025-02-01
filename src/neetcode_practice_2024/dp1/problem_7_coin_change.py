@@ -29,6 +29,33 @@ def solution_top_down_fail(nums: List[int], target_sum: int) -> int:
     return dfs(0, 0)
 
 
+def solution_top_down_too_many_things(nums: List[int], target_sum: int) -> int:
+    not_found = -1
+    min_path_length = -1
+
+    if len(nums) < 1:
+        return not_found
+
+    def dfs(path_length: int, path_sum: int):
+        nonlocal min_path_length
+
+        if target_sum < path_sum:
+            return not_found
+        elif target_sum == path_sum:
+            min_path_length = (
+                path_length
+                if -1 == min_path_length
+                else min(min_path_length, path_length)
+            )
+            return path_length
+        else:
+            return min(dfs(1 + path_length, path_sum + i) for i in nums)
+
+    dfs(0, 0)
+
+    return min_path_length
+
+
 def main(args):
     return solution(args.input)
 
