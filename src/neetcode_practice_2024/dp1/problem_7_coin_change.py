@@ -5,7 +5,7 @@ from math import gcd
 import argparse
 import argcomplete
 
-from typing import Callable, List, Optional, Protocol, TypeVar
+from typing import List
 import collections
 import functools
 
