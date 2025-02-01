@@ -1,7 +1,7 @@
 #+TITLE:Coin Change
 #+PROPERTY: header-args :tangle problem_7_coin_change.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/679cda0e-3620-800e-8fc2-5f286a6d97ee
 
 #+BEGIN_QUOTE
 You are given an integer array =coins= representing coins of different
