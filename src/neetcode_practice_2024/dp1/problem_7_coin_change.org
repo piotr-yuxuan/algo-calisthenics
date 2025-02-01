@@ -37,10 +37,17 @@ indefinitely stay below a given limit.
 
 * Chosen solution
 
-As of now the best way I can think of…
+As of now the best way I can think of is the top-down approach. I
+believe it shouldn't be too hard for a mathematician to generalise an
+approach based on diophantine equations, and then restrict the
+solution domain such that the sum of non-negative coefficients is
+minimal. I don't know what would be the time complexity, intuitively
+wouldn't it depend of $|coins|$? In addition to that, mathematical
+computations are likely to be literally light-years faster than Python
+constructs.
 
-- Time complexity (average / best / worst): $\mathcal{O}(n)$
-- Space complexity (average / best / worst): $\mathcal{O}(1)$
+- Time complexity (average / best / worst): $\mathcal{O}(n \times |coins|)$
+- Space complexity (average / best / worst): $\mathcal{O}(n)$
 
 * Further elaboration
 
