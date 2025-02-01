@@ -1,0 +1,58 @@
+#+TITLE:Coin Change
+#+PROPERTY: header-args :tangle problem_7_coin_change.py
+#+STARTUP: latexpreview
+#+URL: https://chatgpt.com/c/679cda0e-3620-800e-8fc2-5f286a6d97ee
+
+#+BEGIN_QUOTE
+You are given an integer array =coins= representing coins of different
+denominations (e.g. 1 dollar, 5 dollars, etc) and an integer =amount=
+representing a target amount of money.
+
+Return the fewest number of coins that you need to make up the exact
+target amount. If it is impossible to make up the amount, return =-1=.
+
+You may assume that you have an unlimited number of each coin.
+#+END_QUOTE
+
+* Initial considerations
+
+It seems like a canonical problem statement for dynamic programming.
+The way it is constructed also suggests we might solve it in
+logarithmic time by linear programming (using linear algebra, that's
+to say matrices). For now let's focus on the dynamic programming
+approach.
+
+Let's draw a directed, acyclic decision graph starting at 0. This
+graph is rather simple, [[https://en.wikipedia.org/wiki/Homogeneous_graph][homogenous]] in structure shall I even say. For
+each node we can define child nodes as the array of coins given.
+Viewed this way the problem can be reformulated: is there a path in
+this tree whose nodes sum to the target amount?
+
+We can look for the solution with any graph traversal. We will go
+further as long as the target sum is strictly greater than the current
+root-node path sum. As we want to find the minimum number of coins
+we'll need an exhaustive search. We are garanteed to terminate because
+no strictly increasing arithmetic progression can start from zero and
+indefinitely stay below a given limit.
+
+* Chosen solution
+
+As of now the best way I can think of is the top-down approach. I
+believe it shouldn't be too hard for a mathematician to generalise an
+approach based on diophantine equations, and then restrict the
+solution domain such that the sum of non-negative coefficients is
+minimal. I don't know what would be the time complexity, intuitively
+wouldn't it depend of $|coins|$? In addition to that, mathematical
+computations are likely to be literally light-years faster than Python
+constructs.
+
+- Time complexity (average / best / worst): $\mathcal{O}(n \times |coins|)$
+- Space complexity (average / best / worst): $\mathcal{O}(n)$
+
+* Further elaboration
+
+- What if some coins have limited availability?
+- What if we also want the total number of ways to form amount?
+- What if each coin has a different weight?
+- What if we need the lexicographically smallest solution?
+- Practice function trampolining.
