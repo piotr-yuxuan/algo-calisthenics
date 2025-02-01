@@ -10,8 +10,6 @@ import collections
 import functools
 
 
-def solution(input):
-    return True
 def solution_top_down_fail(nums: List[int], target_sum: int) -> int:
     not_found = -1
 
@@ -81,6 +79,12 @@ def solution_top_down(nums: List[int], target_sum: int) -> int:
     dfs(0, 0)
 
     return -1 if min_path_length == float("inf") else min_path_length
+
+
+def solution(nums: List[int], target_sum: int) -> int:
+    return solution_top_down(nums, target_sum)
+
+
 def main(args):
     return solution(args.input)
 

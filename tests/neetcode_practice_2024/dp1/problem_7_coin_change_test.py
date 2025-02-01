@@ -29,6 +29,7 @@ def test_solution(nums, target_sum):
     assert (
         problem.solution_from_neet_code(nums, target_sum)
         == problem.solution_top_down(nums, target_sum)
+        == problem.solution(nums, target_sum)
     )
 
 
