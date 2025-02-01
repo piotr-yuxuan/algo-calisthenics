@@ -1,4 +1,4 @@
-#+TITLE:XXX title
+#+TITLE:Coin Change
 #+PROPERTY: header-args :tangle problem_7_coin_change.py
 #+STARTUP: latexpreview
 #+URL:
