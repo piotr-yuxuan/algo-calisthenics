@@ -23,3 +23,9 @@ As of now the best way I can think of…
 - Time complexity (average / best / worst): $\mathcal{O}(n)$
 - Space complexity (average / best / worst): $\mathcal{O}(1)$
 
+* Further elaboration
+
+- What if some coins have limited availability?
+- What if we also want the total number of ways to form amount?
+- What if each coin has a different weight?
+- What if we need the lexicographically smallest solution?
