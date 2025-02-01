@@ -12,6 +12,21 @@ import functools
 
 def solution(input):
     return True
+def solution_top_down_fail(nums: List[int], target_sum: int) -> int:
+    not_found = -1
+
+    if len(nums) < 1:
+        return not_found
+
+    def dfs(path_length: int, path_sum: int):
+        if target_sum < path_sum:
+            return not_found
+        elif target_sum == path_sum:
+            return path_length
+        else:
+            return min(dfs(1 + path_length, path_sum + i) for i in nums)
+
+    return dfs(0, 0)
 
 
 def main(args):
