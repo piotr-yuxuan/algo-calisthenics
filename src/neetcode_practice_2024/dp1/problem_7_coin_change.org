@@ -16,6 +16,25 @@ You may assume that you have an unlimited number of each coin.
 
 * Initial considerations
 
+It seems like a canonical problem statement for dynamic programming.
+The way it is constructed also suggests we might solve it in
+logarithmic time by linear programming (using linear algebra, that's
+to say matrices). For now let's focus on the dynamic programming
+approach.
+
+Let's draw a directed, acyclic decision graph starting at 0. This
+graph is rather simple, [[https://en.wikipedia.org/wiki/Homogeneous_graph][homogenous]] in structure shall I even say. For
+each node we can define child nodes as the array of coins given.
+Viewed this way the problem can be reformulated: is there a path in
+this tree whose nodes sum to the target amount?
+
+We can look for the solution with any graph traversal. We will go
+further as long as the target sum is strictly greater than the current
+root-node path sum. As we want to find the minimum number of coins
+we'll need an exhaustive search. We are garanteed to terminate because
+no strictly increasing arithmetic progression can start from zero and
+indefinitely stay below a given limit.
+
 * Chosen solution
 
 As of now the best way I can think of…
