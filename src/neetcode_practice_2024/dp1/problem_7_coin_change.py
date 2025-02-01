@@ -56,6 +56,31 @@ def solution_top_down_too_many_things(nums: List[int], target_sum: int) -> int:
     return min_path_length
 
 
+def solution_top_down(nums: List[int], target_sum: int) -> int:
+    not_found = -1
+
+    if len(nums) < 1:
+        return 0
+    elif 0 == target_sum:
+        return 0
+    elif 0 != target_sum % functools.reduce(gcd, nums):
+        return not_found
+
+    # Keep track of these values:
+    min_path_length = float("inf")
+
+    def dfs(path_length: int, path_sum: int):
+        nonlocal min_path_length
+
+        if target_sum == path_sum:
+            min_path_length = min(min_path_length, path_length)
+        elif path_sum < target_sum:
+            for i in nums:
+                dfs(1 + path_length, path_sum + i)
+
+    dfs(0, 0)
+
+    return -1 if min_path_length == float("inf") else min_path_length
 def main(args):
     return solution(args.input)
 
