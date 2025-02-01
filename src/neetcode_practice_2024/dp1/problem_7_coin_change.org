@@ -29,3 +29,4 @@ As of now the best way I can think of…
 - What if we also want the total number of ways to form amount?
 - What if each coin has a different weight?
 - What if we need the lexicographically smallest solution?
+- Practice function trampolining.
