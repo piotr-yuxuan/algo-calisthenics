@@ -1,7 +1,7 @@
 #+TITLE:Word break
 #+PROPERTY: header-args :tangle problem_9_word_break.py
 #+STARTUP: latexpreview
-#+URL:
+#+URL: https://chatgpt.com/c/67d13e5a-9cdc-800e-882c-663a7658a3df
 
 #+BEGIN_QUOTE
 Given a string =s= and a dictionary of strings =wordDict=, return
