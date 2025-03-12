@@ -21,6 +21,7 @@ pytest-benchmark = {extras = ["histogram"], version = "^4.0.0"}
 pytest-memray = "^1.7.0"
 snakeviz = "^2.2.0"
 pytest-watch = "^4.2.0"
+isort = "^6.0.1"
 
 [build-system]
 requires = ["poetry-core"]
