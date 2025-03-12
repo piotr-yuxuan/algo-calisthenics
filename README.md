@@ -23,6 +23,28 @@ Code here is written in litterate programming thanks to Emacs and org-mode. It
 means the code written in Clojure is derived from the text files explining the
 reasoning behind it. I hope it makes it easier to read.
 
+# Resolution framework
+
+> « I programmed the whole two weeks and failed » feels easier to
+> justify than « I read a book for one of those weeks and failed! »
+> but team members should be picked for their judgement, and if they
+> are good for the team in proportion to the quality of that judgement
+> and their willingness to exercise it in the face of orthodoxy.
+>
+> – https://ludic.mataroa.blog/blog/ludics-guide-to-getting-software-engineering-jobs/
+
+While we can not read books _per se_ in an interview, I should pause
+and ponder instead of rushing toward typing anything that comes to
+mind.
+
+- Work out the examples by hand, drawing my reasoning process
+- Draw a decision tree
+- Think about a paradigm and work out how an algorithm would work
+- Translate the solution into code.
+
+Note that the very last word of this whole process is code, at the end
+of the last step.
+
 # Python
 
 ## Getting ready for a new problem
@@ -310,4 +332,4 @@ realistic setting and for more robust test:
   [Prometheus](https://prometheus.io/),
   [Grafana](https://grafana.com/);
 
-_(tools listed here may be specific to some languages)_
+_(tools listed here may be specific to some languages)
