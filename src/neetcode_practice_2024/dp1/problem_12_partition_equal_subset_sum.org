@@ -35,6 +35,11 @@ It feels a bit magic to me, and very low level. Definitely something
 that makes me enthusiastic, and an area of computer manipulation that
 I've never been familiar with!
 
+Also, ChatGPT suggests:
+- Using =array= or =ctypes= for explicit memory layout (though this
+  will not beat bitmasking).
+- Compiling with Cython or PyPy if runtime is still not acceptable.
+
 * Chosen solution
 
 As of now the best way I can think of…
