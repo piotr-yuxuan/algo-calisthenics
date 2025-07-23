@@ -4,10 +4,36 @@
 #+URL:
 
 #+BEGIN_QUOTE
-
+Given an integer array =nums=, return =true= if you can partition the
+array into two subsets such that the sum of the elements in both
+subsets is equal or =false= otherwise.
 #+END_QUOTE
 
 * Initial considerations
+
+The thinking process is quite interesting: first we can discard the
+array with odd sum, which on Leetcode provides 3% improvement.
+Incredible. Then I got the correct intuition that we want to find a
+subsequence such that its sum is half the target, and also that each
+subproblem is defined by $i$ the starting position of a subarray and
+the =target= for this subarray.
+
+However, at that time I got hungry and I lost some concentration
+power. At that point I drown myself is useless consideration. Then
+instead of starting from scratch I watched the explanation of LeetCode
+where I just felt I was learning nothing. However, I didn't thought
+about pushing the thought process up to the bottom up approach, so the
+last and elegant solution with a set was lost on me.
+
+Then I wondered how we could do thing even better and ChatGPT replied
+with bit manipulation. I take note of this approach because it is
+something I am willing to revisit at some point. It is great to know
+that a set of integers used to check whether or not it contains a
+value can be replaced by bitwise operations.
+
+It feels a bit magic to me, and very low level. Definitely something
+that makes me enthusiastic, and an area of computer manipulation that
+I've never been familiar with!
 
 * Chosen solution
 
