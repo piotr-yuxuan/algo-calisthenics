@@ -1,43 +1,27 @@
 #!/usr/bin/env python
 
-import numpy as np
-import numpy.linalg as linalg
-
 import argparse
 import argcomplete
 
-from typing import Callable, List, Optional, Protocol, TypeVar
-import collections
-import functools
 
+def solution(m: int, n: int) -> int:
+    if 1 == m or 1 == n:
+        return 1
 
-def solution(input):
-    return True
+    # dp[m-1][n-1] for m lines, n columns.
+    dp = [[0 for _ in range(n)] for _ in range(m)]
+    dp[-1][-2] = 1
+    dp[-2][-1] = 1
+    for j in reversed(range(n)):
+        for i in reversed(range(m)):
+            dp[i][j] = (
+                dp[i][j]
+                + (dp[i + 1][j] if i + 1 < m else 0)
+                + (dp[i][j + 1] if j + 1 < n else 0)
+            )
+
+    return dp[0][0]
 
 
 def main(args):
-    return solution(args.input)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description=", ".join(
-            "Neetcode 2024",
-            "XXX",
-            "problem XXX.",
-        )
-    )
-    parser.add_argument(
-        "--input",
-        "-i",
-        type=lambda s: [int(i) for i in s.split(",")],
-        required=True,
-        help="The input array as a comma-separated list of integers: `1,2,3`.",
-    )
-
-    # https://kislyuk.github.io/argcomplete/#installation
-    argcomplete.autocomplete(parser)
-
-    args = parser.parse_args()
-    print(main(args))
-    exit(0)
+    return solution(args.m, args.n)
