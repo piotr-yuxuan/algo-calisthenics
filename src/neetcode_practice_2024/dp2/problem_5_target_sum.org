@@ -34,6 +34,15 @@ but surprisingly it's « good enough » for Python.
 Another trick I should practice is how to turn a top-down approach
 into a bottom-up approach.
 
+Good to know: while pursing better performance I learnt that:
+- Local variable assignment in Python is not like a binding in
+  Clojure, more like an expensive global variable Clojure assignment.
+- Syntactic sugar has a cost: defaultdict slows things down
+- Bit manipulation, when appropriate, reigns supreme, but is quite
+  niche and I do not master it.
+- Array operation and memory access is surprisingly fast. Better to
+  initialise an array of 3k elements rather than to use a dictionary.
+
 * Chosen solution
 
 As of now the best way I can think of…
