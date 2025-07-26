@@ -1,18 +1,29 @@
 #!/usr/bin/env python
 
-import numpy as np
-import numpy.linalg as linalg
-
 import argparse
 import argcomplete
 
-from typing import Callable, List, Optional, Protocol, TypeVar
-import collections
+from typing import List
 import functools
 
 
-def solution(input):
-    return True
+def solution(nums: List[int], target: int) -> int:
+
+    @functools.cache
+    def dfs(i, current):
+
+        if len(nums) == i:
+            if target == current:
+                return 1
+            else:
+                return 0
+        if len(nums) < i:
+            return 0
+
+        # Instead of using a list as a memoisation key, let's splice it in the space exploration strategy.
+        return dfs(i + 1, current + nums[i]) + dfs(i + 1, current - nums[i])
+
+    return dfs(0, 0)
 
 
 def main(args):

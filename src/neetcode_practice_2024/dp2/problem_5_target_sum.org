@@ -9,6 +9,31 @@
 
 * Initial considerations
 
+#+BEGIN_QUOTE
+Instead of using a list as a memoisation key, let's splice it in the
+space exploration strategy.
+#+END_QUOTE
+
+This is quite interesting as a trick, and worth understanding, or
+explaining more throughly. Instead of using a natural memoisation key
+like =[0, 0, 0]=, =[0, 0, 1]=, =[0, 1, 1]=, =[0, 2, 1]= we are blocked
+by Python limitations: an instance of a =List= is unhashable and thus
+can not be used as dictionary key. Instead of populating the cache
+with these keys, for example looping at each step through the possible
+values, we branch out as every step: increase the current key item, or
+start to increase the next one.
+
+This reinforces my view of Python as a toy language that is not very
+much serious. It's good enough to play with, it displays a nice
+interface, but whenever things get serious there is a rewrite using
+the C bindings, so the language itself doesn't need to be performant
+or clever. It is so true that it's taking ages to remove the global
+interpreter lock, something that would have killed Clojure on day 1
+but surprisingly it's « good enough » for Python.
+
+Another trick I should practice is how to turn a top-down approach
+into a bottom-up approach.
+
 * Chosen solution
 
 As of now the best way I can think of…
