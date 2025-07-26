@@ -1,6 +1,5 @@
 #+TITLE:XXX title
 #+PROPERTY: header-args :tangle problem_7_longest_increasing_path_in_a_matrix.py
-#+STARTUP: latexpreview
 #+URL:
 
 #+BEGIN_QUOTE
@@ -8,6 +7,81 @@
 #+END_QUOTE
 
 * Initial considerations
+
+* Performance techniques
+
+(drafted by ChatGPT)
+
+The different versions of this `solution` function illustrate a range
+of algorithmic and micro-optimisation techniques that impact
+performance. Below is a categorised summary of these techniques,
+ordered by their performance impact (approximately reflected by
+submission percentile):
+
+**1. Top Performer (Beats 99.42%)**
+- **Explicit 2D memoisation table (=dp=)**: avoids recomputation by
+  storing results outside the recursive stack.
+- **Avoids value reassignment**: Stores =x = matrix[i][j]= once per
+  DFS call.
+- **Compact max expression**: Uses =max(...)= with inline ternary
+  conditions to reduce branching and improve readability/performance.
+- **Avoids redundant function calls**: Ensures each =dfs= call is only
+  invoked if the move is valid and the next value is greater.
+
+**2. Slightly Slower Variant (98.25%)**
+- **Same core structure as above**, but:
+- **Unrolled conditions**: Uses =if= blocks instead of compact
+  ternaries. While more readable, it introduces slightly more overhead
+  and verbosity.
+
+**3. Uses =functools.cache= (96%)**
+- **Python 3.9+ memoisation with =@functools.cache=**: Stores
+  recursive results without explicit =dp=, simplifying the code.
+- **More readable edge case checks**: Slightly less efficient due to
+  possible redundancy in bound checks.
+- **Includes base case check for 1x1 matrices**, avoiding overhead.
+
+**4. Slightly Different =cache= Version (95.61%)**
+- Similar to the above, but:
+- **Refactors edge-boundary checking into =if=/=elif= blocks** rather
+  than combining into a single compound condition.
+- May introduce marginal inefficiencies due to slightly more complex
+  control flow.
+
+**5. BFS Topological Sort (62.34%)**
+- **Non-recursive approach**: Uses BFS with topological sorting and
+  indegree counting.
+- **Eliminates recursion and stack depth concerns**, suitable for very
+  large matrices.
+- **Parallel layer traversal**: Each level of BFS represents one step
+  in the increasing path.
+- **Less cache-friendly**: May incur more memory movement and less
+  locality compared to DFS.
+
+**6. Poorly Performing Versions (~5–6%)**
+- **Parameter pollution**: Passes previous value =v= into DFS,
+  increasing memoisation state complexity.
+- **Memoisation key explosion**: =functools.cache= caches over
+  additional parameter (=v=), leading to many redundant calls.
+- **Redundant comparisons**: The value comparison (=v < matrix[i][j]=)
+  is done at each call, even if unnecessary.
+- **Inefficient recursive call layout**: Less precise condition
+  handling, especially for boundaries.
+
+*General Observations and Lessons*
+- **Explicit 2D memoisation is faster than =functools.cache=** when
+  the state is simple (i.e., only =i, j=).
+- **Avoid passing extra DFS parameters unnecessarily**, as it
+  increases memoisation space and cache misses.
+- **Prefer in-place condition evaluation and early exits** to reduce
+  call overhead.
+- **Topological BFS is more robust for large inputs**, but typically
+  slower due to memory and queue management overhead.
+
+In summary, the top-performing solution succeeds through a combination
+of precise DFS traversal, explicit memoisation, and minimal branching
+— embodying a well-balanced mix of algorithmic rigour and code-level
+efficiency.
 
 * Chosen solution
 
