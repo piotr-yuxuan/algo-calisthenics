@@ -85,6 +85,101 @@ poetry run pytest --benchmark-only --benchmark-histogram
 
 > So much to know and learn, but so little time…
 
+## Tough prep
+
+### Graph and flow
+
+- [Maximum running time of n
+  computers](https://leetcode.com/problems/maximum-running-time-of-n-computers/)
+  determine the longest time `n` computers can run using a pool of
+  batteries, some of which may be swapped between them. *topics*:
+  greedy allocation, binary search on feasibility, flow-like
+  scheduling
+
+- [Parallel courses
+  III](https://leetcode.com/problems/parallel-courses-iii/) given
+  course dependencies and durations, compute the earliest completion
+  time. *topics*: DAG traversal, topological sort, longest path in DAG
+  (critical path method)
+
+- [Path with minimum
+  effort](https://leetcode.com/problems/path-with-minimum-effort/)
+  *(warm-up)* find a path through a grid minimising the *maximum
+  difference* in height between adjacent steps. *topics*: graph
+  traversal, binary search on answer, union-find or Dijkstra
+
+### Dynamic programming and bitmask
+
+- [Maximum students taking
+  exam](https://leetcode.com/problems/maximum-students-taking-exam/)
+  place students in a grid of seats with broken and adjacent-seat
+  constraints to maximise total students. *topics*: bitmask DP, grid
+  constraints, optimisation with state pruning
+
+### Graph with bitmask DP
+
+- [Shortest path visiting all
+  nodes](https://leetcode.com/problems/shortest-path-visiting-all-nodes/)
+  *(warm-up)* find the shortest path visiting every node in an
+  undirected graph exactly once. *topics*: bitmask DP, BFS over state
+  space, Hamiltonian path approximation
+
+### Flow with lower bounds and min-cost optimisation
+
+- (see also: [Parallel Courses
+  III](https://leetcode.com/problems/parallel-courses-iii/) and [Path
+  With Minimum
+  Effort](https://leetcode.com/problems/path-with-minimum-effort/))
+  *topics*: network flow with constraints, min-cost flow, circulation
+  models
+
+### Tree constraints and centroid decomposition
+
+- [Tree diameter](https://leetcode.com/problems/tree-diameter/)
+  *(warm-up)* compute the longest path between any two nodes in a
+  tree. *topics*: two-pass DFS, path reconstruction, basic tree
+  dynamics
+
+- [Longest path with different adjacent
+  Characters](https://leetcode.com/problems/longest-path-with-different-adjacent-characters/)
+  find the longest path in a rooted tree such that no two adjacent
+  nodes share the same character label. *topics*: tree DP, DFS with
+  constraints, subtree accumulation
+
+### Subset DP with bitmask and combinatorial constraints
+
+- [Distribute repeating
+  integers](https://leetcode.com/problems/distribute-repeating-integers/)
+  assign items with multiplicities to people with limited demands.
+  *topics*: bitmask DP, subset generation, recursive allocation with
+  constraints
+
+- [Minimum number of work sessions to finish the
+  tasks](https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/)
+  partition tasks into sessions of limited duration while minimising
+  the number of sessions. *topics*: scheduling, bin packing, subset
+  sum, bitmask DP
+
+### String paths in DAG – palindromes and automata
+
+- [Break a
+  palindrome](https://leetcode.com/problems/break-a-palindrome/)
+  *(warm-up)* make the lexicographically smallest non-palindromic
+  string by changing at most one character. *topics*: string
+  manipulation, greedy decision-making
+
+- [Max dot product of two
+  subsequences](https://leetcode.com/problems/max-dot-product-of-two-subsequences/)
+  find two non-empty subsequences (not necessarily contiguous) of
+  equal length to maximise dot product. *topics*: dynamic programming,
+  subsequence alignment, negative number handling
+
+- [Shortest Path to Get
+  Food](https://leetcode.com/problems/shortest-path-to-get-food/)
+  *(warm-up)* find the shortest path in a grid from a starting point
+  to a target, avoiding obstacles. *topics*: BFS on grid, early
+  stopping, pathfinding under constraints
+
 ## Sorting algorithms
 
 - Implement from scratch: Bubble Sort, Merge Sort, Quick Sort, Heap
