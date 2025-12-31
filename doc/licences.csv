@@ -11,7 +11,7 @@ Library name,Version,License name
 "org.clojure/clojure","1.12.4","Eclipse Public License 1.0"
 "org.clojure/core.rrb-vector","0.1.2","Eclipse Public License 1.0"
 "org.clojure/core.specs.alpha","0.4.74","Eclipse Public License 1.0"
-"org.clojure/data.csv","1.1.0","Eclipse Public License 1.0"
+"org.clojure/data.csv","1.1.1","Eclipse Public License 1.0"
 "org.clojure/spec.alpha","0.5.238","Eclipse Public License 1.0"
 "org.clojure/test.check","1.1.1","Eclipse Public License 1.0"
 "org.clojure/tools.reader","1.5.2","Eclipse Public License 1.0"
