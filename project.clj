@@ -16,7 +16,7 @@
                  [instaparse "1.5.0"]
                  [metosin/malli "0.20.1"]
                  [org.clojure/data.csv "1.1.1"]
-                 [org.clojure/clojure "1.12.5-alpha1"]]
+                 [org.clojure/clojure "1.12.5-rc1"]]
   :profiles {:github {:github/topics ["kata" "playground" "algorithm" "practice" "code"]
                       :github/private? false}
              :provided {:dependencies []}
